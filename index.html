@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
-  <title>GetShipped — Automated Developer RAG Agent &amp; Omnichannel Launch Platform</title>
+  <title>GetShipped — Turn Code Into 60fps Launch Videos &amp; Posts</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter+Tight:wght@400;500;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
@@ -50,7 +50,7 @@
       pointer-events: none;
     }
 
-    /* ================= SCENE 1: ONBOARDING / CONFIG ================= */
+    /* ================= SCENE 1: ONBOARDING / SETUP ================= */
     .auth {
       position: fixed;
       inset: 0;
@@ -129,11 +129,11 @@
     .card {
       position: relative;
       z-index: 2;
-      width: min(440px, calc(100vw - 28px));
+      width: min(420px, calc(100vw - 28px));
       max-height: 94vh;
       overflow-y: auto;
       scrollbar-width: none;
-      padding: 24px 32px 18px;
+      padding: 26px 32px 20px;
       border-radius: 20px;
       text-align: center;
       background: linear-gradient(180deg, rgba(30,27,24,.92) 0%, rgba(21,19,17,.94) 62%, rgba(12,11,10,.96) 100%);
@@ -165,7 +165,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.09);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.1);
     }
 
     .logo-tile svg {
@@ -175,7 +175,7 @@
     }
 
     .card h1 {
-      margin-top: 18px;
+      margin-top: 16px;
       font-size: 21px;
       line-height: 26px;
       font-weight: 600;
@@ -185,9 +185,9 @@
 
     .card .subtitle {
       margin-top: 6px;
-      font-size: 12.5px;
-      line-height: 16px;
-      color: rgba(255, 255, 255, .6);
+      font-size: 13px;
+      line-height: 17px;
+      color: rgba(255, 255, 255, .62);
     }
 
     /* OAUTH / CONNECT ROW */
@@ -200,9 +200,9 @@
 
     .oauth-btn {
       position: relative;
-      height: 32px;
+      height: 33px;
       border-radius: 10px;
-      background: rgba(255, 255, 255, .055);
+      background: rgba(255, 255, 255, .06);
       font-size: 12.5px;
       font-weight: 600;
       color: #fff;
@@ -215,7 +215,7 @@
     }
 
     .oauth-btn:hover {
-      background: rgba(255, 255, 255, .1);
+      background: rgba(255, 255, 255, .11);
     }
 
     .oauth-btn:active {
@@ -224,24 +224,24 @@
 
     .oauth-btn .brand-icon {
       position: absolute;
-      left: 9px;
-      width: 17px;
-      height: 17px;
+      left: 10px;
+      width: 16px;
+      height: 16px;
       color: currentColor;
-      opacity: .4;
+      opacity: .5;
       transition: opacity .2s ease;
     }
 
     .oauth-btn:hover .brand-icon {
-      opacity: .9;
+      opacity: .95;
     }
 
     .divider {
-      margin-top: 12px;
+      margin-top: 13px;
       margin-bottom: 12px;
       font-size: 11px;
       line-height: 14px;
-      color: rgba(255, 255, 255, .32);
+      color: rgba(255, 255, 255, .35);
       text-transform: uppercase;
       letter-spacing: .06em;
     }
@@ -250,15 +250,15 @@
     .auth-form {
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 10px;
       text-align: left;
     }
 
     .form-group-label {
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 600;
-      color: rgba(255, 255, 255, .6);
-      margin-bottom: -3px;
+      color: rgba(255, 255, 255, .7);
+      margin-bottom: -4px;
       padding-left: 2px;
       display: flex;
       align-items: center;
@@ -267,7 +267,7 @@
 
     .form-group-label span {
       font-size: 10.5px;
-      color: rgba(255, 255, 255, .35);
+      color: rgba(255, 255, 255, .4);
       font-weight: 400;
       font-family: var(--mono);
     }
@@ -316,7 +316,7 @@
     .field input, .field select {
       position: relative;
       z-index: 1;
-      height: 34px;
+      height: 35px;
       width: 100%;
       border-radius: 9px;
       padding: 0 12px;
@@ -351,7 +351,7 @@
       background: rgba(255, 255, 255, .04);
       border: 1px solid rgba(255, 255, 255, .08);
       font-size: 11px;
-      color: rgba(255, 255, 255, .7);
+      color: rgba(255, 255, 255, .75);
       cursor: pointer;
       user-select: none;
       transition: all .2s ease;
@@ -400,7 +400,7 @@
     }
 
     .submit-btn {
-      margin-top: 14px;
+      margin-top: 13px;
       height: 38px;
       padding: 0 20px;
       border-radius: 9999px;
@@ -484,7 +484,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255, 255, 255, .32);
+      color: rgba(255, 255, 255, .35);
       transition: color .2s ease, opacity .3s ease;
     }
 
@@ -545,7 +545,8 @@
     }
 
     .nav-item.active {
-      background: rgba(255, 255, 255, .07);
+      background: rgba(255, 255, 255, .08);
+      font-weight: 600;
     }
 
     .nav-icon {
@@ -675,7 +676,7 @@
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, .1);
       font-size: 11.5px;
-      color: rgba(255, 255, 255, .88);
+      color: rgba(255, 255, 255, .9);
       font-family: var(--mono);
     }
 
@@ -784,10 +785,10 @@
     }
 
     .studio-header h2 {
-      font-size: 26px;
-      line-height: 30px;
+      font-size: 24px;
+      line-height: 28px;
       font-weight: 600;
-      letter-spacing: -.03em;
+      letter-spacing: -.02em;
       color: #fff;
     }
 
@@ -927,7 +928,40 @@
       max-width: 240px;
     }
 
-    /* REMOTION SCENE 1: CODE DIFF */
+    .video-viewport.ratio-9-16 .diff-code-body {
+      font-size: 8.5px;
+      line-height: 15px;
+      padding: 8px 6px;
+    }
+
+    .video-viewport.ratio-9-16 .diff-sign {
+      width: 11px;
+    }
+
+    .video-viewport.ratio-9-16 .metrics-3d-card {
+      width: 95%;
+      padding: 10px;
+    }
+
+    .video-viewport.ratio-9-16 .metrics-grid-3d {
+      gap: 6px;
+    }
+
+    .video-viewport.ratio-9-16 .m-stat {
+      padding: 5px 6px;
+    }
+
+    .video-viewport.ratio-9-16 .m-stat-val {
+      font-size: 13px;
+    }
+
+    .video-viewport.ratio-9-16 .kinetic-box {
+      font-size: 16px;
+      line-height: 24px;
+      gap: 4px;
+    }
+
+    /* SCENE 1: CODE DIFF */
     .scene-view {
       position: absolute;
       inset: 0;
@@ -953,7 +987,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, .06);
       font-size: 10.5px;
       font-family: var(--mono);
-      color: rgba(255, 255, 255, .5);
+      color: rgba(255, 255, 255, .55);
       gap: 8px;
     }
 
@@ -973,10 +1007,10 @@
 
     .diff-code-body {
       flex: 1;
-      padding: 10px 12px;
+      padding: 12px 14px;
       font-family: var(--mono);
       font-size: 11px;
-      line-height: 19px;
+      line-height: 20px;
       overflow-y: hidden;
       display: flex;
       flex-direction: column;
@@ -1010,7 +1044,7 @@
       opacity: .8;
     }
 
-    /* REMOTION SCENE 2: UI CURSOR ZOOM */
+    /* SCENE 2: UI DEMO / BENCHMARK ZOOM */
     .zoom-stage-box {
       flex: 1;
       padding: 18px;
@@ -1050,7 +1084,7 @@
 
     .m-stat-label {
       font-size: 10px;
-      color: rgba(255, 255, 255, .4);
+      color: rgba(255, 255, 255, .45);
       font-family: var(--mono);
     }
 
@@ -1090,7 +1124,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,.4);
     }
 
-    /* REMOTION SCENE 3: KINETIC CAPTIONS */
+    /* SCENE 3: KINETIC CAPTIONS */
     .captions-stage {
       flex: 1;
       display: flex;
@@ -1122,7 +1156,7 @@
 
     .k-word.active {
       color: #fff;
-      transform: scale(1.1);
+      transform: scale(1.08);
       text-shadow: 0 0 16px rgba(16, 185, 129, .8);
     }
 
@@ -1387,18 +1421,18 @@
     }
 
     .li-title-input {
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 600;
       color: #fff;
-      padding: 8px;
+      padding: 8px 10px;
       background: rgba(0,0,0,.25);
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, .08);
     }
 
     .li-body-textarea {
-      min-height: 220px;
-      font-size: 13px;
+      min-height: 200px;
+      font-size: 12.5px;
       line-height: 20px;
       color: rgba(255, 255, 255, .85);
       padding: 10px;
@@ -1423,7 +1457,7 @@
       border-radius: 5px;
     }
 
-    /* TAB 3: HASHNODE / DEV.TO BLOG WITH MERMAID */
+    /* TAB 3: BLOG & ARCHITECTURE */
     .blog-box {
       display: flex;
       flex-direction: column;
@@ -1438,8 +1472,8 @@
     }
 
     .article-header-card h3 {
-      font-size: 16px;
-      line-height: 22px;
+      font-size: 15px;
+      line-height: 21px;
       font-weight: 600;
       color: #fff;
     }
@@ -1485,6 +1519,31 @@
       max-width: 100%;
       height: auto;
       margin: 0 auto;
+    }
+
+    /* BENCHMARK TABLE */
+    .bench-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      margin-top: 4px;
+    }
+
+    .bench-table th, .bench-table td {
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .bench-table th {
+      color: rgba(255, 255, 255, .45);
+      font-weight: 500;
+    }
+
+    .bench-table td.highlight {
+      color: var(--emerald);
+      font-weight: 600;
     }
 
     /* TAB 4: GITHUB README DIFF */
@@ -1536,12 +1595,6 @@
       display: flex;
       align-items: center;
       gap: 12px;
-    }
-
-    .restate-tag {
-      font-size: 11px;
-      font-family: var(--mono);
-      color: rgba(255, 255, 255, .55);
     }
 
     .target-indicators {
@@ -1753,7 +1806,7 @@
         </div>
 
         <h1>GetShipped</h1>
-        <p class="subtitle">Automated Developer RAG Agent &amp; Omnichannel Launch</p>
+        <p class="subtitle">Turn code commits into demo videos, social posts, and docs.</p>
 
         <!-- Quick Connect Row -->
         <div class="oauth-grid">
@@ -1761,42 +1814,48 @@
             <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
-            GitHub Synced
+            GitHub
           </button>
 
           <button type="button" class="oauth-btn" id="googleAuthBtn">
             <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
             </svg>
-            Workspace
+            Google
           </button>
         </div>
 
-        <div class="divider">Configure What You Want To Ship</div>
+        <div class="divider">Configure Your Launch</div>
 
         <!-- Form: Developer Details & Launch Targets -->
         <form class="auth-form" id="signupForm" novalidate autocomplete="off">
           <div class="form-group-label">
-            Repository Target
-            <span>Commit 8f4e2b1</span>
+            GitHub Repository
+            <span>main branch</span>
           </div>
           <label class="field">
-            <input type="text" id="repoInput" value="github.com/getshipped/hyperscale-rag" required>
+            <input type="text" id="repoInput" value="github.com/acme/fast-search" placeholder="github.com/org/repo" required>
           </label>
 
           <div class="form-group-label">
-            Developer Lead
-            <span>Staff AI Systems</span>
+            Feature / Commit Message
+            <span>git commit</span>
           </div>
           <label class="field">
-            <input type="text" id="authorInput" value="Alex Rivera (@alexrivera_ai)" required>
+            <input type="text" id="commitInput" value="feat: instant streaming search API" placeholder="What did you build?" required>
           </label>
 
           <div class="form-group-label">
-            Target Omnichannel Channels
-            <span>All Selected</span>
+            What To Generate
+            <span id="selectedCount">6 items selected</span>
           </div>
           <div class="channel-pills">
+            <label class="channel-pill active">
+              <input type="checkbox" checked>
+              <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <span>60fps Video</span>
+            </label>
+
             <label class="channel-pill active">
               <input type="checkbox" checked>
               <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
@@ -1812,30 +1871,24 @@
             <label class="channel-pill active">
               <input type="checkbox" checked>
               <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <span>Remotion</span>
+              <span>Tech Blog</span>
             </label>
 
             <label class="channel-pill active">
               <input type="checkbox" checked>
               <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <span>Blog / Doc</span>
+              <span>README Diff</span>
             </label>
 
             <label class="channel-pill active">
               <input type="checkbox" checked>
               <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <span>README</span>
-            </label>
-
-            <label class="channel-pill active">
-              <input type="checkbox" checked>
-              <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <span>Shorts 9:16</span>
+              <span>9:16 Shorts</span>
             </label>
           </div>
 
           <button type="submit" class="submit-btn" id="submitBtn">
-            <span>Initiate RAG Agent &amp; Open Studio</span>
+            <span>Generate Launch Pack</span>
             <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
         </form>
@@ -1843,7 +1896,7 @@
     </div>
 
     <footer class="legal">
-      <span>By initiating launch, you agree to automated PR generation &amp; omnichannel distribution. <a href="#">Terms of service</a>.</span>
+      <span>By continuing, you agree to our <a href="#">terms of service</a>.</span>
     </footer>
   </main>
 
@@ -1874,7 +1927,7 @@
               <path d="M10 9l5 3-5 3V9z"/>
             </svg>
           </div>
-          <span class="nav-label">Approval Studio</span>
+          <span class="nav-label">Launch Studio</span>
         </a>
 
         <a class="nav-item">
@@ -1884,7 +1937,7 @@
               <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
             </svg>
           </div>
-          <span class="nav-label">Remotion 60fps</span>
+          <span class="nav-label">Video Studio</span>
         </a>
 
         <a class="nav-item">
@@ -1896,7 +1949,7 @@
               <path d="M18 9a9 9 0 0 1-9 9"/>
             </svg>
           </div>
-          <span class="nav-label">RAG AST Index</span>
+          <span class="nav-label">Repositories</span>
         </a>
 
         <a class="nav-item">
@@ -1909,7 +1962,7 @@
               <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
             </svg>
           </div>
-          <span class="nav-label">Omnichannel</span>
+          <span class="nav-label">Channels</span>
         </a>
 
         <a class="nav-item">
@@ -1921,7 +1974,7 @@
               <circle cx="17" cy="17" r="3"/>
             </svg>
           </div>
-          <span class="nav-label">Team Review</span>
+          <span class="nav-label">Team</span>
         </a>
       </nav>
 
@@ -1950,7 +2003,7 @@
               <circle cx="16.5" cy="14" r="1.5"/>
             </svg>
           </div>
-          <span class="nav-label">Balance</span>
+          <span class="nav-label">Credits</span>
           <span class="nav-meta">$43.42</span>
         </a>
 
@@ -1984,7 +2037,7 @@
       <div class="panel-topbar">
         <div class="pipeline-badge">
           <div class="pulse-dot"></div>
-          <span>Speculative RAG Active • 14.2ms TTFT • Commit 8f4e2b1</span>
+          <span>Launch Ready • Commit 8f4e2b1 • 60 FPS Video Generated</span>
         </div>
 
         <button type="button" class="search-pill" id="searchPill" title="Press / to scroll to top">
@@ -2003,16 +2056,16 @@
           <!-- STUDIO HEADER -->
           <div class="studio-header rise" style="--i:0;">
             <div>
-              <h2>HyperScale RAG v2 — Omnichannel Launch Studio</h2>
-              <p class="meta-sub">packages/core/src/retrieval/graphPipeline.ts • Speculative Graph Traversal</p>
+              <h2 id="studioTitle">Launch Studio — feat: instant streaming search API</h2>
+              <p class="meta-sub" id="studioMeta">acme/fast-search • branch main • 6 launch assets prepared</p>
             </div>
             <div class="studio-stats-pills">
               <div class="stat-badge ready">
                 <svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                <span>RAG Verified: 99.4%</span>
+                <span>Ready to Ship</span>
               </div>
               <div class="stat-badge">
-                <span>Remotion 60 FPS</span>
+                <span>60 FPS Master Video</span>
               </div>
             </div>
           </div>
@@ -2025,12 +2078,12 @@
               <div class="pane-header">
                 <div class="pane-title">
                   <svg style="width:14px;height:14px;color:var(--emerald);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="4"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-                  <span>GetShippedMasterVideo (Remotion v4)</span>
+                  <span>Video Preview (Remotion v4)</span>
                 </div>
                 
                 <!-- Aspect Ratio Switcher -->
                 <div class="ratio-switcher">
-                  <button type="button" class="ratio-btn active" id="btnRatio169">16:9 Desktop</button>
+                  <button type="button" class="ratio-btn active" id="btnRatio169">16:9 Video</button>
                   <button type="button" class="ratio-btn" id="btnRatio916">9:16 Shorts</button>
                 </div>
               </div>
@@ -2043,45 +2096,45 @@
                   <div class="scene-view active" id="sceneCodeDiff">
                     <div class="window-chrome">
                       <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                      <span>packages/core/src/retrieval/graphPipeline.ts</span>
+                      <span>src/search.ts</span>
                     </div>
                     <div class="diff-code-body">
-                      <div class="diff-line del"><span class="diff-sign">-</span><span>export async function retrieveContext(query: string): Promise&lt;Document[]&gt; {</span></div>
-                      <div class="diff-line add"><span class="diff-sign">+</span><span>export async function* retrieveContextStream(query: string): AsyncGenerator&lt;DocumentChunk&gt; {</span></div>
-                      <div class="diff-line del"><span class="diff-sign">-</span><span>  const rawMatches = await vectorStore.query({ vector: embedding, topK: 50 });</span></div>
-                      <div class="diff-line add"><span class="diff-sign">+</span><span>  const [subQueries, fastPathGraph] = await Promise.all([</span></div>
-                      <div class="diff-line add"><span class="diff-sign">+</span><span>    speculativeRouter.predictMultiHop(query),</span></div>
-                      <div class="diff-line add"><span class="diff-sign">+</span><span>    graphIndex.traverseFastPath(query)</span></div>
-                      <div class="diff-line add"><span class="diff-sign">+</span><span>  ]);</span></div>
-                      <div class="diff-line add"><span class="diff-sign">+</span><span>  const ringBuffer = new SharedArrayRingBuffer&lt;DocumentChunk&gt;(1024);</span></div>
-                      <div class="diff-line del"><span class="diff-sign">-</span><span>  const filtered = await crossEncoder.rerank(query, rawMatches);</span></div>
-                      <div class="diff-line add"><span class="diff-sign">+</span><span>  for await (const chunk of ringBuffer.consumeSpeculative()) {</span></div>
-                      <div class="diff-line add"><span class="diff-sign">+</span><span>    if (chunk.confidenceScore &gt; 0.94) yield chunk; // 14.2ms TTFT</span></div>
-                      <div class="diff-line ctx"><span class="diff-sign"> </span><span>  }</span></div>
+                      <div class="diff-line del"><span class="diff-sign">-</span><span>export async function search(query: string) {</span></div>
+                      <div class="diff-line del"><span class="diff-sign">-</span><span>  // Slow: waits for database to finish query</span></div>
+                      <div class="diff-line del"><span class="diff-sign">-</span><span>  const results = await db.raw("SELECT * FROM items WHERE text LIKE ?", query);</span></div>
+                      <div class="diff-line del"><span class="diff-sign">-</span><span>  return results.slice(0, 10);</span></div>
+                      <div class="diff-line del"><span class="diff-sign">-</span><span>}</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>export async function* searchStream(query: string) {</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>  // Fast: stream results immediately as found</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>  const stream = await index.streamResults(query);</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>  for await (const result of stream) {</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>    yield result; // Instant 12ms response</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>  }</span></div>
+                      <div class="diff-line ctx"><span class="diff-sign"> </span><span>}</span></div>
                     </div>
                   </div>
 
-                  <!-- SCENE 2: UI CURSOR ZOOM SCENE -->
+                  <!-- SCENE 2: UI DEMO / BENCHMARK ZOOM -->
                   <div class="scene-view" id="sceneUiZoom">
                     <div class="window-chrome">
                       <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                      <span>Autonomous Query Router &amp; Multi-Hop Visualizer</span>
+                      <span>Production Search Benchmarks</span>
                     </div>
                     <div class="zoom-stage-box" id="zoomStage">
                       <div class="metrics-3d-card" id="metricsCard">
-                        <div style="font-size:11px;color:rgba(255,255,255,.5);font-family:var(--mono);">Cluster Benchmark • 50,000 QPS</div>
+                        <div style="font-size:11px;color:rgba(255,255,255,.5);font-family:var(--mono);">Live Benchmark • 10,000 QPS</div>
                         <div class="metrics-grid-3d">
-                          <div class="m-stat"><div class="m-stat-label">TTFT Latency</div><div class="m-stat-val">14.2 ms</div></div>
-                          <div class="m-stat"><div class="m-stat-label">Cache Hit Rate</div><div class="m-stat-val">94.6%</div></div>
-                          <div class="m-stat"><div class="m-stat-label">Accuracy Score</div><div class="m-stat-val">99.1%</div></div>
-                          <div class="m-stat"><div class="m-stat-label">Latency Drop</div><div class="m-stat-val" style="color:var(--emerald);">-84%</div></div>
+                          <div class="m-stat"><div class="m-stat-label">Response Time</div><div class="m-stat-val">12 ms</div></div>
+                          <div class="m-stat"><div class="m-stat-label">Throughput</div><div class="m-stat-val">10,000 req/s</div></div>
+                          <div class="m-stat"><div class="m-stat-label">Memory Used</div><div class="m-stat-val" style="color:#a7f3d0;">1.1 GB (-74%)</div></div>
+                          <div class="m-stat"><div class="m-stat-label">Speedup</div><div class="m-stat-val" style="color:var(--emerald);">10x Faster</div></div>
                         </div>
                       </div>
 
                       <!-- MOCK ANIMATED CURSOR -->
                       <div class="mock-cursor" id="mockCursor" style="left: 45%; top: 40%;">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4l7 17 2.5-6.5L20 12 4 4z" fill="#fff" stroke="#000" stroke-width="1.5"/></svg>
-                        <div class="cursor-tooltip" id="cursorTooltip">14.2ms Zero-Copy RingBuffer</div>
+                        <div class="cursor-tooltip" id="cursorTooltip">Instant 12ms Results</div>
                       </div>
                     </div>
                   </div>
@@ -2091,16 +2144,15 @@
                     <div class="captions-stage">
                       <div class="kinetic-box" id="kineticBox">
                         <span class="k-word" data-word="0">Shipping</span>
-                        <span class="k-word emph" data-word="1">HyperScale</span>
-                        <span class="k-word emph" data-word="2">RAG</span>
-                        <span class="k-word" data-word="3">v2.</span>
-                        <span class="k-word" data-word="4">We</span>
-                        <span class="k-word emph" data-word="5">slashed</span>
-                        <span class="k-word" data-word="6">latency</span>
-                        <span class="k-word cyan" data-word="7">by 84%</span>
-                        <span class="k-word" data-word="8">with</span>
-                        <span class="k-word emph" data-word="9">zero-copy</span>
-                        <span class="k-word" data-word="10">streaming.</span>
+                        <span class="k-word emph" data-word="1">instant</span>
+                        <span class="k-word emph" data-word="2">streaming</span>
+                        <span class="k-word" data-word="3">search</span>
+                        <span class="k-word" data-word="4">today.</span>
+                        <span class="k-word cyan" data-word="5">10x faster</span>
+                        <span class="k-word" data-word="6">results,</span>
+                        <span class="k-word emph" data-word="7">sub-15ms,</span>
+                        <span class="k-word" data-word="8">open source</span>
+                        <span class="k-word cyan" data-word="9">on GitHub.</span>
                       </div>
                     </div>
                   </div>
@@ -2116,7 +2168,7 @@
 
                 <div class="control-row">
                   <div class="btn-group">
-                    <button type="button" class="play-btn" id="playBtn" aria-label="Play/Pause">
+                    <button type="button" class="play-btn" id="playBtn" aria-label="Play or Pause">
                       <svg id="playIcon" style="width:12px;height:12px;margin-left:1px;" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                     </button>
                     <div class="time-readout" id="timeReadout">00:00.0 / 00:30.0</div>
@@ -2124,7 +2176,7 @@
 
                   <div class="scene-chips">
                     <button type="button" class="scene-chip active" id="chipDiff">1. Code Diff</button>
-                    <button type="button" class="scene-chip" id="chipZoom">2. UI Zoom</button>
+                    <button type="button" class="scene-chip" id="chipZoom">2. Benchmark</button>
                     <button type="button" class="scene-chip" id="chipCaptions">3. Captions</button>
                   </div>
                 </div>
@@ -2147,7 +2199,7 @@
 
                 <button type="button" class="editor-tab" data-tab="tabBlog">
                   <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                  <span>Hashnode / Mermaid</span>
+                  <span>Blog &amp; Architecture</span>
                 </button>
 
                 <button type="button" class="editor-tab" data-tab="tabReadme">
@@ -2166,18 +2218,18 @@
                       <div class="tweet-user">
                         <div class="avatar-icon"></div>
                         <span class="tweet-user-name">Alex Rivera</span>
-                        <span class="tweet-handle">@alexrivera_ai</span>
+                        <span class="tweet-handle">@alexrivera</span>
                       </div>
                       <span class="tweet-tag">Tweet 1 of 5 • Hook</span>
                     </div>
-                    <textarea class="tweet-textarea">Vector search in production is hitting a massive wall. Sequential brute-force embedding lookups choke on multi-hop reasoning.
+                    <textarea class="tweet-textarea">Traditional database search gets slow as your data grows.
 
-Today we're open-sourcing HyperScale RAG v2: speculative AST graph indexing with zero-copy stream buffers.
+Today we're launching instant streaming search: 10x faster response times with live result streaming.
 
-84% lower latency. Here is how it works 🧵👇</textarea>
+Here is how it works 🧵👇</textarea>
                     <div class="tweet-footer">
-                      <span>[Media: code_diff_video.mp4 (60fps)]</span>
-                      <span>272 / 280 chars</span>
+                      <span>[Video: 60fps Demo Attached]</span>
+                      <span class="char-count">198 / 280 chars</span>
                     </div>
                   </div>
 
@@ -2187,16 +2239,14 @@ Today we're open-sourcing HyperScale RAG v2: speculative AST graph indexing with
                       <div class="tweet-user">
                         <div class="avatar-icon"></div>
                         <span class="tweet-user-name">Alex Rivera</span>
-                        <span class="tweet-handle">@alexrivera_ai</span>
+                        <span class="tweet-handle">@alexrivera</span>
                       </div>
                       <span class="tweet-tag">Tweet 2 of 5</span>
                     </div>
-                    <textarea class="tweet-textarea">The fundamental problem with classic RAG: 90% of user queries require relational context, but vector stores only understand cosine proximity.
-
-HyperScale v2 precomputes an AST-linked knowledge graph that predicts 2nd-order hops before the main embedder even finishes.</textarea>
+                    <textarea class="tweet-textarea">Instead of waiting for the full query to finish before returning data, we now stream results over a live async generator as soon as matches are found in memory.</textarea>
                     <div class="tweet-footer">
-                      <span>[Media: architecture_flow.png]</span>
-                      <span>260 / 280 chars</span>
+                      <span>[Image: Architecture Diagram]</span>
+                      <span class="char-count">162 / 280 chars</span>
                     </div>
                   </div>
 
@@ -2206,16 +2256,55 @@ HyperScale v2 precomputes an AST-linked knowledge graph that predicts 2nd-order 
                       <div class="tweet-user">
                         <div class="avatar-icon"></div>
                         <span class="tweet-user-name">Alex Rivera</span>
-                        <span class="tweet-handle">@alexrivera_ai</span>
+                        <span class="tweet-handle">@alexrivera</span>
                       </div>
                       <span class="tweet-tag">Tweet 3 of 5</span>
                     </div>
-                    <textarea class="tweet-textarea">Instead of allocating heavy JSON document buffers on every request, we implemented a lock-free SharedArrayBuffer ring stream.
-
-Time-to-first-token dropped from 186ms -> 14.2ms at 48,000 QPS on a single 8-GPU cluster.</textarea>
+                    <textarea class="tweet-textarea">Benchmarks in production: latency dropped from 140ms down to 12ms at 10,000 requests per second with 60% less memory usage.</textarea>
                     <div class="tweet-footer">
-                      <span>[Media: benchmark_chart.png]</span>
-                      <span>226 / 280 chars</span>
+                      <span>[Image: Benchmark Chart]</span>
+                      <span class="char-count">124 / 280 chars</span>
+                    </div>
+                  </div>
+
+                  <!-- Tweet 4 -->
+                  <div class="tweet-card">
+                    <div class="tweet-head">
+                      <div class="tweet-user">
+                        <div class="avatar-icon"></div>
+                        <span class="tweet-user-name">Alex Rivera</span>
+                        <span class="tweet-handle">@alexrivera</span>
+                      </div>
+                      <span class="tweet-tag">Tweet 4 of 5</span>
+                    </div>
+                    <textarea class="tweet-textarea">Upgrading takes two minutes. It is a drop-in change for existing code:
+
+- pnpm add @acme/fast-search
+- Switch search() to searchStream()
+- Full TypeScript support out of the box</textarea>
+                    <div class="tweet-footer">
+                      <span>[Code Snippet Attached]</span>
+                      <span class="char-count">175 / 280 chars</span>
+                    </div>
+                  </div>
+
+                  <!-- Tweet 5 -->
+                  <div class="tweet-card">
+                    <div class="tweet-head">
+                      <div class="tweet-user">
+                        <div class="avatar-icon"></div>
+                        <span class="tweet-user-name">Alex Rivera</span>
+                        <span class="tweet-handle">@alexrivera</span>
+                      </div>
+                      <span class="tweet-tag">Tweet 5 of 5 • CTA</span>
+                    </div>
+                    <textarea class="tweet-textarea">Check out the docs and star the repo on GitHub:
+⭐ github.com/acme/fast-search
+
+Let us know what you think and what features you would like to see next!</textarea>
+                    <div class="tweet-footer">
+                      <span>[Link Preview Attached]</span>
+                      <span class="char-count">162 / 280 chars</span>
                     </div>
                   </div>
                 </div>
@@ -2223,25 +2312,22 @@ Time-to-first-token dropped from 186ms -> 14.2ms at 48,000 QPS on a single 8-GPU
                 <!-- TAB 2: LINKEDIN POST -->
                 <div class="tab-content" id="tabLinkedIn">
                   <div class="linkedin-box">
-                    <input class="li-title-input" value="🚀 Rethinking RAG: Why we eliminated sequential vector search to achieve 14.2ms TTFT at scale">
-                    <textarea class="li-body-textarea">When engineering AI infrastructure for enterprise workloads, the biggest performance bottleneck isn't the model weights — it's the retrieval pipeline.
+                    <input class="li-title-input" value="🚀 We just launched streaming search: 10x faster results with 12ms response times">
+                    <textarea class="li-body-textarea">As applications scale, search queries often become the biggest bottleneck in user experience.
 
-Traditional vector databases suffer from severe cache thrashing and serialization overhead during multi-hop semantic queries. Our team at GetShipped tackled this head-on.
+Our engineering team just shipped a major upgrade to our search infrastructure.
 
-Today, we're proud to open-source HyperScale RAG v2: an autonomous, latency-optimized speculative graph retrieval engine.
+What is new:
+1. Instant Streaming: Results appear incrementally in 12ms instead of waiting for full queries.
+2. 60% Less Memory: Streaming buffers eliminate heavy payload serialization.
+3. Drop-in Compatibility: Fully backwards compatible with existing clients.
 
-Key Architectural Breakthroughs:
-1. Speculative AST Graph Traversal: Predicts relational entity transitions concurrently with query embedding generation.
-2. Zero-Copy Ring Buffers: Eliminates memory copies across Node.js/Rust worker threads, streaming high-confidence tokens directly into active LLM contexts.
-3. 84% Latency Reduction: Benchmarked across 50,000 concurrent queries, reducing p99 latency from 186ms down to 14.2ms.
-
-Every commit, test suite, and launch asset for this release was synthesized and validated using our automated developer RAG pipeline.</textarea>
+Check out the demo video and explore the code on GitHub.</textarea>
                     <div class="hashtags-row">
-                      <span class="hash-tag">#ArtificialIntelligence</span>
                       <span class="hash-tag">#SoftwareEngineering</span>
                       <span class="hash-tag">#OpenSource</span>
-                      <span class="hash-tag">#RAG</span>
-                      <span class="hash-tag">#SystemDesign</span>
+                      <span class="hash-tag">#WebDev</span>
+                      <span class="hash-tag">#Performance</span>
                     </div>
                   </div>
                 </div>
@@ -2250,22 +2336,22 @@ Every commit, test suite, and launch asset for this release was synthesized and 
                 <div class="tab-content" id="tabBlog">
                   <div class="blog-box">
                     <div class="article-header-card">
-                      <h3>HyperScale RAG v2: Slashing Multi-Hop Retrieval Latency by 84%</h3>
-                      <p>How we replaced naive brute-force vector scans with lock-free zero-copy ring buffers and speculative AST routing in production.</p>
+                      <h3>How We Built a 10x Faster Streaming Search Engine</h3>
+                      <p>Replacing blocking database scans with async generators and live stream buffers.</p>
                     </div>
 
-                    <!-- LIVE ARCHITECTURE GRAPH (MERMAID) -->
+                    <!-- LIVE ARCHITECTURE GRAPH -->
                     <div class="mermaid-diagram-card">
                       <div class="mermaid-head">
                         <div class="mermaid-title">
                           <svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                          <span>Speculative Graph Pipeline Architecture (Mermaid.js)</span>
+                          <span>System Architecture Flow</span>
                         </div>
-                        <span style="font-size:10px;font-family:var(--mono);color:rgba(255,255,255,.4);">Live DAG</span>
+                        <span style="font-size:10px;font-family:var(--mono);color:rgba(255,255,255,.4);">Clean Pipeline</span>
                       </div>
 
                       <div class="mermaid-svg-wrapper">
-                        <svg viewBox="0 0 680 180" width="100%" height="180">
+                        <svg viewBox="0 0 680 120" width="100%" height="120">
                           <defs>
                             <linearGradient id="nodeGrad1" x1="0" y1="0" x2="1" y2="1">
                               <stop offset="0%" stop-color="#1e293b"/>
@@ -2280,42 +2366,58 @@ Every commit, test suite, and launch asset for this release was synthesized and 
                             </marker>
                           </defs>
 
-                          <!-- Nodes -->
-                          <!-- A: Query -->
-                          <rect x="10" y="65" width="120" height="50" rx="8" fill="url(#nodeGrad1)" stroke="#38bdf8" stroke-width="1.5"/>
-                          <text x="70" y="88" fill="#fff" font-size="11" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">User Client Query</text>
-                          <text x="70" y="102" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Multi-Hop Input</text>
+                          <!-- Step 1: User Query -->
+                          <rect x="15" y="35" width="130" height="50" rx="8" fill="url(#nodeGrad1)" stroke="#38bdf8" stroke-width="1.5"/>
+                          <text x="80" y="58" fill="#fff" font-size="11" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">1. User Query</text>
+                          <text x="80" y="72" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Search Term</text>
 
-                          <!-- Connection A -> B -->
-                          <line x1="130" y1="90" x2="175" y2="90" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
+                          <line x1="145" y1="60" x2="190" y2="60" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-                          <!-- B: Speculative AST Router -->
-                          <rect x="180" y="60" width="140" height="60" rx="8" fill="url(#nodeGrad1)" stroke="#a855f7" stroke-width="1.5"/>
-                          <text x="250" y="86" fill="#fff" font-size="11" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">Speculative Router</text>
-                          <text x="250" y="102" fill="#c084fc" font-size="9.5" font-family="monospace" text-anchor="middle">AST Multi-Hop</text>
+                          <!-- Step 2: In-Memory Search Index -->
+                          <rect x="195" y="35" width="140" height="50" rx="8" fill="url(#nodeGrad1)" stroke="#a855f7" stroke-width="1.5"/>
+                          <text x="265" y="58" fill="#fff" font-size="11" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">2. Fast Index</text>
+                          <text x="265" y="72" fill="#c084fc" font-size="9" font-family="monospace" text-anchor="middle">In-Memory Match</text>
 
-                          <!-- Branches B -> Top and B -> Bottom -->
-                          <path d="M 320 80 Q 345 40 375 40" fill="none" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
-                          <path d="M 320 100 Q 345 140 375 140" fill="none" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
+                          <line x1="335" y1="60" x2="380" y2="60" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-                          <!-- Node C: Fast Path Graph -->
-                          <rect x="380" y="18" width="130" height="44" rx="6" fill="url(#nodeGrad1)" stroke="#06b6d4" stroke-width="1.2"/>
-                          <text x="445" y="44" fill="#38bdf8" font-size="10.5" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">Knowledge Graph</text>
+                          <!-- Step 3: Stream Generator -->
+                          <rect x="385" y="35" width="140" height="50" rx="8" fill="url(#nodeGrad1)" stroke="#06b6d4" stroke-width="1.5"/>
+                          <text x="455" y="58" fill="#fff" font-size="11" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">3. Stream Buffer</text>
+                          <text x="455" y="72" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Async Generator</text>
 
-                          <!-- Node D: Vector Store -->
-                          <rect x="380" y="118" width="130" height="44" rx="6" fill="url(#nodeGrad1)" stroke="#64748b" stroke-width="1.2"/>
-                          <text x="445" y="144" fill="#cbd5e1" font-size="10.5" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">Speculative Vectors</text>
+                          <line x1="525" y1="60" x2="570" y2="60" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-                          <!-- Convergence to E: Ring Buffer -->
-                          <path d="M 510 40 Q 530 75 545 80" fill="none" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
-                          <path d="M 510 140 Q 530 105 545 100" fill="none" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-                          <!-- Node E: Zero-Copy RingBuffer -->
-                          <rect x="550" y="65" width="120" height="50" rx="8" fill="url(#nodeGradEm)" stroke="#10b981" stroke-width="2"/>
-                          <text x="610" y="88" fill="#34d399" font-size="11" font-family="Inter, sans-serif" font-weight="700" text-anchor="middle">Shared RingBuffer</text>
-                          <text x="610" y="102" fill="#a7f3d0" font-size="9" font-family="monospace" text-anchor="middle">14.2ms TTFT Yield</text>
+                          <!-- Step 4: Instant Results -->
+                          <rect x="575" y="35" width="90" height="50" rx="8" fill="url(#nodeGradEm)" stroke="#10b981" stroke-width="2"/>
+                          <text x="620" y="58" fill="#34d399" font-size="11" font-family="Inter, sans-serif" font-weight="700" text-anchor="middle">Instant</text>
+                          <text x="620" y="72" fill="#a7f3d0" font-size="9" font-family="monospace" text-anchor="middle">12ms Results</text>
                         </svg>
                       </div>
+
+                      <table class="bench-table">
+                        <thead>
+                          <tr>
+                            <th>Configuration</th>
+                            <th>Response Time</th>
+                            <th>Throughput</th>
+                            <th>Memory</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Standard Database Query</td>
+                            <td>140ms</td>
+                            <td>1,200 QPS</td>
+                            <td>4.2 GB</td>
+                          </tr>
+                          <tr>
+                            <td class="highlight">New Streaming Search</td>
+                            <td class="highlight">12ms (91% faster)</td>
+                            <td class="highlight">10,000 QPS</td>
+                            <td class="highlight">1.1 GB (-74%)</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -2324,24 +2426,21 @@ Every commit, test suite, and launch asset for this release was synthesized and 
                 <div class="tab-content" id="tabReadme">
                   <div class="readme-diff-box">
                     <div class="diff-header-bar">
-                      <span>README.md (PR #42)</span>
-                      <span>Target: main • Commit 8f4e2b1</span>
+                      <span>README.md (Pull Request #42)</span>
+                      <span>Target: main branch</span>
                     </div>
-                    <pre class="diff-pre"><code style="color:#94a3b8;"><span style="color:#fca5a5;">- # HyperScale RAG (v1.x)</span>
-<span style="color:#6ee7b7;">+ # HyperScale RAG v2 ⚡</span>
-<span style="color:#6ee7b7;">+ &gt; Autonomous Speculative Graph Retrieval &amp; Zero-Copy Streaming Engine.</span>
-<span style="color:#6ee7b7;">+ &gt; Slashes multi-hop retrieval latency by **84%** with sub-15ms TTFT at 48k QPS.</span>
+                    <pre class="diff-pre"><code style="color:#94a3b8;"><span style="color:#fca5a5;">- # Fast Search (v1.0)</span>
+<span style="color:#6ee7b7;">+ # Fast Search v2 ⚡</span>
+<span style="color:#6ee7b7;">+ &gt; Instant streaming search API for modern apps.</span>
+<span style="color:#6ee7b7;">+ &gt; 10x faster response times with sub-15ms latency.</span>
  
-<span style="color:#fca5a5;">- Simple sequential RAG engine for developer codebases.</span>
+<span style="color:#fca5a5;">- Slow sequential query engine.</span>
 <span style="color:#6ee7b7;">+ [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)</span>
-<span style="color:#6ee7b7;">+ [![Remotion Verified](https://img.shields.io/badge/Video_Engine-Remotion_v4-purple.svg)](https://remotion.dev)</span>
- 
- ## Architecture Flow
-<span style="color:#6ee7b7;">+ Query -&gt; Speculative AST Router -&gt; SharedArrayBuffer Stream -&gt; 14.2ms TTFT</span>
+<span style="color:#6ee7b7;">+ [![Demo Video](https://img.shields.io/badge/Demo-60fps_Video-purple.svg)](https://getshipped.ai)</span>
  
  ## Quick Start
  ```bash
- pnpm add @getshipped/rag-engine
+ pnpm add @acme/fast-search
  ```</code></pre>
                   </div>
                 </div>
@@ -2354,15 +2453,13 @@ Every commit, test suite, and launch asset for this release was synthesized and 
           <!-- ================= BOTTOM DISPATCH ACTION HUB ================= -->
           <div class="dispatch-hub rise" style="--i:4;">
             <div class="hub-left">
-              <div class="restate-tag">
-                Restate: <span style="color:#fff;font-family:var(--mono);">restate.getshipped.internal/v1/ship</span>
-              </div>
               <div class="target-indicators">
-                <span class="target-badge on">𝕏 Thread</span>
+                <span class="target-badge on">𝕏 Twitter</span>
                 <span class="target-badge on">LinkedIn</span>
-                <span class="target-badge on">Remotion 16:9/9:16</span>
-                <span class="target-badge on">Dev.to</span>
-                <span class="target-badge on">PR #42</span>
+                <span class="target-badge on">60fps Video</span>
+                <span class="target-badge on">Tech Blog</span>
+                <span class="target-badge on">README Diff</span>
+                <span class="target-badge on">9:16 Shorts</span>
               </div>
             </div>
 
@@ -2383,17 +2480,18 @@ Every commit, test suite, and launch asset for this release was synthesized and 
       <div class="modal-icon">
         <svg style="width:28px;height:28px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
-      <h3 style="font-size:18px;font-weight:700;color:#fff;">Launch Successfully Dispatched! 🚀</h3>
+      <h3 style="font-size:18px;font-weight:700;color:#fff;">Launch Successfully Published! 🎉</h3>
       <p style="font-size:12.5px;color:rgba(255,255,255,.65);margin-top:-6px;">
-        Restate pipeline executed. All omnichannel launch assets are live.
+        All omnichannel launch assets are now published and live.
       </p>
 
       <div class="log-list">
-        <div class="log-item done">✓ Remotion 60fps Master Video Rendered (1080p &amp; 9:16)</div>
-        <div class="log-item done">✓ 5-Tweet Thread Dispatched to 𝕏 / Twitter (ID: #189283749)</div>
-        <div class="log-item done">✓ LinkedIn Technical Announcement Published</div>
-        <div class="log-item done">✓ YouTube Short Scheduled with Vertical Kinetic Video</div>
-        <div class="log-item done">✓ GitHub PR #42 Merged into main (README.md Updated)</div>
+        <div class="log-item done">✓ 60fps Demo Video Rendered (16:9 Master)</div>
+        <div class="log-item done">✓ 9:16 Vertical Video Formatted for Shorts</div>
+        <div class="log-item done">✓ 5-Tweet Launch Thread Published to 𝕏 (Live)</div>
+        <div class="log-item done">✓ LinkedIn Engineering Post Published</div>
+        <div class="log-item done">✓ Technical Architecture Blog Published</div>
+        <div class="log-item done">✓ README Diff Merged into main via PR #42</div>
       </div>
 
       <button type="button" class="modal-close-btn" id="modalCloseBtn">Return to Studio</button>
@@ -2563,13 +2661,22 @@ Every commit, test suite, and launch asset for this release was synthesized and 
     }
     setTimeout(makeReady, 2600);
 
-    // Channel Pills Toggle
+    // Channel Pills Toggle & Counter
+    const selectedCount = document.getElementById("selectedCount");
+    function updatePillsCount() {
+      const activeCount = document.querySelectorAll(".channel-pill.active").length;
+      if (selectedCount) {
+        selectedCount.textContent = `${activeCount} item${activeCount === 1 ? "" : "s"} selected`;
+      }
+    }
+
     document.querySelectorAll(".channel-pill").forEach(pill => {
       pill.addEventListener("click", (e) => {
         e.preventDefault();
         pill.classList.toggle("active");
         const chk = pill.querySelector("input");
         if (chk) chk.checked = pill.classList.contains("active");
+        updatePillsCount();
       });
     });
 
@@ -2577,6 +2684,19 @@ Every commit, test suite, and launch asset for this release was synthesized and 
     function initiateFlow() {
       if (authScene.classList.contains("leaving")) return;
       authScene.classList.add("leaving");
+
+      // Transfer configured repo and commit message to studio header
+      const repoInput = document.getElementById("repoInput");
+      const commitInput = document.getElementById("commitInput");
+      const studioTitle = document.getElementById("studioTitle");
+      const studioMeta = document.getElementById("studioMeta");
+
+      const repoVal = (repoInput && repoInput.value.trim()) || "acme/fast-search";
+      const commitVal = (commitInput && commitInput.value.trim()) || "feat: instant streaming search API";
+      const activeCount = document.querySelectorAll(".channel-pill.active").length || 6;
+
+      if (studioTitle) studioTitle.textContent = `Launch Studio — ${commitVal}`;
+      if (studioMeta) studioMeta.textContent = `${repoVal} • branch main • ${activeCount} launch assets prepared`;
 
       // Start sky video
       skyVideo.play().catch(() => {});
@@ -2593,7 +2713,7 @@ Every commit, test suite, and launch asset for this release was synthesized and 
         }
         castleVideo.pause();
 
-        // Start Remotion 60fps player loop
+        // Start Remotion player loop
         startRemotionPlayer();
       }, 520);
     }
@@ -2680,7 +2800,7 @@ Every commit, test suite, and launch asset for this release was synthesized and 
       const totalSec = (totalFrames / fps).toFixed(1);
       timeReadout.innerText = `00:${seconds.padStart(4, "0")} / 00:${totalSec}`;
 
-      // Scene orchestration: 0-600 (Code Diff), 600-1200 (UI Zoom), 1200-1800 (Captions)
+      // Scene orchestration: 0-600 (Code Diff), 600-1200 (UI Demo), 1200-1800 (Captions)
       if (currentFrame < 600) {
         sceneCodeDiff.classList.add("active");
         sceneUiZoom.classList.remove("active");
@@ -2710,11 +2830,11 @@ Every commit, test suite, and launch asset for this release was synthesized and 
         metricsCard.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
 
         if (localProgress < 0.33) {
-          cursorTooltip.innerText = "Speculative AST Multi-Hop";
+          cursorTooltip.innerText = "12ms Response Time";
         } else if (localProgress < 0.66) {
-          cursorTooltip.innerText = "14.2ms Zero-Copy RingBuffer";
+          cursorTooltip.innerText = "10,000 req/sec";
         } else {
-          cursorTooltip.innerText = "84% Latency Drop Confirmed";
+          cursorTooltip.innerText = "1.1 GB Memory (-74%)";
         }
       } else {
         sceneCodeDiff.classList.remove("active");
@@ -2787,6 +2907,46 @@ Every commit, test suite, and launch asset for this release was synthesized and 
         if (targetEl) targetEl.classList.add("active");
       });
     });
+
+    // Dynamic tweet character counters
+    document.querySelectorAll(".tweet-card").forEach(card => {
+      const textarea = card.querySelector(".tweet-textarea");
+      const counter = card.querySelector(".char-count");
+      if (textarea && counter) {
+        function updateCount() {
+          const len = textarea.value.length;
+          counter.textContent = `${len} / 280 chars`;
+          if (len > 280) {
+            counter.style.color = "#ef4444";
+          } else {
+            counter.style.color = "rgba(255, 255, 255, .4)";
+          }
+        }
+        textarea.addEventListener("input", updateCount);
+        updateCount();
+      }
+    });
+
+    // Sidebar Navigation interactions
+    document.querySelectorAll(".side-nav .nav-item").forEach((item, index) => {
+      item.addEventListener("click", () => {
+        document.querySelectorAll(".side-nav .nav-item").forEach(n => n.classList.remove("active"));
+        item.classList.add("active");
+        if (index === 0) {
+          scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
+        } else if (index === 1) {
+          const player = document.querySelector(".remotion-pane");
+          if (player) player.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      });
+    });
+
+    const searchPill = document.getElementById("searchPill");
+    if (searchPill) {
+      searchPill.addEventListener("click", () => {
+        scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
 
     /* ================= APPROVE & SHIP EVERYWHERE FLOW ================= */
     const shipBtn = document.getElementById("shipBtn");
