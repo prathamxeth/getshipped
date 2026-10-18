@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
-  <title>GetShipped — Autonomous Developer RAG &amp; Omnichannel Launch</title>
+  <title>GetShipped — Automated Developer RAG Agent &amp; Omnichannel Launch Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&family=Outfit:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter+Tight:wght@400;500;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --sans: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -15,6 +15,8 @@
       --ease: cubic-bezier(.22, 1, .36, 1);
       --rail: 200px;
       --rainbow: conic-gradient(from 210deg, #ff2d9a, #8a3cff 18%, #2b6bff 38%, #19c2ff 50%, #c9d24a 62%, #f2c230 72%, #2b6bff 86%, #ff2d9a);
+      --emerald: #10B981;
+      --cyan: #06B6D4;
     }
 
     * {
@@ -33,7 +35,7 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    button, input, a {
+    button, input, select, textarea, a {
       font-family: inherit;
       color: inherit;
       border: none;
@@ -48,14 +50,14 @@
       pointer-events: none;
     }
 
-    /* ================= SCENE 1: AUTH ================= */
+    /* ================= SCENE 1: ONBOARDING / CONFIG ================= */
     .auth {
       position: fixed;
       inset: 0;
       display: flex;
       flex-direction: column;
       background: #000;
-      z-index: 2;
+      z-index: 10;
       transition: opacity .55s ease, visibility .55s ease;
     }
 
@@ -123,25 +125,21 @@
       cursor: pointer;
     }
 
-    .legal a:hover {
-      text-decoration: underline;
-    }
-
-    /* SIGN-UP CARD */
+    /* ONBOARDING CARD */
     .card {
       position: relative;
       z-index: 2;
-      width: min(384px, calc(100vw - 28px));
-      max-height: 100%;
+      width: min(440px, calc(100vw - 28px));
+      max-height: 94vh;
       overflow-y: auto;
       scrollbar-width: none;
-      padding: 29px 68px 0;
+      padding: 24px 32px 18px;
       border-radius: 20px;
       text-align: center;
-      background: linear-gradient(180deg, rgba(30,27,24,.9) 0%, rgba(21,19,17,.92) 62%, rgba(12,11,10,.95) 100%);
+      background: linear-gradient(180deg, rgba(30,27,24,.92) 0%, rgba(21,19,17,.94) 62%, rgba(12,11,10,.96) 100%);
       backdrop-filter: blur(22px) saturate(1.2);
       -webkit-backdrop-filter: blur(22px) saturate(1.2);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset, 0 30px 80px -10px rgba(0,0,0,.55), 0 8px 24px rgba(0,0,0,.3);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.07) inset, 0 30px 80px -10px rgba(0,0,0,.65), 0 8px 24px rgba(0,0,0,.35);
       opacity: 0;
       transform: scale(.94) translateY(10px);
       filter: blur(10px);
@@ -159,15 +157,15 @@
     }
 
     .logo-tile {
-      width: 45px;
-      height: 45px;
+      width: 44px;
+      height: 44px;
       border-radius: 11px;
       background: #000;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.08);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.09);
     }
 
     .logo-tile svg {
@@ -177,27 +175,27 @@
     }
 
     .card h1 {
-      margin-top: 27px;
-      font-size: 20px;
-      line-height: 24px;
-      font-weight: 500;
-      letter-spacing: -.015em;
+      margin-top: 18px;
+      font-size: 21px;
+      line-height: 26px;
+      font-weight: 600;
+      letter-spacing: -.02em;
       color: #fff;
     }
 
     .card .subtitle {
-      margin-top: 10px;
-      font-size: 13px;
+      margin-top: 6px;
+      font-size: 12.5px;
       line-height: 16px;
-      color: rgba(255, 255, 255, .55);
-      white-space: nowrap;
+      color: rgba(255, 255, 255, .6);
     }
 
+    /* OAUTH / CONNECT ROW */
     .oauth-grid {
-      margin-top: 17px;
+      margin-top: 15px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 9px;
     }
 
     .oauth-btn {
@@ -205,7 +203,7 @@
       height: 32px;
       border-radius: 10px;
       background: rgba(255, 255, 255, .055);
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       color: #fff;
       display: flex;
@@ -230,34 +228,57 @@
       width: 17px;
       height: 17px;
       color: currentColor;
-      opacity: .32;
+      opacity: .4;
       transition: opacity .2s ease;
     }
 
     .oauth-btn:hover .brand-icon {
-      opacity: .8;
+      opacity: .9;
     }
 
     .divider {
-      margin-top: 13px;
-      font-size: 12px;
-      line-height: 16px;
-      color: rgba(255, 255, 255, .3);
+      margin-top: 12px;
+      margin-bottom: 12px;
+      font-size: 11px;
+      line-height: 14px;
+      color: rgba(255, 255, 255, .32);
+      text-transform: uppercase;
+      letter-spacing: .06em;
     }
 
+    /* FORM STYLING */
     .auth-form {
-      margin-top: 4px;
       display: flex;
       flex-direction: column;
+      gap: 9px;
+      text-align: left;
+    }
+
+    .form-group-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .6);
+      margin-bottom: -3px;
+      padding-left: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-group-label span {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, .35);
+      font-weight: 400;
+      font-family: var(--mono);
     }
 
     .field {
       position: relative;
       display: block;
-      border-radius: 10px;
       padding: 1px;
-      margin-bottom: 7px;
-      text-align: left;
+      border-radius: 10px;
+      background: transparent;
+      transition: background .3s ease;
     }
 
     .field::before {
@@ -267,8 +288,7 @@
       border-radius: 10px;
       background: var(--rainbow);
       opacity: 0;
-      transition: opacity .25s ease;
-      z-index: 1;
+      transition: opacity .3s ease;
       pointer-events: none;
     }
 
@@ -280,8 +300,8 @@
       background: var(--rainbow);
       filter: blur(9px);
       opacity: 0;
-      transition: opacity .25s ease;
       z-index: -1;
+      transition: opacity .3s ease;
       pointer-events: none;
     }
 
@@ -293,20 +313,20 @@
       opacity: .28;
     }
 
-    .field input {
+    .field input, .field select {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       height: 34px;
       width: 100%;
       border-radius: 9px;
-      padding: 0 34px 0 10px;
+      padding: 0 12px;
       background: #211f1d;
       font-size: 12.5px;
       color: #fff;
       transition: background .2s ease;
     }
 
-    .field:focus-within input {
+    .field:focus-within input, .field:focus-within select {
       background: #050505;
     }
 
@@ -314,39 +334,74 @@
       color: rgba(255, 255, 255, .42);
     }
 
-    .field input[type="password"]:not(:placeholder-shown) {
-      font-size: 17px;
-      letter-spacing: .12em;
+    /* CHANNEL CHIPS CHECKLIST */
+    .channel-pills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 2px;
     }
 
-    .eye-btn {
-      position: absolute;
-      right: 4px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 26px;
-      height: 26px;
-      z-index: 3;
+    .channel-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      font-size: 11px;
+      color: rgba(255, 255, 255, .7);
+      cursor: pointer;
+      user-select: none;
+      transition: all .2s ease;
+    }
+
+    .channel-pill:hover {
+      background: rgba(255, 255, 255, .08);
+      color: #fff;
+    }
+
+    .channel-pill input {
+      display: none;
+    }
+
+    .channel-pill.active {
+      background: rgba(16, 185, 129, .15);
+      border-color: rgba(16, 185, 129, .4);
+      color: #fff;
+    }
+
+    .channel-pill .check-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, .3);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255, 255, 255, .28);
-      cursor: pointer;
-      transition: color .2s ease;
+      transition: all .2s ease;
     }
 
-    .eye-btn:hover, .eye-btn:active {
-      color: rgba(255, 255, 255, .8);
+    .channel-pill.active .check-dot {
+      background: var(--emerald);
+      border-color: var(--emerald);
     }
 
-    .eye-btn svg {
-      width: 15px;
-      height: 15px;
+    .channel-pill .check-dot svg {
+      width: 9px;
+      height: 9px;
+      color: #000;
+      opacity: 0;
+    }
+
+    .channel-pill.active .check-dot svg {
+      opacity: 1;
     }
 
     .submit-btn {
-      margin-top: 13px;
-      height: 36px;
+      margin-top: 14px;
+      height: 38px;
       padding: 0 20px;
       border-radius: 9999px;
       background: #fff;
@@ -357,37 +412,21 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(255, 255, 255, .15);
       transition: transform .2s ease, box-shadow .2s ease;
     }
 
     .submit-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(255, 255, 255, .18);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, .25);
     }
 
     .submit-btn:active {
       transform: scale(.97);
     }
 
-    .login-prompt {
-      margin-top: 46px;
-      padding-bottom: 14px;
-      font-size: 12px;
-      line-height: 16px;
-      color: rgba(255, 255, 255, .4);
-    }
-
-    .login-prompt a {
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .login-prompt a:hover {
-      text-decoration: underline;
-    }
-
-    /* ================= SCENE 2: DASHBOARD ================= */
+    /* ================= SCENE 2: APPROVAL STUDIO DASHBOARD ================= */
     .app {
       position: fixed;
       inset: 0;
@@ -412,7 +451,7 @@
       padding: 14px 0 10px;
       background: #000;
       overflow: hidden;
-      z-index: 3;
+      z-index: 20;
       transition: width .5s var(--ease), opacity .6s ease .35s;
     }
 
@@ -453,6 +492,11 @@
       color: #fff;
     }
 
+    .collapse-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
     .expand-btn {
       position: absolute;
       left: 10px;
@@ -463,7 +507,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
       opacity: 0;
       pointer-events: none;
       transition: opacity .3s ease;
@@ -472,11 +515,13 @@
     .expand-btn svg {
       width: 17px;
       height: 17px;
+      color: #fff;
     }
 
     .side-nav {
       display: flex;
       flex-direction: column;
+      gap: 1px;
     }
 
     .nav-item {
@@ -485,18 +530,22 @@
       width: 200px;
       padding-left: 44px;
       padding-right: 14px;
+      display: flex;
+      align-items: center;
       font-size: 13px;
       font-weight: 500;
       color: #fff;
       white-space: nowrap;
-      display: flex;
-      align-items: center;
       cursor: pointer;
-      transition: background .15s ease;
+      transition: background .2s ease;
     }
 
     .nav-item:hover {
       background: rgba(255, 255, 255, .04);
+    }
+
+    .nav-item.active {
+      background: rgba(255, 255, 255, .07);
     }
 
     .nav-icon {
@@ -509,12 +558,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: currentColor;
-      transition: transform .2s var(--ease);
+      transition: transform .2s ease;
     }
 
     .nav-item:hover .nav-icon {
       transform: translateY(-50%) scale(1.12);
+    }
+
+    .nav-icon svg {
+      width: 18px;
+      height: 18px;
+      color: currentColor;
     }
 
     .nav-label {
@@ -526,7 +580,7 @@
       font-size: 11.5px;
       font-family: var(--mono);
       font-variant-numeric: tabular-nums;
-      color: rgba(255, 255, 255, .6);
+      color: rgba(255, 255, 255, .4);
       transition: opacity .3s ease;
     }
 
@@ -534,16 +588,17 @@
       margin-top: auto;
       display: flex;
       flex-direction: column;
+      gap: 1px;
     }
 
     .avatar-icon {
       width: 18px;
       height: 18px;
-      border-radius: 50%;
+      border-radius: 9999px;
       background: conic-gradient(from 200deg, #ff3d6e, #ff9a3c, #ffd84a, #5ad1ff, #7a5cff, #ff3dc0, #ff3d6e);
     }
 
-    /* MINI / COLLAPSED SIDEBAR */
+    /* COLLAPSED STATE (.mini) */
     .app.mini .side {
       width: 42px;
     }
@@ -563,6 +618,7 @@
 
     /* MAIN PANEL */
     .panel {
+      position: relative;
       flex: 1;
       min-width: 0;
       margin: 2px 4px 4px 0;
@@ -570,11 +626,8 @@
       overflow: hidden;
       background: #93aaa6;
       isolation: isolate;
-      position: relative;
-    }
-
-    .panel .video-bg {
-      filter: saturate(.92);
+      display: flex;
+      flex-direction: column;
     }
 
     .panel::after {
@@ -592,26 +645,71 @@
       opacity: 0;
     }
 
-    .search-pill {
+    .panel .video-bg {
+      filter: saturate(.92);
+    }
+
+    /* TOP BAR OVERLAY */
+    .panel-topbar {
       position: absolute;
-      top: 9px;
+      top: 8px;
+      left: 12px;
       right: 12px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 15;
+      pointer-events: auto;
+    }
+
+    .pipeline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 28px;
+      padding: 0 12px;
+      border-radius: 9999px;
+      background: rgba(20, 32, 34, .7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, .1);
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, .88);
+      font-family: var(--mono);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px var(--emerald);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(.85); }
+    }
+
+    .search-pill {
       height: 28px;
       padding: 0 6px 0 10px;
       border-radius: 9999px;
-      background: rgba(40, 58, 60, .3);
+      background: rgba(40, 58, 60, .4);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      display: flex;
+      border: 1px solid rgba(255, 255, 255, .08);
+      display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 8px;
       cursor: pointer;
-      z-index: 4;
       transition: background .2s ease;
     }
 
     .search-pill:hover {
-      background: rgba(40, 58, 60, .5);
+      background: rgba(40, 58, 60, .6);
     }
 
     .search-pill svg {
@@ -624,24 +722,26 @@
       width: 17px;
       height: 17px;
       border-radius: 5px;
-      background: rgba(20, 30, 32, .35);
+      background: rgba(20, 30, 32, .45);
       font-family: var(--mono);
       font-weight: 500;
       font-size: 10px;
-      color: rgba(255, 255, 255, .6);
+      color: rgba(255, 255, 255, .7);
       display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 1;
     }
 
+    /* MAIN SCROLL CONTAINER */
     .scroll-container {
       position: absolute;
       inset: 0;
       overflow-y: auto;
       scrollbar-width: none;
       scroll-behavior: smooth;
-      z-index: 3;
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
     }
 
     .scroll-container::-webkit-scrollbar {
@@ -649,24 +749,22 @@
     }
 
     .content-col {
-      max-width: 776px;
+      width: 100%;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 97px 16px 120px;
+      padding: 50px 18px 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    @media (max-width: 1100px) {
-      .content-col {
-        max-width: 712px;
-      }
-    }
-
-    /* ENTRANCE RISE ANIMATION */
+    /* RISE ENTRANCE ANIMATION */
     .rise {
       opacity: 0;
       transform: translateY(12px);
       filter: blur(6px);
       transition: opacity .9s var(--ease), transform 1s var(--ease), filter .9s var(--ease);
-      transition-delay: calc(var(--i) * 110ms + 250ms);
+      transition-delay: calc(var(--i, 0) * 110ms + 250ms);
     }
 
     .app.on .rise {
@@ -675,558 +773,928 @@
       filter: none;
     }
 
-    /* HERO */
-    .hero {
-      text-align: center;
-    }
-
-    .hero h2 {
-      font-size: 36px;
-      line-height: 40px;
-      font-weight: 500;
-      letter-spacing: -.035em;
-      color: #fff;
-    }
-
-    .hero .hero-sub {
-      margin-top: 22px;
-      font-size: 13px;
-      line-height: 16px;
-      color: rgba(255, 255, 255, .5);
-    }
-
-    /* GET STARTED CARD */
-    .get-started {
-      position: relative;
-      margin-top: 41px;
-      height: 158px;
-      border-radius: 18px;
-      padding: 1.5px;
-      background: var(--rainbow);
-      overflow: visible;
-    }
-
-    .get-started::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: 20px;
-      background: var(--rainbow);
-      filter: blur(10px);
-      z-index: -1;
-      opacity: .42;
-      animation: pulseGlow 6s ease-in-out infinite;
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { opacity: .42; }
-      50% { opacity: .24; }
-    }
-
-    .get-started-inner {
-      position: relative;
-      height: 100%;
-      border-radius: 16.5px;
-      background: #000;
-      overflow: hidden;
-      padding: 17px 18px;
-    }
-
-    .gs-head {
+    /* STUDIO HEADER */
+    .studio-header {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .gs-title {
-      font-size: 11.5px;
-      color: rgba(255, 255, 255, .42);
-      font-weight: 400;
-    }
-
-    .gs-status {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 11.5px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, .92);
-    }
-
-    .gs-spinner {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(255, 255, 255, .25);
-      border-top-color: #fff;
-      border-right-color: #fff;
-      animation: spin 2.4s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .gs-list {
-      margin-top: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .gs-row {
-      height: 36px;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      font-size: 13px;
-      color: rgba(255, 255, 255, .62);
-    }
-
-    .gs-row.active {
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .gs-circle {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: #fff;
-    }
-
-    .gs-row.active .gs-circle {
-      background: #fff;
-      color: #000;
-    }
-
-    .gs-chevron {
-      margin-left: auto;
-      opacity: .45;
-      transition: transform .2s ease, opacity .2s ease;
-    }
-
-    .gs-row.active:hover .gs-chevron {
-      opacity: 1;
-      transform: translateX(3px);
-    }
-
-    /* STARBURST */
-    .starburst-container {
-      position: absolute;
-      left: 76%;
-      top: 69%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 1;
-      width: 400px;
-      height: 300px;
-    }
-
-    .starburst-dotgrid {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, rgba(255,255,255,.28) 1px, transparent 1px);
-      background-size: 6px 6px;
-      mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
-      -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
-    }
-
-    .starburst-svg {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
-      overflow: visible;
-    }
-
-    .ray {
-      stroke: url(#rayGrad);
-      stroke-width: 1;
-      animation: rayPulse 4s ease-in-out infinite;
-    }
-
-    @keyframes rayPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: .45; }
-    }
-
-    .starburst-square {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 44px;
-      height: 44px;
-      background: #fff;
-      border-radius: 0;
-      box-shadow: 0 0 40px rgba(255, 255, 255, .35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-    }
-
-    .starburst-square svg {
-      width: 24px;
-      height: 24px;
-      color: #000;
-    }
-
-    /* MODEL BLOCKS */
-    .model-block {
-      margin-top: 31px;
-    }
-
-    .model-block:first-of-type {
-      margin-top: 42px;
-    }
-
-    .model-head {
-      height: 26px;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      font-size: 14px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, .82);
-    }
-
-    .model-badge {
-      position: relative;
-      width: 25px;
-      height: 25px;
-      border-radius: 7px;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.1);
-    }
-
-    .badge-dot {
-      position: absolute;
-      top: 3px;
-      right: 3px;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: #4aa8ff;
-    }
-
-    .badge-deepseek {
-      background: #fff;
-      color: #4d6bfe;
-    }
-
-    .badge-deepseek svg {
-      width: 15px;
-      height: 15px;
-      fill: #4d6bfe;
-    }
-
-    /* MODEL CARD */
-    .model-card {
-      position: relative;
-      margin-top: 14px;
-      border-radius: 18px;
-      background: rgba(86, 104, 104, .56);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.07);
-      cursor: pointer;
-      transition: background .2s ease;
-    }
-
-    .model-card:hover {
-      background: rgba(80, 98, 98, .64);
-    }
-
-    .model-summary {
-      padding: 17px 18px 16px;
-    }
-
-    .model-desc {
-      font-size: 14px;
-      line-height: 18px;
-      font-weight: 400;
-      letter-spacing: -.01em;
-      color: #fff;
-      padding-right: 44px;
-    }
-
-    .model-tags {
-      margin-top: 9px;
-      display: flex;
       flex-wrap: wrap;
-      gap: 4px 16px;
-      font-family: var(--mono);
-      font-size: 12px;
-      line-height: 18px;
-      color: rgba(255, 255, 255, .78);
+      gap: 12px;
+      padding-bottom: 2px;
     }
 
-    .model-tag {
+    .studio-header h2 {
+      font-size: 26px;
+      line-height: 30px;
+      font-weight: 600;
+      letter-spacing: -.03em;
+      color: #fff;
+    }
+
+    .studio-header .meta-sub {
+      margin-top: 4px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, .65);
+      font-family: var(--mono);
+    }
+
+    .studio-stats-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-badge {
       display: inline-flex;
       align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 8px;
+      background: rgba(20, 32, 34, .6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .1);
+      font-size: 11.5px;
+      font-family: var(--mono);
+      color: rgba(255, 255, 255, .85);
+    }
+
+    .stat-badge.ready {
+      border-color: rgba(16, 185, 129, .4);
+      color: #34d399;
+      background: rgba(16, 185, 129, .12);
+    }
+
+    /* ================= SPLIT STUDIO LAYOUT ================= */
+    .studio-split {
+      display: grid;
+      grid-template-columns: 500px 1fr;
+      gap: 16px;
+      min-height: 620px;
+    }
+
+    /* LEFT PANE: REMOTION 60FPS VIDEO STUDIO */
+    .remotion-pane {
+      display: flex;
+      flex-direction: column;
+      border-radius: 18px;
+      background: rgba(25, 34, 35, .72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, .09);
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .4);
+    }
+
+    .pane-header {
+      height: 42px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      background: rgba(15, 22, 23, .5);
+    }
+
+    .pane-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .85);
+      display: flex;
+      align-items: center;
       gap: 7px;
     }
 
-    .model-tag svg {
-      width: 12px;
-      height: 12px;
-      opacity: .45;
+    .ratio-switcher {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, .06);
+      border-radius: 7px;
+      padding: 2px;
+      gap: 2px;
     }
 
-    .model-stats {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: 142px 152px 1fr auto;
-      gap: 8px;
-    }
-
-    .stat-label {
-      font-size: 11.5px;
-      color: rgba(255, 255, 255, .36);
-    }
-
-    .stat-val {
-      margin-top: 9px;
-      font-size: 20px;
-      line-height: 24px;
-      letter-spacing: -.02em;
+    .ratio-btn {
+      font-size: 11px;
       font-family: var(--mono);
-      font-variant-numeric: tabular-nums;
-      font-weight: 400;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 5px;
+      color: rgba(255, 255, 255, .6);
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+
+    .ratio-btn.active {
+      background: rgba(255, 255, 255, .15);
       color: #fff;
     }
 
-    .stat-col:last-child {
-      text-align: right;
-    }
-
-    .card-toggle {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 36px;
-      height: 30px;
-      border-radius: 9999px;
-      background: rgba(255, 255, 255, .035);
+    /* VIDEO PREVIEW VIEWPORT */
+    .player-stage {
+      flex: 1;
+      min-height: 380px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      background: #090e10;
+      position: relative;
+      overflow: hidden;
+      padding: 16px;
     }
 
-    .card-toggle svg {
-      width: 12px;
-      height: 12px;
-      transition: transform .5s var(--ease);
+    .video-viewport {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-height: 420px;
+      border-radius: 12px;
+      background: #0d1315;
+      border: 1px solid rgba(255, 255, 255, .08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0,0,0,.6);
+      transition: max-width .4s var(--ease), max-height .4s var(--ease), aspect-ratio .4s var(--ease);
     }
 
-    .model-card.open .card-toggle svg {
-      transform: rotate(180deg);
+    .video-viewport.ratio-16-9 {
+      aspect-ratio: 16 / 9;
+      max-width: 100%;
     }
 
-    /* EXPANDABLE CODE REGION */
-    .expandable-region {
+    .video-viewport.ratio-9-16 {
+      aspect-ratio: 9 / 16;
+      max-width: 240px;
+    }
+
+    /* REMOTION SCENE 1: CODE DIFF */
+    .scene-view {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s ease;
+      background: #0b0f12;
+    }
+
+    .scene-view.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .window-chrome {
+      height: 30px;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, .03);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      font-size: 10.5px;
+      font-family: var(--mono);
+      color: rgba(255, 255, 255, .5);
+      gap: 8px;
+    }
+
+    .dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+    .dot.r { background: #ff5f56; }
+    .dot.y { background: #ffbd2e; }
+    .dot.g { background: #27c93f; }
+
+    .diff-code-body {
+      flex: 1;
+      padding: 10px 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 19px;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .diff-line {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+
+    .diff-line.del {
+      background: rgba(239, 68, 68, .16);
+      color: #fca5a5;
+    }
+
+    .diff-line.add {
+      background: rgba(16, 185, 129, .18);
+      color: #6ee7b7;
+    }
+
+    .diff-line.ctx {
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .diff-sign {
+      width: 16px;
+      font-weight: 700;
+      opacity: .8;
+    }
+
+    /* REMOTION SCENE 2: UI CURSOR ZOOM */
+    .zoom-stage-box {
+      flex: 1;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      perspective: 900px;
+      background: radial-gradient(circle at 50% 40%, rgba(6, 182, 212, .12), transparent 70%);
+    }
+
+    .metrics-3d-card {
+      width: 88%;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(20, 28, 32, .85);
+      border: 1px solid rgba(6, 182, 212, .3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, .5);
+      transform-style: preserve-3d;
+      transition: transform .2s ease-out;
+    }
+
+    .metrics-grid-3d {
       display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows .6s var(--ease);
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
     }
 
-    .model-card.open .expandable-region {
-      grid-template-rows: 1fr;
+    .m-stat {
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .06);
     }
 
-    .expandable-inner {
-      min-height: 0;
+    .m-stat-label {
+      font-size: 10px;
+      color: rgba(255, 255, 255, .4);
+      font-family: var(--mono);
+    }
+
+    .m-stat-val {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--cyan);
+      font-family: var(--mono);
+      margin-top: 2px;
+    }
+
+    /* MOCK CURSOR POINTER */
+    .mock-cursor {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+      z-index: 10;
+      transition: left .25s ease-out, top .25s ease-out;
+    }
+
+    .mock-cursor svg {
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.8));
+    }
+
+    .cursor-tooltip {
+      position: absolute;
+      left: 20px;
+      top: -4px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--cyan);
+      color: #000;
+      font-size: 9.5px;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(0,0,0,.4);
+    }
+
+    /* REMOTION SCENE 3: KINETIC CAPTIONS */
+    .captions-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      background: #080d0f;
+    }
+
+    .kinetic-box {
+      font-size: 22px;
+      line-height: 32px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      max-width: 90%;
+    }
+
+    .k-word {
+      color: rgba(255, 255, 255, .25);
+      transition: all .15s ease;
+      display: inline-block;
+    }
+
+    .k-word.active {
+      color: #fff;
+      transform: scale(1.1);
+      text-shadow: 0 0 16px rgba(16, 185, 129, .8);
+    }
+
+    .k-word.active.emph {
+      color: var(--emerald);
+    }
+
+    .k-word.active.cyan {
+      color: var(--cyan);
+      text-shadow: 0 0 16px rgba(6, 182, 212, .8);
+    }
+
+    /* CONTROLS BAR */
+    .player-controls {
+      padding: 10px 14px 12px;
+      background: rgba(15, 22, 23, .9);
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .scrubber-track {
+      position: relative;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .1);
+      cursor: pointer;
       overflow: hidden;
     }
 
-    .expandable-content {
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity .4s ease, transform .4s var(--ease);
-      transition-delay: 0s;
+    .scrubber-progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan), var(--emerald));
+      border-radius: 3px;
+      transition: width .05s linear;
     }
 
-    .model-card.open .expandable-content {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: .22s;
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .code-box {
-      position: relative;
-      margin: 0 4px 4px;
-      border-radius: 15px;
-      background: rgba(62, 74, 75, .94);
-      padding: 12px 14px 14px;
-      cursor: default;
-    }
-
-    .code-header {
-      height: 28px;
+    .btn-group {
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+
+    .play-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .15s ease;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .time-readout {
+      font-size: 11px;
+      font-family: var(--mono);
+      color: rgba(255, 255, 255, .7);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .scene-chips {
+      display: flex;
+      gap: 4px;
+    }
+
+    .scene-chip {
+      font-size: 10px;
+      font-family: var(--mono);
+      padding: 3px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, .06);
+      color: rgba(255, 255, 255, .5);
+      cursor: pointer;
+    }
+
+    .scene-chip.active {
+      background: rgba(16, 185, 129, .2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, .3);
+    }
+
+    /* RIGHT PANE: TABBED APPROVAL EDITORS */
+    .editors-pane {
+      display: flex;
+      flex-direction: column;
+      border-radius: 18px;
+      background: rgba(25, 34, 35, .72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, .09);
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .4);
+    }
+
+    .tab-bar {
+      display: flex;
+      align-items: center;
+      height: 42px;
+      padding: 0 8px;
+      background: rgba(15, 22, 23, .6);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tab-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .editor-tab {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      height: 30px;
+      padding: 0 12px;
+      border-radius: 7px;
       font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, .6);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all .2s ease;
+    }
+
+    .editor-tab:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .editor-tab.active {
+      color: #fff;
+      background: rgba(255, 255, 255, .12);
+      font-weight: 600;
+    }
+
+    .tab-badge {
+      font-size: 10px;
+      font-family: var(--mono);
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, .1);
       color: rgba(255, 255, 255, .8);
     }
 
-    .code-pill {
-      height: 24px;
-      padding: 0 8px;
-      border-radius: 9999px;
-      background: rgba(255, 255, 255, .06);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 11.5px;
-      font-family: var(--mono);
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .code-spacer {
+    .tab-content-area {
       flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      scrollbar-width: thin;
     }
 
-    /* ZDR SWITCH */
-    .zdr-switch {
-      position: relative;
-      width: 30px;
-      height: 18px;
-      border-radius: 9999px;
-      background: #2fc48d;
-      cursor: pointer;
-      transition: background .2s ease;
+    .tab-content {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tab-content.active {
+      display: flex;
+    }
+
+    /* TAB 1: 𝕏 THREAD */
+    .tweet-card {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(15, 22, 24, .65);
+      border: 1px solid rgba(255, 255, 255, .07);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tweet-head {
       display: flex;
       align-items: center;
-      padding: 2px;
+      justify-content: space-between;
     }
 
-    .zdr-switch.off {
-      background: rgba(255, 255, 255, .2);
-    }
-
-    .zdr-knob {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #fff;
-      transform: translateX(12px);
-      transition: transform .2s var(--ease);
+    .tweet-user {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
     }
 
-    .zdr-switch.off .zdr-knob {
-      transform: translateX(0);
-    }
-
-    .zdr-knob svg {
-      width: 8px;
-      height: 8px;
-      color: #2fc48d;
-      display: block;
-    }
-
-    .zdr-switch.off .zdr-knob svg {
-      display: none;
-    }
-
-    pre.code-snippet {
-      margin-top: 12px;
-      font-family: var(--mono);
-      font-size: 12.5px;
-      line-height: 23px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      counter-reset: line-num;
-    }
-
-    pre.code-snippet::-webkit-scrollbar {
-      display: none;
-    }
-
-    .code-line {
-      display: block;
-      counter-increment: line-num;
-      white-space: pre;
-    }
-
-    .code-line::before {
-      content: counter(line-num);
-      display: inline-block;
-      width: 22px;
-      color: rgba(255, 255, 255, .28);
-      user-select: none;
-    }
-
-    .c-curl { color: #8f8ff0; }
-    .c-flag { color: #6fdcb4; }
-    .c-str  { color: #ecd9a0; }
-    .c-num  { color: #7db7ff; }
-    .c-plain { color: #fff; }
-
-    .copy-btn {
-      position: absolute;
-      right: 14px;
-      bottom: 14px;
+    .tweet-user img {
       width: 24px;
       height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, .4);
-      cursor: pointer;
-      transition: color .2s ease;
+      border-radius: 50%;
     }
 
-    .copy-btn:hover {
+    .tweet-user-name {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .tweet-handle {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .4);
+      font-family: var(--mono);
+    }
+
+    .tweet-tag {
+      font-size: 10.5px;
+      font-family: var(--mono);
+      color: var(--cyan);
+      background: rgba(6, 182, 212, .12);
+      padding: 2px 7px;
+      border-radius: 5px;
+    }
+
+    .tweet-textarea {
+      width: 100%;
+      min-height: 70px;
+      font-size: 12.5px;
+      line-height: 19px;
+      color: rgba(255, 255, 255, .9);
+      resize: vertical;
+      background: rgba(0, 0, 0, .2);
+      border-radius: 8px;
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .tweet-textarea:focus {
+      border-color: rgba(6, 182, 212, .4);
+    }
+
+    .tweet-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: rgba(255, 255, 255, .4);
+      font-family: var(--mono);
+    }
+
+    /* TAB 2: LINKEDIN */
+    .linkedin-box {
+      padding: 16px;
+      border-radius: 12px;
+      background: rgba(15, 22, 24, .65);
+      border: 1px solid rgba(255, 255, 255, .07);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .li-title-input {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      padding: 8px;
+      background: rgba(0,0,0,.25);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .li-body-textarea {
+      min-height: 220px;
+      font-size: 13px;
+      line-height: 20px;
+      color: rgba(255, 255, 255, .85);
+      padding: 10px;
+      background: rgba(0,0,0,.2);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, .05);
+      resize: vertical;
+    }
+
+    .hashtags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .hash-tag {
+      font-size: 11px;
+      font-family: var(--mono);
+      color: #38bdf8;
+      background: rgba(56, 189, 248, .1);
+      padding: 3px 8px;
+      border-radius: 5px;
+    }
+
+    /* TAB 3: HASHNODE / DEV.TO BLOG WITH MERMAID */
+    .blog-box {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .article-header-card {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(15, 22, 24, .65);
+      border: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .article-header-card h3 {
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: 600;
       color: #fff;
     }
 
-    .copy-btn svg {
-      width: 15px;
-      height: 15px;
+    .article-header-card p {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .6);
+      margin-top: 4px;
     }
 
-    .copied-toast {
-      position: absolute;
-      right: 44px;
-      bottom: 17px;
+    .mermaid-diagram-card {
+      padding: 16px;
+      border-radius: 12px;
+      background: #090e11;
+      border: 1px solid rgba(16, 185, 129, .25);
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
+    }
+
+    .mermaid-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .mermaid-title {
+      font-size: 11.5px;
+      font-weight: 600;
+      font-family: var(--mono);
+      color: var(--emerald);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mermaid-svg-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      padding: 8px 0;
+    }
+
+    .mermaid-svg-wrapper svg {
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    /* TAB 4: GITHUB README DIFF */
+    .readme-diff-box {
+      border-radius: 12px;
+      background: #090e11;
+      border: 1px solid rgba(255, 255, 255, .08);
+      overflow: hidden;
+      font-family: var(--mono);
+      font-size: 11.5px;
+    }
+
+    .diff-header-bar {
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, .04);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .diff-pre {
+      padding: 12px;
+      overflow-x: auto;
+      line-height: 20px;
+    }
+
+    /* ================= BOTTOM DISPATCH ACTION HUB ================= */
+    .dispatch-hub {
+      position: sticky;
+      bottom: 12px;
+      margin-top: 14px;
+      border-radius: 16px;
+      background: rgba(18, 26, 28, .88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, .12);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .7);
+      z-index: 10;
+    }
+
+    .hub-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .restate-tag {
       font-size: 11px;
       font-family: var(--mono);
-      color: #6fdcb4;
+      color: rgba(255, 255, 255, .55);
+    }
+
+    .target-indicators {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .target-badge {
+      font-size: 10.5px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, .06);
+      color: rgba(255, 255, 255, .8);
+      font-family: var(--mono);
+    }
+
+    .target-badge.on {
+      background: rgba(16, 185, 129, .15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, .3);
+    }
+
+    .ship-btn {
+      position: relative;
+      height: 42px;
+      padding: 0 24px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #10b981, #06b6d4 80%);
+      color: #000;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 25px rgba(16, 185, 129, .4);
+      transition: all .2s ease;
+    }
+
+    .ship-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(16, 185, 129, .6);
+    }
+
+    .ship-btn:active {
+      transform: scale(.97);
+    }
+
+    /* DISPATCH CELEBRATION MODAL */
+    .dispatch-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity .2s ease;
+      transition: opacity .3s ease;
     }
 
-    .copied-toast.show {
+    .dispatch-modal.open {
       opacity: 1;
+      pointer-events: auto;
     }
 
-    /* ================= RESPONSIVE ================= */
+    .modal-box {
+      width: min(480px, calc(100vw - 32px));
+      padding: 28px 24px 22px;
+      border-radius: 20px;
+      background: #111719;
+      border: 1px solid rgba(16, 185, 129, .4);
+      box-shadow: 0 25px 80px rgba(0,0,0,.9);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transform: scale(.95);
+      transition: transform .3s var(--ease);
+    }
+
+    .dispatch-modal.open .modal-box {
+      transform: scale(1);
+    }
+
+    .modal-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, .15);
+      border: 2px solid var(--emerald);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--emerald);
+      animation: pop 0.4s var(--ease);
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); }
+      70% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    .log-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      text-align: left;
+      margin: 8px 0;
+    }
+
+    .log-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-family: var(--mono);
+      color: rgba(255, 255, 255, .8);
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, .03);
+    }
+
+    .log-item.done {
+      color: #34d399;
+    }
+
+    .modal-close-btn {
+      height: 36px;
+      border-radius: 9999px;
+      background: #fff;
+      color: #000;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 960px) {
+      .studio-split {
+        grid-template-columns: 1fr;
+      }
+      .remotion-pane {
+        min-height: 480px;
+      }
+    }
+
     @media (max-width: 760px) {
       .side {
         position: absolute;
@@ -1234,237 +1702,152 @@
         top: 0;
         bottom: 0;
         width: 42px;
+        box-shadow: 30px 0 60px rgba(0,0,0,.5);
       }
-
       .side.expanded {
         width: 200px;
-        box-shadow: 30px 0 60px rgba(0, 0, 0, .5);
       }
-
-      .side:not(.expanded) .wordmark,
-      .side:not(.expanded) .collapse-btn,
-      .side:not(.expanded) .nav-label,
-      .side:not(.expanded) .nav-meta {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .side:not(.expanded) .expand-btn {
-        opacity: 1;
-        pointer-events: auto;
-      }
-
       .panel {
         margin: 2px 4px 4px 42px;
         border-radius: 16px;
       }
-
       .content-col {
-        padding: 72px 12px 96px;
+        padding: 46px 12px 80px;
       }
-
-      .hero h2 {
-        font-size: 28px;
-        line-height: 32px;
+      .dispatch-hub {
+        flex-direction: column;
+        align-items: stretch;
       }
-
-      .hero h2 br {
-        display: none;
-      }
-
-      .hero .hero-sub {
-        margin-top: 16px;
-        line-height: 18px;
-      }
-
-      .get-started {
-        margin-top: 30px;
-        height: auto;
-      }
-
-      .get-started-inner {
-        padding: 15px 14px 12px;
-      }
-
-      .gs-row {
-        height: auto;
-        min-height: 36px;
-        padding: 5px 0;
-        line-height: 17px;
-        text-shadow: 0 1px 3px rgba(0,0,0,.8);
-      }
-
-      .starburst-container {
-        left: 86%;
-        top: 60%;
-        opacity: .5;
-      }
-
-      .starburst-square {
-        display: none;
-      }
-
-      .model-stats {
-        grid-template-columns: 1fr 1fr 1fr auto;
-        column-gap: 10px;
-      }
-
-      .stat-val {
-        font-size: 17px;
-      }
-
-      .model-summary {
-        padding: 15px 14px 14px;
-      }
-
-      .code-header {
-        flex-wrap: wrap;
-        height: auto;
-        gap: 6px;
-        padding-bottom: 6px;
-      }
-
-      pre.code-snippet {
-        font-size: 11.5px;
-        line-height: 21px;
-      }
-
-      .code-line::before {
-        width: 14px;
-      }
-    }
-
-    @media (max-width: 440px) {
-      .card {
-        padding: 26px 26px 0;
-        border-radius: 18px;
-      }
-
-      .card .subtitle {
-        white-space: normal;
-      }
-
-      .login-prompt {
-        margin-top: 34px;
-      }
-
-      .stage {
-        padding: 12px;
-        border-radius: 0 0 12px 12px;
-      }
-
-      .hero h2 {
-        font-size: 25px;
-        line-height: 29px;
-      }
-
-      .stat-val {
-        font-size: 15px;
-      }
-
-      .model-tags {
-        font-size: 11.5px;
-        gap: 2px 12px;
-      }
-    }
-
-    @media (max-height: 560px) {
-      .card {
-        padding-top: 18px;
-      }
-
-      .card h1 {
-        margin-top: 14px;
-      }
-
-      .login-prompt {
-        margin-top: 18px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation: none !important;
-        transition: none !important;
+      .ship-btn {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- REUSABLE SVG SYMBOLS -->
-  <svg style="display:none">
-    <!-- Disc with square bottom-right corner and circular hole -->
+  <!-- ================= SVG SYMBOLS ================= -->
+  <svg style="display:none;" xmlns="http://www.w3.org/2000/svg">
+    <!-- Brand Glyph: Disc with square bottom-right and circular hole -->
     <symbol id="wafer-glyph" viewBox="0 0 24 24">
       <path fill="currentColor" fill-rule="evenodd" d="M12 2c5.52 0 10 4.48 10 10v10H12C6.48 22 2 17.52 2 12S6.48 2 12 2Zm-.3 4.1a5.9 5.9 0 1 0 0 11.8 5.9 5.9 0 0 0 0-11.8Z"/>
     </symbol>
   </svg>
 
-  <!-- ================= SCENE 1: SIGN-UP ================= -->
+  <!-- ================= SCENE 1: DEVELOPER ONBOARDING ================= -->
   <main class="auth" id="authScene">
     <div class="stage" id="stage">
+      <!-- Castle Loop Video -->
       <video class="video-bg" id="castleVideo" crossorigin="anonymous" muted loop playsinline autoplay preload="auto" poster="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261008_132124_50d78eac-e46e-49d5-a59b-de71f535c38d.png">
         <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261008_132243_cd48b677-64ff-4623-b56b-b53b043ece5d.mp4" type="video/mp4">
       </video>
 
+      <!-- Live ASCII Character Texture -->
       <canvas class="ascii-canvas" id="castleCanvas"></canvas>
 
+      <!-- Onboarding Card -->
       <div class="card" id="authCard">
         <div class="logo-tile">
           <svg><use href="#wafer-glyph"/></svg>
         </div>
 
-        <h1>Welcome to GetShipped</h1>
-        <p class="subtitle">Autonomous developer RAG &amp; omnichannel launch platform.</p>
+        <h1>GetShipped</h1>
+        <p class="subtitle">Automated Developer RAG Agent &amp; Omnichannel Launch</p>
 
+        <!-- Quick Connect Row -->
         <div class="oauth-grid">
           <button type="button" class="oauth-btn" id="githubAuthBtn">
             <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
-            GitHub
+            GitHub Synced
           </button>
 
           <button type="button" class="oauth-btn" id="googleAuthBtn">
             <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
             </svg>
-            Google
+            Workspace
           </button>
         </div>
 
-        <div class="divider">or</div>
+        <div class="divider">Configure What You Want To Ship</div>
 
+        <!-- Form: Developer Details & Launch Targets -->
         <form class="auth-form" id="signupForm" novalidate autocomplete="off">
+          <div class="form-group-label">
+            Repository Target
+            <span>Commit 8f4e2b1</span>
+          </div>
           <label class="field">
-            <input type="email" id="emailInput" placeholder="dev@company.com" required>
+            <input type="text" id="repoInput" value="github.com/getshipped/hyperscale-rag" required>
           </label>
 
+          <div class="form-group-label">
+            Developer Lead
+            <span>Staff AI Systems</span>
+          </div>
           <label class="field">
-            <input type="password" id="passwordInput" placeholder="Create Password" required>
-            <button type="button" class="eye-btn" id="eyeToggle" aria-label="Toggle password visibility">
-              <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </button>
+            <input type="text" id="authorInput" value="Alex Rivera (@alexrivera_ai)" required>
           </label>
 
-          <button type="submit" class="submit-btn" id="submitBtn">Create an Account</button>
+          <div class="form-group-label">
+            Target Omnichannel Channels
+            <span>All Selected</span>
+          </div>
+          <div class="channel-pills">
+            <label class="channel-pill active">
+              <input type="checkbox" checked>
+              <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <span>𝕏 Thread</span>
+            </label>
+
+            <label class="channel-pill active">
+              <input type="checkbox" checked>
+              <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <span>LinkedIn</span>
+            </label>
+
+            <label class="channel-pill active">
+              <input type="checkbox" checked>
+              <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <span>Remotion</span>
+            </label>
+
+            <label class="channel-pill active">
+              <input type="checkbox" checked>
+              <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <span>Blog / Doc</span>
+            </label>
+
+            <label class="channel-pill active">
+              <input type="checkbox" checked>
+              <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <span>README</span>
+            </label>
+
+            <label class="channel-pill active">
+              <input type="checkbox" checked>
+              <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <span>Shorts 9:16</span>
+            </label>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span>Initiate RAG Agent &amp; Open Studio</span>
+            <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
         </form>
-
-        <p class="login-prompt">
-          Already have an account? <a id="loginLink">Log In</a>
-        </p>
       </div>
     </div>
 
     <footer class="legal">
-      <span>By signing up, you agree to our <a href="#">terms of service</a>.</span>
+      <span>By initiating launch, you agree to automated PR generation &amp; omnichannel distribution. <a href="#">Terms of service</a>.</span>
     </footer>
   </main>
 
-  <!-- ================= SCENE 2: DASHBOARD ================= -->
+  <!-- ================= SCENE 2: APPROVAL STUDIO DASHBOARD ================= -->
   <div class="app" id="appScene">
     <!-- SIDEBAR -->
     <aside class="side" id="sideRail">
@@ -1484,13 +1867,24 @@
       </div>
 
       <nav class="side-nav">
+        <a class="nav-item active">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6z"/>
+              <path d="M10 9l5 3-5 3V9z"/>
+            </svg>
+          </div>
+          <span class="nav-label">Approval Studio</span>
+        </a>
+
         <a class="nav-item">
           <div class="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"/>
+              <polygon points="23 7 16 12 23 17 23 7"/>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
             </svg>
           </div>
-          <span class="nav-label">Studio</span>
+          <span class="nav-label">Remotion 60fps</span>
         </a>
 
         <a class="nav-item">
@@ -1502,29 +1896,20 @@
               <path d="M18 9a9 9 0 0 1-9 9"/>
             </svg>
           </div>
-          <span class="nav-label">RAG Repos</span>
+          <span class="nav-label">RAG AST Index</span>
         </a>
 
         <a class="nav-item">
           <div class="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="4"/>
-              <path d="M7 16V13"/>
-              <path d="M12 16V9"/>
-              <path d="M17 16V11"/>
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
             </svg>
           </div>
-          <span class="nav-label">Pipelines</span>
-        </a>
-
-        <a class="nav-item">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="4"/>
-              <path d="m7 15 3.5-4 3 3 3.5-5"/>
-            </svg>
-          </div>
-          <span class="nav-label">Analytics</span>
+          <span class="nav-label">Omnichannel</span>
         </a>
 
         <a class="nav-item">
@@ -1536,7 +1921,7 @@
               <circle cx="17" cy="17" r="3"/>
             </svg>
           </div>
-          <span class="nav-label">Teams</span>
+          <span class="nav-label">Team Review</span>
         </a>
       </nav>
 
@@ -1573,7 +1958,7 @@
           <div class="nav-icon">
             <div class="avatar-icon"></div>
           </div>
-          <span class="nav-label">Developer Lead</span>
+          <span class="nav-label">Alex Rivera</span>
           <div class="nav-meta">
             <svg style="width:14px;height:14px;opacity:.4;" viewBox="0 0 24 24" fill="currentColor">
               <circle cx="12" cy="5" r="1.5"/>
@@ -1587,479 +1972,404 @@
 
     <!-- MAIN PANEL -->
     <section class="panel" id="mainPanel">
+      <!-- Sky Loop Video -->
       <video class="video-bg" id="skyVideo" crossorigin="anonymous" muted loop playsinline preload="auto" poster="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261008_132137_6359ecf6-579c-4ff9-9f28-b220076e9195.png">
         <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261008_132231_6df9b9a8-6975-4855-bdd8-5d72911d6ca5.mp4" type="video/mp4">
       </video>
 
+      <!-- Live Cloud ASCII Canvas Texture -->
       <canvas class="ascii-canvas" id="skyCanvas"></canvas>
 
-      <!-- SEARCH PILL -->
-      <button type="button" class="search-pill" id="searchPill" title="Press / to search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/>
-          <path d="m21 21-4.35-4.35"/>
-        </svg>
-        <span class="search-kbd">/</span>
-      </button>
+      <!-- PANEL TOP BAR -->
+      <div class="panel-topbar">
+        <div class="pipeline-badge">
+          <div class="pulse-dot"></div>
+          <span>Speculative RAG Active • 14.2ms TTFT • Commit 8f4e2b1</span>
+        </div>
+
+        <button type="button" class="search-pill" id="searchPill" title="Press / to scroll to top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <span class="search-kbd">/</span>
+        </button>
+      </div>
 
       <!-- SCROLL CONTAINER -->
       <div class="scroll-container" id="scrollContainer">
         <div class="content-col">
-          <!-- HERO -->
-          <header class="hero rise" style="--i:0;">
-            <h2>Welcome to GetShipped. Let’s set up<br>your autonomous launch agent.</h2>
-            <p class="hero-sub">Just a few steps to index your codebase, generate video launch packs, and ship omnichannel.</p>
-          </header>
-
-          <!-- GET STARTED CARD -->
-          <div class="get-started rise" style="--i:4;">
-            <div class="get-started-inner">
-              <div class="gs-head">
-                <span class="gs-title">Get Started</span>
-                <div class="gs-status">
-                  <span>2/3 Completed</span>
-                  <div class="gs-spinner"></div>
-                </div>
+          
+          <!-- STUDIO HEADER -->
+          <div class="studio-header rise" style="--i:0;">
+            <div>
+              <h2>HyperScale RAG v2 — Omnichannel Launch Studio</h2>
+              <p class="meta-sub">packages/core/src/retrieval/graphPipeline.ts • Speculative Graph Traversal</p>
+            </div>
+            <div class="studio-stats-pills">
+              <div class="stat-badge ready">
+                <svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>RAG Verified: 99.4%</span>
               </div>
-
-              <div class="gs-list">
-                <div class="gs-row">
-                  <div class="gs-circle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px;">
-                      <path d="M20 6L9 17l-5-5"/>
-                    </svg>
-                  </div>
-                  <span>1. Connect GitHub repository &amp; authenticate RAG indexer</span>
-                </div>
-
-                <div class="gs-row">
-                  <div class="gs-circle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px;">
-                      <path d="M20 6L9 17l-5-5"/>
-                    </svg>
-                  </div>
-                  <span>2. Configure omnichannel accounts (Twitter, LinkedIn, YouTube)</span>
-                </div>
-
-                <div class="gs-row active" id="gsStep3">
-                  <div class="gs-circle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;">
-                      <path d="M3 3v18h18"/>
-                      <path d="m19 9-5 5-4-4-3 3"/>
-                    </svg>
-                  </div>
-                  <span>3. Generate your first 60fps video launch pack to complete setup</span>
-                  <div class="gs-chevron">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px;">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <!-- STARBURST -->
-              <div class="starburst-container">
-                <div class="starburst-dotgrid"></div>
-
-                <svg class="starburst-svg" viewBox="-300 -300 600 600">
-                  <defs>
-                    <radialGradient id="rayGrad" cx="0" cy="0" r="290" gradientUnits="userSpaceOnUse">
-                      <stop offset="0%" stop-color="#fff" stop-opacity="0.95"/>
-                      <stop offset="45%" stop-color="#fff" stop-opacity="0.45"/>
-                      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
-                    </radialGradient>
-                  </defs>
-                  <!-- 20 rays at angles: 0,14,31,52,68,90,108,124,141,160,180,197,214,233,251,270,288,306,322,341 -->
-                  <!-- lengths: 190 + ((idx*53) % 100) px -->
-                  <g>
-                    <line x1="22" y1="0" x2="212" y2="0" class="ray" style="animation-delay:0s;" transform="rotate(0)"/>
-                    <line x1="22" y1="0" x2="265" y2="0" class="ray" style="animation-delay:0.2s;" transform="rotate(14)"/>
-                    <line x1="22" y1="0" x2="218" y2="0" class="ray" style="animation-delay:0.4s;" transform="rotate(31)"/>
-                    <line x1="22" y1="0" x2="271" y2="0" class="ray" style="animation-delay:0.6s;" transform="rotate(52)"/>
-                    <line x1="22" y1="0" x2="224" y2="0" class="ray" style="animation-delay:0.8s;" transform="rotate(68)"/>
-                    <line x1="22" y1="0" x2="277" y2="0" class="ray" style="animation-delay:1.0s;" transform="rotate(90)"/>
-                    <line x1="22" y1="0" x2="230" y2="0" class="ray" style="animation-delay:1.2s;" transform="rotate(108)"/>
-                    <line x1="22" y1="0" x2="283" y2="0" class="ray" style="animation-delay:1.4s;" transform="rotate(124)"/>
-                    <line x1="22" y1="0" x2="236" y2="0" class="ray" style="animation-delay:1.6s;" transform="rotate(141)"/>
-                    <line x1="22" y1="0" x2="289" y2="0" class="ray" style="animation-delay:1.8s;" transform="rotate(160)"/>
-                    <line x1="22" y1="0" x2="242" y2="0" class="ray" style="animation-delay:2.0s;" transform="rotate(180)"/>
-                    <line x1="22" y1="0" x2="295" y2="0" class="ray" style="animation-delay:2.2s;" transform="rotate(197)"/>
-                    <line x1="22" y1="0" x2="248" y2="0" class="ray" style="animation-delay:2.4s;" transform="rotate(214)"/>
-                    <line x1="22" y1="0" x2="301" y2="0" class="ray" style="animation-delay:2.6s;" transform="rotate(233)"/>
-                    <line x1="22" y1="0" x2="254" y2="0" class="ray" style="animation-delay:2.8s;" transform="rotate(251)"/>
-                    <line x1="22" y1="0" x2="307" y2="0" class="ray" style="animation-delay:3.0s;" transform="rotate(270)"/>
-                    <line x1="22" y1="0" x2="260" y2="0" class="ray" style="animation-delay:3.2s;" transform="rotate(288)"/>
-                    <line x1="22" y1="0" x2="213" y2="0" class="ray" style="animation-delay:3.4s;" transform="rotate(306)"/>
-                    <line x1="22" y1="0" x2="266" y2="0" class="ray" style="animation-delay:3.6s;" transform="rotate(322)"/>
-                    <line x1="22" y1="0" x2="219" y2="0" class="ray" style="animation-delay:3.8s;" transform="rotate(341)"/>
-                  </g>
-                </svg>
-
-                <div class="starburst-square">
-                  <svg><use href="#wafer-glyph"/></svg>
-                </div>
+              <div class="stat-badge">
+                <span>Remotion 60 FPS</span>
               </div>
             </div>
           </div>
 
-          <!-- MODEL BLOCKS (5 CARDS) -->
-
-          <!-- 1. Remotion-60FPS-Engine -->
-          <div class="model-block rise" style="--i:6;">
-            <div class="model-head">
-              <div class="model-badge">
-                R
-                <div class="badge-dot"></div>
-              </div>
-              <span>Remotion-60FPS-Engine</span>
-            </div>
-
-            <div class="model-card">
-              <div class="model-summary">
-                <p class="model-desc">Automated 60fps programmatic video engine with dynamic syntax diffs and voiceover.</p>
-                <div class="model-tags">
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m16 18 6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-                    60fps Video
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M9 8v8"/><path d="M15 8v8"/></svg>
-                    Remotion v4
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/></svg>
-                    Shiki Diffs
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-                    Voiceover
-                  </span>
+          <!-- ================= SPLIT STUDIO GRID ================= -->
+          <div class="studio-split rise" style="--i:2;">
+            
+            <!-- LEFT PANE: REMOTION 60FPS VIDEO PLAYER -->
+            <div class="remotion-pane">
+              <div class="pane-header">
+                <div class="pane-title">
+                  <svg style="width:14px;height:14px;color:var(--emerald);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="4"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                  <span>GetShippedMasterVideo (Remotion v4)</span>
                 </div>
-
-                <div class="model-stats">
-                  <div class="stat-col"><div class="stat-label">Resolution</div><div class="stat-val">1080p</div></div>
-                  <div class="stat-col"><div class="stat-label">Framerate</div><div class="stat-val">60 FPS</div></div>
-                  <div class="stat-col"><div class="stat-label">Render</div><div class="stat-val">&lt;1.2s</div></div>
-                  <div class="stat-col"><div class="stat-label">Output</div><div class="stat-val">4K Ready</div></div>
+                
+                <!-- Aspect Ratio Switcher -->
+                <div class="ratio-switcher">
+                  <button type="button" class="ratio-btn active" id="btnRatio169">16:9 Desktop</button>
+                  <button type="button" class="ratio-btn" id="btnRatio916">9:16 Shorts</button>
                 </div>
               </div>
 
-              <div class="card-toggle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-              </div>
+              <!-- VIEWPORT -->
+              <div class="player-stage">
+                <div class="video-viewport ratio-16-9" id="videoViewport">
+                  
+                  <!-- SCENE 1: CODE DIFF SCENE -->
+                  <div class="scene-view active" id="sceneCodeDiff">
+                    <div class="window-chrome">
+                      <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+                      <span>packages/core/src/retrieval/graphPipeline.ts</span>
+                    </div>
+                    <div class="diff-code-body">
+                      <div class="diff-line del"><span class="diff-sign">-</span><span>export async function retrieveContext(query: string): Promise&lt;Document[]&gt; {</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>export async function* retrieveContextStream(query: string): AsyncGenerator&lt;DocumentChunk&gt; {</span></div>
+                      <div class="diff-line del"><span class="diff-sign">-</span><span>  const rawMatches = await vectorStore.query({ vector: embedding, topK: 50 });</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>  const [subQueries, fastPathGraph] = await Promise.all([</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>    speculativeRouter.predictMultiHop(query),</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>    graphIndex.traverseFastPath(query)</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>  ]);</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>  const ringBuffer = new SharedArrayRingBuffer&lt;DocumentChunk&gt;(1024);</span></div>
+                      <div class="diff-line del"><span class="diff-sign">-</span><span>  const filtered = await crossEncoder.rerank(query, rawMatches);</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>  for await (const chunk of ringBuffer.consumeSpeculative()) {</span></div>
+                      <div class="diff-line add"><span class="diff-sign">+</span><span>    if (chunk.confidenceScore &gt; 0.94) yield chunk; // 14.2ms TTFT</span></div>
+                      <div class="diff-line ctx"><span class="diff-sign"> </span><span>  }</span></div>
+                    </div>
+                  </div>
 
-              <div class="expandable-region">
-                <div class="expandable-inner">
-                  <div class="expandable-content">
-                    <div class="code-box">
-                      <div class="code-header">
-                        <span>Copy &amp; Run</span>
-                        <div class="code-pill">&gt;_ cURL <svg style="width:9px;height:9px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-                        <div class="code-spacer"></div>
-                        <span>Require ZDR</span>
-                        <div class="zdr-switch">
-                          <div class="zdr-knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+                  <!-- SCENE 2: UI CURSOR ZOOM SCENE -->
+                  <div class="scene-view" id="sceneUiZoom">
+                    <div class="window-chrome">
+                      <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+                      <span>Autonomous Query Router &amp; Multi-Hop Visualizer</span>
+                    </div>
+                    <div class="zoom-stage-box" id="zoomStage">
+                      <div class="metrics-3d-card" id="metricsCard">
+                        <div style="font-size:11px;color:rgba(255,255,255,.5);font-family:var(--mono);">Cluster Benchmark • 50,000 QPS</div>
+                        <div class="metrics-grid-3d">
+                          <div class="m-stat"><div class="m-stat-label">TTFT Latency</div><div class="m-stat-val">14.2 ms</div></div>
+                          <div class="m-stat"><div class="m-stat-label">Cache Hit Rate</div><div class="m-stat-val">94.6%</div></div>
+                          <div class="m-stat"><div class="m-stat-label">Accuracy Score</div><div class="m-stat-val">99.1%</div></div>
+                          <div class="m-stat"><div class="m-stat-label">Latency Drop</div><div class="m-stat-val" style="color:var(--emerald);">-84%</div></div>
                         </div>
-                        <span style="margin-left:6px;">Mode</span>
-                        <div class="code-pill">60fps <svg style="width:9px;height:9px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
                       </div>
 
-                      <pre class="code-snippet"><code><span class="code-line"><span class="c-curl">curl</span> -sS <span class="c-str">"https://api.getshipped.dev/v1/video/render"</span> \</span><span class="code-line">    <span class="c-flag">-H</span> <span class="c-str">"Authorization: Bearer <span class="c-plain">Your API 🔑</span>"</span> \</span><span class="code-line">    <span class="c-flag">-H</span> <span class="c-str">"Content-Type: application/json"</span> \</span><span class="code-line">    <span class="c-plain">-d '{</span></span><span class="code-line">        <span class="c-str">"engine"</span>: <span class="c-str">"remotion-60fps-engine"</span>,</span><span class="code-line">        <span class="c-str">"composition"</span>: <span class="c-str">"DeveloperLaunchPack"</span>,</span><span class="code-line">        <span class="c-str">"fps"</span>: <span class="c-num">60</span>,</span><span class="code-line">        <span class="c-str">"diff_theme"</span>: <span class="c-str">"github-dark"</span></span><span class="code-line">    <span class="c-plain">}'</span></span></code></pre>
-
-                      <div class="copied-toast">Copied</div>
-                      <button type="button" class="copy-btn" aria-label="Copy code">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                      </button>
+                      <!-- MOCK ANIMATED CURSOR -->
+                      <div class="mock-cursor" id="mockCursor" style="left: 45%; top: 40%;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4l7 17 2.5-6.5L20 12 4 4z" fill="#fff" stroke="#000" stroke-width="1.5"/></svg>
+                        <div class="cursor-tooltip" id="cursorTooltip">14.2ms Zero-Copy RingBuffer</div>
+                      </div>
                     </div>
+                  </div>
+
+                  <!-- SCENE 3: KINETIC CAPTIONS OVERLAY SCENE -->
+                  <div class="scene-view" id="sceneCaptions">
+                    <div class="captions-stage">
+                      <div class="kinetic-box" id="kineticBox">
+                        <span class="k-word" data-word="0">Shipping</span>
+                        <span class="k-word emph" data-word="1">HyperScale</span>
+                        <span class="k-word emph" data-word="2">RAG</span>
+                        <span class="k-word" data-word="3">v2.</span>
+                        <span class="k-word" data-word="4">We</span>
+                        <span class="k-word emph" data-word="5">slashed</span>
+                        <span class="k-word" data-word="6">latency</span>
+                        <span class="k-word cyan" data-word="7">by 84%</span>
+                        <span class="k-word" data-word="8">with</span>
+                        <span class="k-word emph" data-word="9">zero-copy</span>
+                        <span class="k-word" data-word="10">streaming.</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- CONTROLS BAR -->
+              <div class="player-controls">
+                <div class="scrubber-track" id="scrubberTrack">
+                  <div class="scrubber-progress" id="scrubberProgress"></div>
+                </div>
+
+                <div class="control-row">
+                  <div class="btn-group">
+                    <button type="button" class="play-btn" id="playBtn" aria-label="Play/Pause">
+                      <svg id="playIcon" style="width:12px;height:12px;margin-left:1px;" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </button>
+                    <div class="time-readout" id="timeReadout">00:00.0 / 00:30.0</div>
+                  </div>
+
+                  <div class="scene-chips">
+                    <button type="button" class="scene-chip active" id="chipDiff">1. Code Diff</button>
+                    <button type="button" class="scene-chip" id="chipZoom">2. UI Zoom</button>
+                    <button type="button" class="scene-chip" id="chipCaptions">3. Captions</button>
                   </div>
                 </div>
               </div>
             </div>
+
+            <!-- RIGHT PANE: NEXT.JS APPROVAL STUDIO EDITORS -->
+            <div class="editors-pane">
+              <div class="tab-bar">
+                <button type="button" class="editor-tab active" data-tab="tabX">
+                  <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  <span>𝕏 Thread</span>
+                  <span class="tab-badge">5</span>
+                </button>
+
+                <button type="button" class="editor-tab" data-tab="tabLinkedIn">
+                  <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
+                  <span>LinkedIn Post</span>
+                </button>
+
+                <button type="button" class="editor-tab" data-tab="tabBlog">
+                  <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  <span>Hashnode / Mermaid</span>
+                </button>
+
+                <button type="button" class="editor-tab" data-tab="tabReadme">
+                  <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  <span>README Diff</span>
+                </button>
+              </div>
+
+              <div class="tab-content-area">
+                
+                <!-- TAB 1: 𝕏 THREAD -->
+                <div class="tab-content active" id="tabX">
+                  <!-- Tweet 1 -->
+                  <div class="tweet-card">
+                    <div class="tweet-head">
+                      <div class="tweet-user">
+                        <div class="avatar-icon"></div>
+                        <span class="tweet-user-name">Alex Rivera</span>
+                        <span class="tweet-handle">@alexrivera_ai</span>
+                      </div>
+                      <span class="tweet-tag">Tweet 1 of 5 • Hook</span>
+                    </div>
+                    <textarea class="tweet-textarea">Vector search in production is hitting a massive wall. Sequential brute-force embedding lookups choke on multi-hop reasoning.
+
+Today we're open-sourcing HyperScale RAG v2: speculative AST graph indexing with zero-copy stream buffers.
+
+84% lower latency. Here is how it works 🧵👇</textarea>
+                    <div class="tweet-footer">
+                      <span>[Media: code_diff_video.mp4 (60fps)]</span>
+                      <span>272 / 280 chars</span>
+                    </div>
+                  </div>
+
+                  <!-- Tweet 2 -->
+                  <div class="tweet-card">
+                    <div class="tweet-head">
+                      <div class="tweet-user">
+                        <div class="avatar-icon"></div>
+                        <span class="tweet-user-name">Alex Rivera</span>
+                        <span class="tweet-handle">@alexrivera_ai</span>
+                      </div>
+                      <span class="tweet-tag">Tweet 2 of 5</span>
+                    </div>
+                    <textarea class="tweet-textarea">The fundamental problem with classic RAG: 90% of user queries require relational context, but vector stores only understand cosine proximity.
+
+HyperScale v2 precomputes an AST-linked knowledge graph that predicts 2nd-order hops before the main embedder even finishes.</textarea>
+                    <div class="tweet-footer">
+                      <span>[Media: architecture_flow.png]</span>
+                      <span>260 / 280 chars</span>
+                    </div>
+                  </div>
+
+                  <!-- Tweet 3 -->
+                  <div class="tweet-card">
+                    <div class="tweet-head">
+                      <div class="tweet-user">
+                        <div class="avatar-icon"></div>
+                        <span class="tweet-user-name">Alex Rivera</span>
+                        <span class="tweet-handle">@alexrivera_ai</span>
+                      </div>
+                      <span class="tweet-tag">Tweet 3 of 5</span>
+                    </div>
+                    <textarea class="tweet-textarea">Instead of allocating heavy JSON document buffers on every request, we implemented a lock-free SharedArrayBuffer ring stream.
+
+Time-to-first-token dropped from 186ms -> 14.2ms at 48,000 QPS on a single 8-GPU cluster.</textarea>
+                    <div class="tweet-footer">
+                      <span>[Media: benchmark_chart.png]</span>
+                      <span>226 / 280 chars</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- TAB 2: LINKEDIN POST -->
+                <div class="tab-content" id="tabLinkedIn">
+                  <div class="linkedin-box">
+                    <input class="li-title-input" value="🚀 Rethinking RAG: Why we eliminated sequential vector search to achieve 14.2ms TTFT at scale">
+                    <textarea class="li-body-textarea">When engineering AI infrastructure for enterprise workloads, the biggest performance bottleneck isn't the model weights — it's the retrieval pipeline.
+
+Traditional vector databases suffer from severe cache thrashing and serialization overhead during multi-hop semantic queries. Our team at GetShipped tackled this head-on.
+
+Today, we're proud to open-source HyperScale RAG v2: an autonomous, latency-optimized speculative graph retrieval engine.
+
+Key Architectural Breakthroughs:
+1. Speculative AST Graph Traversal: Predicts relational entity transitions concurrently with query embedding generation.
+2. Zero-Copy Ring Buffers: Eliminates memory copies across Node.js/Rust worker threads, streaming high-confidence tokens directly into active LLM contexts.
+3. 84% Latency Reduction: Benchmarked across 50,000 concurrent queries, reducing p99 latency from 186ms down to 14.2ms.
+
+Every commit, test suite, and launch asset for this release was synthesized and validated using our automated developer RAG pipeline.</textarea>
+                    <div class="hashtags-row">
+                      <span class="hash-tag">#ArtificialIntelligence</span>
+                      <span class="hash-tag">#SoftwareEngineering</span>
+                      <span class="hash-tag">#OpenSource</span>
+                      <span class="hash-tag">#RAG</span>
+                      <span class="hash-tag">#SystemDesign</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- TAB 3: HASHNODE / DEV.TO BLOG -->
+                <div class="tab-content" id="tabBlog">
+                  <div class="blog-box">
+                    <div class="article-header-card">
+                      <h3>HyperScale RAG v2: Slashing Multi-Hop Retrieval Latency by 84%</h3>
+                      <p>How we replaced naive brute-force vector scans with lock-free zero-copy ring buffers and speculative AST routing in production.</p>
+                    </div>
+
+                    <!-- LIVE ARCHITECTURE GRAPH (MERMAID) -->
+                    <div class="mermaid-diagram-card">
+                      <div class="mermaid-head">
+                        <div class="mermaid-title">
+                          <svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                          <span>Speculative Graph Pipeline Architecture (Mermaid.js)</span>
+                        </div>
+                        <span style="font-size:10px;font-family:var(--mono);color:rgba(255,255,255,.4);">Live DAG</span>
+                      </div>
+
+                      <div class="mermaid-svg-wrapper">
+                        <svg viewBox="0 0 680 180" width="100%" height="180">
+                          <defs>
+                            <linearGradient id="nodeGrad1" x1="0" y1="0" x2="1" y2="1">
+                              <stop offset="0%" stop-color="#1e293b"/>
+                              <stop offset="100%" stop-color="#0f172a"/>
+                            </linearGradient>
+                            <linearGradient id="nodeGradEm" x1="0" y1="0" x2="1" y2="1">
+                              <stop offset="0%" stop-color="#064e3b"/>
+                              <stop offset="100%" stop-color="#022c22"/>
+                            </linearGradient>
+                            <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                              <path d="M 0 0 L 10 5 L 0 10 z" fill="#10B981"/>
+                            </marker>
+                          </defs>
+
+                          <!-- Nodes -->
+                          <!-- A: Query -->
+                          <rect x="10" y="65" width="120" height="50" rx="8" fill="url(#nodeGrad1)" stroke="#38bdf8" stroke-width="1.5"/>
+                          <text x="70" y="88" fill="#fff" font-size="11" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">User Client Query</text>
+                          <text x="70" y="102" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Multi-Hop Input</text>
+
+                          <!-- Connection A -> B -->
+                          <line x1="130" y1="90" x2="175" y2="90" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+                          <!-- B: Speculative AST Router -->
+                          <rect x="180" y="60" width="140" height="60" rx="8" fill="url(#nodeGrad1)" stroke="#a855f7" stroke-width="1.5"/>
+                          <text x="250" y="86" fill="#fff" font-size="11" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">Speculative Router</text>
+                          <text x="250" y="102" fill="#c084fc" font-size="9.5" font-family="monospace" text-anchor="middle">AST Multi-Hop</text>
+
+                          <!-- Branches B -> Top and B -> Bottom -->
+                          <path d="M 320 80 Q 345 40 375 40" fill="none" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
+                          <path d="M 320 100 Q 345 140 375 140" fill="none" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+                          <!-- Node C: Fast Path Graph -->
+                          <rect x="380" y="18" width="130" height="44" rx="6" fill="url(#nodeGrad1)" stroke="#06b6d4" stroke-width="1.2"/>
+                          <text x="445" y="44" fill="#38bdf8" font-size="10.5" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">Knowledge Graph</text>
+
+                          <!-- Node D: Vector Store -->
+                          <rect x="380" y="118" width="130" height="44" rx="6" fill="url(#nodeGrad1)" stroke="#64748b" stroke-width="1.2"/>
+                          <text x="445" y="144" fill="#cbd5e1" font-size="10.5" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">Speculative Vectors</text>
+
+                          <!-- Convergence to E: Ring Buffer -->
+                          <path d="M 510 40 Q 530 75 545 80" fill="none" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
+                          <path d="M 510 140 Q 530 105 545 100" fill="none" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+                          <!-- Node E: Zero-Copy RingBuffer -->
+                          <rect x="550" y="65" width="120" height="50" rx="8" fill="url(#nodeGradEm)" stroke="#10b981" stroke-width="2"/>
+                          <text x="610" y="88" fill="#34d399" font-size="11" font-family="Inter, sans-serif" font-weight="700" text-anchor="middle">Shared RingBuffer</text>
+                          <text x="610" y="102" fill="#a7f3d0" font-size="9" font-family="monospace" text-anchor="middle">14.2ms TTFT Yield</text>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- TAB 4: GITHUB README DIFF -->
+                <div class="tab-content" id="tabReadme">
+                  <div class="readme-diff-box">
+                    <div class="diff-header-bar">
+                      <span>README.md (PR #42)</span>
+                      <span>Target: main • Commit 8f4e2b1</span>
+                    </div>
+                    <pre class="diff-pre"><code style="color:#94a3b8;"><span style="color:#fca5a5;">- # HyperScale RAG (v1.x)</span>
+<span style="color:#6ee7b7;">+ # HyperScale RAG v2 ⚡</span>
+<span style="color:#6ee7b7;">+ &gt; Autonomous Speculative Graph Retrieval &amp; Zero-Copy Streaming Engine.</span>
+<span style="color:#6ee7b7;">+ &gt; Slashes multi-hop retrieval latency by **84%** with sub-15ms TTFT at 48k QPS.</span>
+ 
+<span style="color:#fca5a5;">- Simple sequential RAG engine for developer codebases.</span>
+<span style="color:#6ee7b7;">+ [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)</span>
+<span style="color:#6ee7b7;">+ [![Remotion Verified](https://img.shields.io/badge/Video_Engine-Remotion_v4-purple.svg)](https://remotion.dev)</span>
+ 
+ ## Architecture Flow
+<span style="color:#6ee7b7;">+ Query -&gt; Speculative AST Router -&gt; SharedArrayBuffer Stream -&gt; 14.2ms TTFT</span>
+ 
+ ## Quick Start
+ ```bash
+ pnpm add @getshipped/rag-engine
+ ```</code></pre>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
 
-          <!-- 2. Codebase-RAG-Indexer -->
-          <div class="model-block rise" style="--i:7.5;">
-            <div class="model-head">
-              <div class="model-badge">G</div>
-              <span>Codebase-RAG-Indexer</span>
-            </div>
-
-            <div class="model-card" id="cardGlm52">
-              <div class="model-summary">
-                <p class="model-desc">Deep semantic AST &amp; git-history indexing for changelog analysis and PR summarization.</p>
-                <div class="model-tags">
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m16 18 6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-                    AST Parser
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.9 6.1L4 11l6.1 1.9L12 19l1.9-6.1L20 11l-6.1-1.9z"/></svg>
-                    Git Tree
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M9 8v8"/><path d="M15 8v8"/></svg>
-                    Semantic RAG
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-                    Vector Search
-                  </span>
-                </div>
-
-                <div class="model-stats">
-                  <div class="stat-col"><div class="stat-label">Context</div><div class="stat-val">128K</div></div>
-                  <div class="stat-col"><div class="stat-label">Pipeline</div><div class="stat-val">Embed</div></div>
-                  <div class="stat-col"><div class="stat-label">Latency</div><div class="stat-val">&lt;45ms</div></div>
-                  <div class="stat-col"><div class="stat-label">Repos</div><div class="stat-val">Multi-repo</div></div>
-                </div>
+          <!-- ================= BOTTOM DISPATCH ACTION HUB ================= -->
+          <div class="dispatch-hub rise" style="--i:4;">
+            <div class="hub-left">
+              <div class="restate-tag">
+                Restate: <span style="color:#fff;font-family:var(--mono);">restate.getshipped.internal/v1/ship</span>
               </div>
-
-              <div class="card-toggle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-              </div>
-
-              <div class="expandable-region">
-                <div class="expandable-inner">
-                  <div class="expandable-content">
-                    <div class="code-box">
-                      <div class="code-header">
-                        <span>Copy &amp; Run</span>
-                        <div class="code-pill">&gt;_ cURL <svg style="width:9px;height:9px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-                        <div class="code-spacer"></div>
-                        <span>Require ZDR</span>
-                        <div class="zdr-switch">
-                          <div class="zdr-knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-                        </div>
-                        <span style="margin-left:6px;">Depth</span>
-                        <div class="code-pill">Full AST <svg style="width:9px;height:9px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-                      </div>
-
-                      <pre class="code-snippet"><code><span class="code-line"><span class="c-curl">curl</span> -sS <span class="c-str">"https://api.getshipped.dev/v1/rag/index"</span> \</span><span class="code-line">    <span class="c-flag">-H</span> <span class="c-str">"Authorization: Bearer <span class="c-plain">Your API 🔑</span>"</span> \</span><span class="code-line">    <span class="c-flag">-H</span> <span class="c-str">"Content-Type: application/json"</span> \</span><span class="code-line">    <span class="c-plain">-d '{</span></span><span class="code-line">        <span class="c-str">"engine"</span>: <span class="c-str">"codebase-rag-indexer"</span>,</span><span class="code-line">        <span class="c-str">"repository"</span>: <span class="c-str">"getshipped/launch-studio"</span>,</span><span class="code-line">        <span class="c-str">"branch"</span>: <span class="c-str">"main"</span>,</span><span class="code-line">        <span class="c-str">"depth"</span>: <span class="c-str">"full-ast"</span></span><span class="code-line">    <span class="c-plain">}'</span></span></code></pre>
-
-                      <div class="copied-toast">Copied</div>
-                      <button type="button" class="copy-btn" aria-label="Copy code">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+              <div class="target-indicators">
+                <span class="target-badge on">𝕏 Thread</span>
+                <span class="target-badge on">LinkedIn</span>
+                <span class="target-badge on">Remotion 16:9/9:16</span>
+                <span class="target-badge on">Dev.to</span>
+                <span class="target-badge on">PR #42</span>
               </div>
             </div>
-          </div>
 
-          <!-- 3. Omni-Distributor-Agent -->
-          <div class="model-block rise" style="--i:9;">
-            <div class="model-head">
-              <div class="model-badge">O</div>
-              <span>Omni-Distributor-Agent</span>
-            </div>
-
-            <div class="model-card">
-              <div class="model-summary">
-                <p class="model-desc">Omnichannel auto-distributor for X/Twitter threads, LinkedIn carousels, and YouTube Shorts.</p>
-                <div class="model-tags">
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m16 18 6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-                    X / Twitter
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.9 6.1L4 11l6.1 1.9L12 19l1.9-6.1L20 11l-6.1-1.9z"/></svg>
-                    LinkedIn
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M9 8v8"/><path d="M15 8v8"/></svg>
-                    YouTube
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                    ProductHunt
-                  </span>
-                </div>
-
-                <div class="model-stats">
-                  <div class="stat-col"><div class="stat-label">Channels</div><div class="stat-val">4 Target</div></div>
-                  <div class="stat-col"><div class="stat-label">Dispatch</div><div class="stat-val">Auto-sched</div></div>
-                  <div class="stat-col"><div class="stat-label">Sync</div><div class="stat-val">Realtime</div></div>
-                  <div class="stat-col"><div class="stat-label">Delivery</div><div class="stat-val">Instant</div></div>
-                </div>
-              </div>
-
-              <div class="card-toggle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-              </div>
-
-              <div class="expandable-region">
-                <div class="expandable-inner">
-                  <div class="expandable-content">
-                    <div class="code-box">
-                      <div class="code-header">
-                        <span>Copy &amp; Run</span>
-                        <div class="code-pill">&gt;_ cURL <svg style="width:9px;height:9px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-                        <div class="code-spacer"></div>
-                        <span>Require ZDR</span>
-                        <div class="zdr-switch">
-                          <div class="zdr-knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-                        </div>
-                        <span style="margin-left:6px;">Approval</span>
-                        <div class="code-pill">Studio Gate <svg style="width:9px;height:9px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-                      </div>
-
-                      <pre class="code-snippet"><code><span class="code-line"><span class="c-curl">curl</span> -sS <span class="c-str">"https://api.getshipped.dev/v1/launch/distribute"</span> \</span><span class="code-line">    <span class="c-flag">-H</span> <span class="c-str">"Authorization: Bearer <span class="c-plain">Your API 🔑</span>"</span> \</span><span class="code-line">    <span class="c-flag">-H</span> <span class="c-str">"Content-Type: application/json"</span> \</span><span class="code-line">    <span class="c-plain">-d '{</span></span><span class="code-line">        <span class="c-str">"engine"</span>: <span class="c-str">"omni-distributor-agent"</span>,</span><span class="code-line">        <span class="c-str">"channels"</span>: [<span class="c-str">"twitter"</span>, <span class="c-str">"linkedin"</span>, <span class="c-str">"youtube"</span>],</span><span class="code-line">        <span class="c-str">"scheduled_at"</span>: <span class="c-str">"immediate"</span>,</span><span class="code-line">        <span class="c-str">"auto_approve"</span>: <span class="c-str">"false"</span></span><span class="code-line">    <span class="c-plain">}'</span></span></code></pre>
-
-                      <div class="copied-toast">Copied</div>
-                      <button type="button" class="copy-btn" aria-label="Copy code">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4. LaunchPack-Fast-Synthesizer -->
-          <div class="model-block rise" style="--i:10.5;">
-            <div class="model-head">
-              <div class="model-badge badge-deepseek">
-                <svg viewBox="0 0 24 24"><path d="M21.5 12c-.5-1.5-2.2-2.5-4-2.5-1.2 0-2.3.5-3.1 1.2-.8-.7-1.9-1.2-3.1-1.2-2.5 0-4.5 1.8-4.9 4.2C5.6 14.1 4.8 15 4 16c-.5.6-.2 1.5.6 1.7 1.8.4 3.7.1 5.4-.7 1.4.6 3 1 4.7 1 3.5 0 6.5-1.8 7.8-4.5.3-.5.1-1.1-.3-1.3-.2-.1-.5-.2-.7-.2zm-8.5.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5z"/></svg>
-              </div>
-              <span>LaunchPack-Fast-Synthesizer</span>
-            </div>
-
-            <div class="model-card">
-              <div class="model-summary">
-                <p class="model-desc">High-throughput autonomous agent for draft generation, social copy, and visual asset rendering.</p>
-                <div class="model-tags">
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m16 18 6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-                    Fast Draft
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.9 6.1L4 11l6.1 1.9L12 19l1.9-6.1L20 11l-6.1-1.9z"/></svg>
-                    Markdown
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M9 8v8"/><path d="M15 8v8"/></svg>
-                    Asset Gen
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                    Real-time
-                  </span>
-                </div>
-
-                <div class="model-stats">
-                  <div class="stat-col"><div class="stat-label">Throughput</div><div class="stat-val">400 tps</div></div>
-                  <div class="stat-col"><div class="stat-label">Stream</div><div class="stat-val">Enabled</div></div>
-                  <div class="stat-col"><div class="stat-label">Accuracy</div><div class="stat-val">99.9%</div></div>
-                  <div class="stat-col"><div class="stat-label">Arch</div><div class="stat-val">Multi-agent</div></div>
-                </div>
-              </div>
-
-              <div class="card-toggle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-              </div>
-
-              <div class="expandable-region">
-                <div class="expandable-inner">
-                  <div class="expandable-content">
-                    <div class="code-box">
-                      <div class="code-header">
-                        <span>Copy &amp; Run</span>
-                        <div class="code-pill">&gt;_ cURL <svg style="width:9px;height:9px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-                        <div class="code-spacer"></div>
-                        <span>Require ZDR</span>
-                        <div class="zdr-switch">
-                          <div class="zdr-knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-                        </div>
-                        <span style="margin-left:6px;">Tone</span>
-                        <div class="code-pill">Impact <svg style="width:9px;height:9px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-                      </div>
-
-                      <pre class="code-snippet"><code><span class="code-line"><span class="c-curl">curl</span> -sS <span class="c-str">"https://api.getshipped.dev/v1/launchpack/synthesize"</span> \</span><span class="code-line">    <span class="c-flag">-H</span> <span class="c-str">"Authorization: Bearer <span class="c-plain">Your API 🔑</span>"</span> \</span><span class="code-line">    <span class="c-flag">-H</span> <span class="c-str">"Content-Type: application/json"</span> \</span><span class="code-line">    <span class="c-plain">-d '{</span></span><span class="code-line">        <span class="c-str">"engine"</span>: <span class="c-str">"launchpack-fast-synthesizer"</span>,</span><span class="code-line">        <span class="c-str">"pr_number"</span>: <span class="c-num">42</span>,</span><span class="code-line">        <span class="c-str">"target_audience"</span>: <span class="c-str">"developers"</span>,</span><span class="code-line">        <span class="c-str">"tone"</span>: <span class="c-str">"high-impact"</span></span><span class="code-line">    <span class="c-plain">}'</span></span></code></pre>
-
-                      <div class="copied-toast">Copied</div>
-                      <button type="button" class="copy-btn" aria-label="Copy code">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 5. Studio-Live-Sync -->
-          <div class="model-block rise" style="--i:12;">
-            <div class="model-head">
-              <div class="model-badge">
-                S
-                <div class="badge-dot"></div>
-              </div>
-              <span>Studio-Live-Sync</span>
-            </div>
-
-            <div class="model-card">
-              <div class="model-summary">
-                <p class="model-desc">Real-time interactive timeline preview with audio waveform and split-screen code diff.</p>
-                <div class="model-tags">
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10a8 8 0 0 1 16 0v10"/></svg>
-                    Live Audio
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    Waveform
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m16 18 6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-                    Split Diff
-                  </span>
-                  <span class="model-tag">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.9 6.1L4 11l6.1 1.9L12 19l1.9-6.1L20 11l-6.1-1.9z"/></svg>
-                    60 FPS
-                  </span>
-                </div>
-
-                <div class="model-stats">
-                  <div class="stat-col"><div class="stat-label">Engine</div><div class="stat-val">WebGL</div></div>
-                  <div class="stat-col"><div class="stat-label">Audio</div><div class="stat-val">Web Audio</div></div>
-                  <div class="stat-col"><div class="stat-label">Latency</div><div class="stat-val">0ms Lag</div></div>
-                  <div class="stat-col"><div class="stat-label">Preview</div><div class="stat-val">Hot Reload</div></div>
-                </div>
-              </div>
-
-              <div class="card-toggle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-              </div>
-
-              <div class="expandable-region">
-                <div class="expandable-inner">
-                  <div class="expandable-content">
-                    <div class="code-box">
-                      <div class="code-header">
-                        <span>Copy &amp; Run</span>
-                        <div class="code-pill">&gt;_ cURL <svg style="width:9px;height:9px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-                        <div class="code-spacer"></div>
-                        <span>Require ZDR</span>
-                        <div class="zdr-switch">
-                          <div class="zdr-knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-                        </div>
-                        <span style="margin-left:6px;">Sync</span>
-                        <div class="code-pill">Bi-dir <svg style="width:9px;height:9px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-                      </div>
-
-                      <pre class="code-snippet"><code><span class="code-line"><span class="c-curl">curl</span> -sS <span class="c-str">"https://api.getshipped.dev/v1/studio/session"</span> \</span><span class="code-line">    <span class="c-flag">-H</span> <span class="c-str">"Authorization: Bearer <span class="c-plain">Your API 🔑</span>"</span> \</span><span class="code-line">    <span class="c-flag">-H</span> <span class="c-str">"Content-Type: application/json"</span> \</span><span class="code-line">    <span class="c-plain">-d '{</span></span><span class="code-line">        <span class="c-str">"engine"</span>: <span class="c-str">"studio-live-sync"</span>,</span><span class="code-line">        <span class="c-str">"session_id"</span>: <span class="c-str">"sess_live_9921"</span>,</span><span class="code-line">        <span class="c-str">"sync_mode"</span>: <span class="c-str">"bidirectional"</span>,</span><span class="code-line">        <span class="c-str">"quality"</span>: <span class="c-str">"ultra"</span></span><span class="code-line">    <span class="c-plain">}'</span></span></code></pre>
-
-                      <div class="copied-toast">Copied</div>
-                      <button type="button" class="copy-btn" aria-label="Copy code">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <button type="button" class="ship-btn" id="shipBtn">
+              <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m12 2 3 7h7l-5.5 4.5 2 7.5-6.5-5-6.5 5 2-7.5-5.5-4.5h7z"/></svg>
+              <span>Approve &amp; Ship Everywhere</span>
+            </button>
           </div>
 
         </div>
@@ -2067,8 +2377,32 @@
     </section>
   </div>
 
+  <!-- ================= DISPATCH CELEBRATION MODAL ================= -->
+  <div class="dispatch-modal" id="dispatchModal">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <svg style="width:28px;height:28px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3 style="font-size:18px;font-weight:700;color:#fff;">Launch Successfully Dispatched! 🚀</h3>
+      <p style="font-size:12.5px;color:rgba(255,255,255,.65);margin-top:-6px;">
+        Restate pipeline executed. All omnichannel launch assets are live.
+      </p>
+
+      <div class="log-list">
+        <div class="log-item done">✓ Remotion 60fps Master Video Rendered (1080p &amp; 9:16)</div>
+        <div class="log-item done">✓ 5-Tweet Thread Dispatched to 𝕏 / Twitter (ID: #189283749)</div>
+        <div class="log-item done">✓ LinkedIn Technical Announcement Published</div>
+        <div class="log-item done">✓ YouTube Short Scheduled with Vertical Kinetic Video</div>
+        <div class="log-item done">✓ GitHub PR #42 Merged into main (README.md Updated)</div>
+      </div>
+
+      <button type="button" class="modal-close-btn" id="modalCloseBtn">Return to Studio</button>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    /* ================= ASCII VIDEO RENDERER ================= */
+    /* ================= ASCII VIDEO SAMPLER ================= */
     function ascii(canvas, video, mode) {
       const ctx = canvas.getContext("2d", { willReadFrequently: true });
       if (!ctx) return { stop: () => {} };
@@ -2106,9 +2440,7 @@
       ro.observe(canvas);
       resize();
 
-      function fract(n) {
-        return n - Math.floor(n);
-      }
+      function fract(n) { return n - Math.floor(n); }
 
       function render(time) {
         if (!running) return;
@@ -2186,9 +2518,7 @@
                   ctx.fillText(ch, px, py - 1);
                 }
               } else if (mode === "sky") {
-                if (warm < 14 || L < 0.56) {
-                  continue;
-                }
+                if (warm < 14 || L < 0.56) continue;
                 const ch = k > 0.7 ? "+" : (k > 0.35 ? ":" : ".");
                 const col = L > 0.8 ? "rgba(255,255,255,.34)" : "rgba(92,112,104,.30)";
                 ctx.fillStyle = col;
@@ -2203,16 +2533,12 @@
       }
 
       requestAnimationFrame(render);
-
       return {
-        stop: () => {
-          running = false;
-          ro.disconnect();
-        }
+        stop: () => { running = false; ro.disconnect(); }
       };
     }
 
-    /* ================= APPLICATION INITIALIZATION ================= */
+    /* ================= INITIALIZATION & ONBOARDING TRANSITION ================= */
     const authScene = document.getElementById("authScene");
     const appScene = document.getElementById("appScene");
     const castleVideo = document.getElementById("castleVideo");
@@ -2225,49 +2551,31 @@
     let castleRenderer = ascii(castleCanvas, castleVideo, "castle");
     let skyRenderer = null;
 
-    // Intro Sequence: 900ms after fonts ready or 2600ms fallback
+    // Intro Sequence: 900ms after fonts ready (2600ms hard fallback)
     let readyFired = false;
     function makeReady() {
       if (readyFired) return;
       readyFired = true;
       authScene.classList.add("ready");
     }
-
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => {
-        setTimeout(makeReady, 900);
-      });
+      document.fonts.ready.then(() => setTimeout(makeReady, 900));
     }
     setTimeout(makeReady, 2600);
 
-    // Password visibility toggle
-    const passwordInput = document.getElementById("passwordInput");
-    const eyeToggle = document.getElementById("eyeToggle");
-    const eyeIcon = document.getElementById("eyeIcon");
-
-    eyeToggle.addEventListener("click", () => {
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        eyeIcon.innerHTML = `
-          <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
-          <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
-          <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
-          <line x1="2" y1="2" x2="22" y2="22"/>
-        `;
-      } else {
-        passwordInput.type = "password";
-        eyeIcon.innerHTML = `
-          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
-          <circle cx="12" cy="12" r="3"/>
-        `;
-      }
-      passwordInput.focus();
+    // Channel Pills Toggle
+    document.querySelectorAll(".channel-pill").forEach(pill => {
+      pill.addEventListener("click", (e) => {
+        e.preventDefault();
+        pill.classList.toggle("active");
+        const chk = pill.querySelector("input");
+        if (chk) chk.checked = pill.classList.contains("active");
+      });
     });
 
     // Scene Transition Handler
-    function enterDashboard() {
+    function initiateFlow() {
       if (authScene.classList.contains("leaving")) return;
-
       authScene.classList.add("leaving");
 
       // Start sky video
@@ -2277,30 +2585,27 @@
         authScene.classList.add("hidden");
         appScene.classList.add("on");
 
-        // Start sky ASCII renderer
         if (!skyRenderer) {
           skyRenderer = ascii(skyCanvas, skyVideo, "sky");
         }
-
-        // Stop castle renderer and pause video
         if (castleRenderer) {
           castleRenderer.stop();
         }
         castleVideo.pause();
+
+        // Start Remotion 60fps player loop
+        startRemotionPlayer();
       }, 520);
     }
 
-    // Trigger transition on submit or auth clicks
     document.getElementById("signupForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      enterDashboard();
+      initiateFlow();
     });
+    document.getElementById("githubAuthBtn").addEventListener("click", initiateFlow);
+    document.getElementById("googleAuthBtn").addEventListener("click", initiateFlow);
 
-    document.getElementById("githubAuthBtn").addEventListener("click", enterDashboard);
-    document.getElementById("googleAuthBtn").addEventListener("click", enterDashboard);
-    document.getElementById("loginLink").addEventListener("click", enterDashboard);
-
-    // Sidebar collapse & expand
+    /* ================= SIDEBAR COLLAPSE / EXPAND ================= */
     const sideRail = document.getElementById("sideRail");
     const collapseBtn = document.getElementById("collapseBtn");
     const expandBtn = document.getElementById("expandBtn");
@@ -2317,69 +2622,202 @@
       sideRail.classList.add("expanded");
     });
 
-    // Mobile panel click collapses expanded sidebar
     document.getElementById("mainPanel").addEventListener("click", () => {
       if (window.innerWidth <= 760 && sideRail.classList.contains("expanded")) {
         sideRail.classList.remove("expanded");
       }
     });
 
-    // Expandable model cards
-    document.querySelectorAll(".model-card").forEach((card) => {
-      const summary = card.querySelector(".model-summary");
-      const toggle = card.querySelector(".card-toggle");
+    /* ================= REMOTION 60FPS VIDEO PLAYER ENGINE ================= */
+    let isPlaying = true;
+    let currentFrame = 0;
+    const totalFrames = 1800; // 30s @ 60 FPS
+    const fps = 60;
+    let animId = null;
 
-      function toggleCard(e) {
-        if (e.target.closest(".code-box")) return;
-        card.classList.toggle("open");
-      }
+    const playBtn = document.getElementById("playBtn");
+    const playIcon = document.getElementById("playIcon");
+    const scrubberProgress = document.getElementById("scrubberProgress");
+    const scrubberTrack = document.getElementById("scrubberTrack");
+    const timeReadout = document.getElementById("timeReadout");
 
-      summary.addEventListener("click", toggleCard);
-      toggle.addEventListener("click", toggleCard);
+    const sceneCodeDiff = document.getElementById("sceneCodeDiff");
+    const sceneUiZoom = document.getElementById("sceneUiZoom");
+    const sceneCaptions = document.getElementById("sceneCaptions");
+
+    const chipDiff = document.getElementById("chipDiff");
+    const chipZoom = document.getElementById("chipZoom");
+    const chipCaptions = document.getElementById("chipCaptions");
+
+    const videoViewport = document.getElementById("videoViewport");
+    const btnRatio169 = document.getElementById("btnRatio169");
+    const btnRatio916 = document.getElementById("btnRatio916");
+
+    const mockCursor = document.getElementById("mockCursor");
+    const metricsCard = document.getElementById("metricsCard");
+    const cursorTooltip = document.getElementById("cursorTooltip");
+    const kineticWords = document.querySelectorAll(".k-word");
+
+    // Aspect Ratio Toggles
+    btnRatio169.addEventListener("click", () => {
+      btnRatio169.classList.add("active");
+      btnRatio916.classList.remove("active");
+      videoViewport.className = "video-viewport ratio-16-9";
     });
 
-    // Step 3 in Get Started opens GLM-5.2 and smooth-scrolls to it
-    const cardGlm52 = document.getElementById("cardGlm52");
-    document.getElementById("gsStep3").addEventListener("click", () => {
-      cardGlm52.classList.add("open");
-      cardGlm52.scrollIntoView({ behavior: "smooth", block: "center" });
+    btnRatio916.addEventListener("click", () => {
+      btnRatio916.classList.add("active");
+      btnRatio169.classList.remove("active");
+      videoViewport.className = "video-viewport ratio-9-16";
     });
 
-    // ZDR Switches
-    document.querySelectorAll(".zdr-switch").forEach((sw) => {
-      sw.addEventListener("click", (e) => {
-        e.stopPropagation();
-        sw.classList.toggle("off");
-      });
-    });
+    function updatePlayerState() {
+      // Progress calculation
+      const progressPercent = (currentFrame / totalFrames) * 100;
+      scrubberProgress.style.width = `${progressPercent}%`;
 
-    // Code copy buttons
-    document.querySelectorAll(".copy-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const codeBox = btn.closest(".code-box");
-        const pre = codeBox.querySelector("pre");
-        const toast = codeBox.querySelector(".copied-toast");
+      const seconds = (currentFrame / fps).toFixed(1);
+      const totalSec = (totalFrames / fps).toFixed(1);
+      timeReadout.innerText = `00:${seconds.padStart(4, "0")} / 00:${totalSec}`;
 
-        const text = pre.innerText.replace(/^[0-9]+\s+/gm, "");
-        navigator.clipboard.writeText(text).then(() => {
-          toast.classList.add("show");
-          setTimeout(() => {
-            toast.classList.remove("show");
-          }, 1400);
+      // Scene orchestration: 0-600 (Code Diff), 600-1200 (UI Zoom), 1200-1800 (Captions)
+      if (currentFrame < 600) {
+        sceneCodeDiff.classList.add("active");
+        sceneUiZoom.classList.remove("active");
+        sceneCaptions.classList.remove("active");
+
+        chipDiff.classList.add("active");
+        chipZoom.classList.remove("active");
+        chipCaptions.classList.remove("active");
+      } else if (currentFrame < 1200) {
+        sceneCodeDiff.classList.remove("active");
+        sceneUiZoom.classList.add("active");
+        sceneCaptions.classList.remove("active");
+
+        chipDiff.classList.remove("active");
+        chipZoom.classList.add("active");
+        chipCaptions.classList.remove("active");
+
+        // Animate mock cursor & 3D tilt
+        const localProgress = (currentFrame - 600) / 600;
+        const curX = 35 + Math.sin(localProgress * Math.PI * 2) * 25;
+        const curY = 40 + Math.cos(localProgress * Math.PI * 2) * 18;
+        mockCursor.style.left = `${curX}%`;
+        mockCursor.style.top = `${curY}%`;
+
+        const rotX = (curY - 45) * 0.4;
+        const rotY = (curX - 45) * -0.4;
+        metricsCard.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+        if (localProgress < 0.33) {
+          cursorTooltip.innerText = "Speculative AST Multi-Hop";
+        } else if (localProgress < 0.66) {
+          cursorTooltip.innerText = "14.2ms Zero-Copy RingBuffer";
+        } else {
+          cursorTooltip.innerText = "84% Latency Drop Confirmed";
+        }
+      } else {
+        sceneCodeDiff.classList.remove("active");
+        sceneUiZoom.classList.remove("active");
+        sceneCaptions.classList.add("active");
+
+        chipDiff.classList.remove("active");
+        chipZoom.classList.remove("active");
+        chipCaptions.classList.add("active");
+
+        // Sync Kinetic captions
+        const capProgress = (currentFrame - 1200) / 600;
+        const activeIdx = Math.floor(capProgress * kineticWords.length);
+        kineticWords.forEach((word, idx) => {
+          if (idx <= activeIdx) {
+            word.classList.add("active");
+          } else {
+            word.classList.remove("active");
+          }
         });
+      }
+    }
+
+    function loopPlayer() {
+      if (isPlaying) {
+        currentFrame = (currentFrame + 1) % totalFrames;
+        updatePlayerState();
+      }
+      animId = requestAnimationFrame(loopPlayer);
+    }
+
+    function startRemotionPlayer() {
+      if (!animId) {
+        animId = requestAnimationFrame(loopPlayer);
+      }
+    }
+
+    playBtn.addEventListener("click", () => {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        playIcon.innerHTML = `<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>`;
+      } else {
+        playIcon.innerHTML = `<polygon points="5 3 19 12 5 21 5 3"/>`;
+      }
+    });
+
+    // Scrubber click to seek
+    scrubberTrack.addEventListener("click", (e) => {
+      const rect = scrubberTrack.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+      currentFrame = Math.floor(pct * totalFrames);
+      updatePlayerState();
+    });
+
+    // Scene Chip quick jump
+    chipDiff.addEventListener("click", () => { currentFrame = 0; updatePlayerState(); });
+    chipZoom.addEventListener("click", () => { currentFrame = 610; updatePlayerState(); });
+    chipCaptions.addEventListener("click", () => { currentFrame = 1210; updatePlayerState(); });
+
+    /* ================= TABBED EDITORS LOGIC ================= */
+    document.querySelectorAll(".editor-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".editor-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+
+        tab.classList.add("active");
+        const targetId = tab.getAttribute("data-tab");
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) targetEl.classList.add("active");
       });
     });
 
-    // "/" key scrolls back to top when not in input
+    /* ================= APPROVE & SHIP EVERYWHERE FLOW ================= */
+    const shipBtn = document.getElementById("shipBtn");
+    const dispatchModal = document.getElementById("dispatchModal");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+
+    shipBtn.addEventListener("click", () => {
+      dispatchModal.classList.add("open");
+    });
+
+    modalCloseBtn.addEventListener("click", () => {
+      dispatchModal.classList.remove("open");
+    });
+
+    dispatchModal.addEventListener("click", (e) => {
+      if (e.target === dispatchModal) dispatchModal.classList.remove("open");
+    });
+
+    /* ================= KEYBOARD SHORTCUTS ================= */
     window.addEventListener("keydown", (e) => {
       if (e.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {
         e.preventDefault();
         scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
       }
+      if (e.code === "Space" && !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        playBtn.click();
+      }
     });
 
-    // Resume video on tab return
+    // Tab visibility recovery
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) {
         if (!authScene.classList.contains("hidden")) {
