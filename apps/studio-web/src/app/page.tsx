@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import React, { useState } from 'react';
 import { LaunchPackProps, RestateDispatchPayload } from '@getshipped/shared-types';
 import { mockLaunchPack } from '@getshipped/remotion-studio';
@@ -66,7 +68,7 @@ export default function ApprovalStudioPage() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen overflow-hidden bg-[#090D16]">
+    <div className="flex flex-col h-screen w-screen overflow-hidden bg-surface-canvas">
       {/* Top Application Header with 1-Tab Mode Switcher & Export Controls */}
       <StudioHeader
         launchPack={launchPack}

@@ -20,21 +20,21 @@ export const ApprovalTabs: React.FC<ApprovalTabsProps> = ({ copywriting, onChang
   const [activeTab, setActiveTab] = useState<TabType>('x_thread');
 
   return (
-    <div className="flex flex-col h-full bg-[#0B0F19] overflow-hidden">
-      {/* Tab Switcher Navigation */}
-      <div className="flex items-center border-b border-white/10 bg-slate-900/60 px-4 pt-2">
+    <div className="flex flex-col h-full bg-surface-panel overflow-hidden">
+      {/* Tab Switcher Navigation - Linear / Raycast Segmented Header */}
+      <div className="flex items-center gap-1 border-b border-border-subtle bg-surface-elevated/70 px-4 py-2">
         <button
           type="button"
           onClick={() => setActiveTab('x_thread')}
-          className={`flex items-center gap-2 px-4 py-3 text-xs font-bold border-b-2 transition-all ${
+          className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-md font-medium transition-colors cursor-pointer ${
             activeTab === 'x_thread'
-              ? 'border-cyan-400 text-cyan-300 bg-white/5 rounded-t-lg'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'bg-white/10 text-white font-semibold shadow-sm'
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
           }`}
         >
           <XIcon className="w-3.5 h-3.5 text-cyan-400" />
           <span>X Thread</span>
-          <span className="px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px]">
+          <span className="px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-mono">
             {copywriting.xThread.length}
           </span>
         </button>
@@ -42,10 +42,10 @@ export const ApprovalTabs: React.FC<ApprovalTabsProps> = ({ copywriting, onChang
         <button
           type="button"
           onClick={() => setActiveTab('linkedin')}
-          className={`flex items-center gap-2 px-4 py-3 text-xs font-bold border-b-2 transition-all ${
+          className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-md font-medium transition-colors cursor-pointer ${
             activeTab === 'linkedin'
-              ? 'border-blue-400 text-blue-300 bg-white/5 rounded-t-lg'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'bg-white/10 text-white font-semibold shadow-sm'
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
           }`}
         >
           <LinkedInIcon className="w-3.5 h-3.5 text-blue-400" />
@@ -55,26 +55,26 @@ export const ApprovalTabs: React.FC<ApprovalTabsProps> = ({ copywriting, onChang
         <button
           type="button"
           onClick={() => setActiveTab('hashnode')}
-          className={`flex items-center gap-2 px-4 py-3 text-xs font-bold border-b-2 transition-all ${
+          className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-md font-medium transition-colors cursor-pointer ${
             activeTab === 'hashnode'
-              ? 'border-emerald-400 text-emerald-300 bg-white/5 rounded-t-lg'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'bg-white/10 text-white font-semibold shadow-sm'
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
           }`}
         >
           <BookOpen className="w-3.5 h-3.5 text-emerald-400" />
           <span>Hashnode / Dev.to</span>
-          <span className="px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px]">
-            Mermaid Live
+          <span className="px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-mono">
+            Mermaid
           </span>
         </button>
 
         <button
           type="button"
           onClick={() => setActiveTab('github_diff')}
-          className={`flex items-center gap-2 px-4 py-3 text-xs font-bold border-b-2 transition-all ${
+          className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-md font-medium transition-colors cursor-pointer ${
             activeTab === 'github_diff'
-              ? 'border-purple-400 text-purple-300 bg-white/5 rounded-t-lg'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'bg-white/10 text-white font-semibold shadow-sm'
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
           }`}
         >
           <GitPullRequest className="w-3.5 h-3.5 text-purple-400" />

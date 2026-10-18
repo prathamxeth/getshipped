@@ -74,53 +74,53 @@ export const StudioHeader: React.FC<StudioHeaderProps> = ({
       {/* Left: Brand, Project Info & Mode Switcher */}
       <div className="flex items-center gap-5">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center font-black text-slate-950 shadow-lg shadow-emerald-500/20">
-            ⚡
+          <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400">
+            <Rocket className="w-4 h-4 text-emerald-400" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-base tracking-tight text-white">GetShipped</span>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 font-bold">
+              <span className="font-bold text-sm tracking-tight text-white">GetShipped</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 font-semibold font-mono">
                 1-Tab Studio
               </span>
             </div>
-            <div className="text-xs text-slate-400 flex items-center gap-1.5 font-mono">
-              <span className="text-slate-200">{launchPack.projectName}</span>
+            <div className="text-[11px] text-slate-400 flex items-center gap-1.5 font-mono">
+              <span className="text-slate-300">{launchPack.projectName}</span>
               <span>•</span>
               <span className="text-cyan-400">v{launchPack.version}</span>
             </div>
           </div>
         </div>
 
-        <div className="h-6 w-px bg-white/10" />
+        <div className="h-5 w-px bg-white/10" />
 
         {/* View Switcher: Studio (Remotion + Omnichannel) vs RAG Intelligence */}
-        <div className="flex items-center bg-slate-900/90 p-1 rounded-xl border border-white/10 text-xs">
+        <div className="flex items-center bg-surface-elevated p-0.5 rounded-lg border border-border-subtle text-xs">
           <button
             type="button"
             onClick={() => onViewChange('studio')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium text-xs transition-colors ${
               activeView === 'studio'
-                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/25 font-bold'
+                ? 'bg-emerald-500 text-slate-950 font-semibold shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
             <Film className="w-3.5 h-3.5" />
-            <span>Video & Omnichannel Studio</span>
+            <span className="whitespace-nowrap">Video & Omnichannel Studio</span>
           </button>
 
           <button
             type="button"
             onClick={() => onViewChange('rag')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium text-xs transition-colors ${
               activeView === 'rag'
-                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/25 font-bold'
+                ? 'bg-emerald-500 text-slate-950 font-semibold shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            <Cpu className="w-3.5 h-3.5 text-cyan-300" />
-            <span>Interactive RAG Intelligence</span>
-            <span className="text-[9px] px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 font-mono">
+            <Cpu className="w-3.5 h-3.5" />
+            <span className="whitespace-nowrap">Interactive RAG Intelligence</span>
+            <span className="text-[9px] px-1 py-0.2 rounded bg-cyan-500/20 text-cyan-300 font-mono ml-0.5">
               14.2ms
             </span>
           </button>
@@ -130,10 +130,10 @@ export const StudioHeader: React.FC<StudioHeaderProps> = ({
         <button
           type="button"
           onClick={onOpenOnboarding}
-          className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-slate-300 transition-colors cursor-pointer"
+          className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-subtle hover:bg-white/[0.06] border border-border-subtle text-xs text-slate-300 transition-colors cursor-pointer"
         >
           <User className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Dev Profile: <strong className="text-white">{launchPack.author.name}</strong></span>
+          <span>Dev Profile: <strong className="text-white font-medium">{launchPack.author.name}</strong></span>
           <span className="text-[10px] text-cyan-400 font-mono">Edit</span>
         </button>
       </div>
@@ -141,13 +141,13 @@ export const StudioHeader: React.FC<StudioHeaderProps> = ({
       {/* Right: Aspect Ratio, In-App MP4 Export & Ship Action */}
       <div className="flex items-center gap-3">
         {/* Aspect Ratio Switcher */}
-        <div className="flex items-center bg-slate-900/80 p-0.5 rounded-lg border border-white/10 text-xs">
+        <div className="flex items-center bg-surface-elevated p-0.5 rounded-lg border border-border-subtle text-xs">
           <button
             type="button"
             onClick={() => onAspectRatioChange('16:9')}
-            className={`px-2.5 py-1.5 rounded-md font-semibold transition-all ${
+            className={`px-2.5 py-1 rounded font-medium text-xs transition-colors ${
               aspectRatio === '16:9'
-                ? 'bg-white/15 text-white shadow-sm'
+                ? 'bg-white/10 text-white font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -156,9 +156,9 @@ export const StudioHeader: React.FC<StudioHeaderProps> = ({
           <button
             type="button"
             onClick={() => onAspectRatioChange('9:16')}
-            className={`px-2.5 py-1.5 rounded-md font-semibold transition-all ${
+            className={`px-2.5 py-1 rounded font-medium text-xs transition-colors ${
               aspectRatio === '9:16'
-                ? 'bg-white/15 text-white shadow-sm'
+                ? 'bg-white/10 text-white font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -171,7 +171,7 @@ export const StudioHeader: React.FC<StudioHeaderProps> = ({
           type="button"
           onClick={handleExportMP4}
           disabled={isExportingVideo}
-          className="px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-white/15 hover:border-emerald-500/40 text-xs font-bold flex items-center gap-2 transition-all cursor-pointer shadow-sm disabled:opacity-50"
+          className="px-3 py-1.5 rounded-lg bg-surface-elevated hover:bg-white/[0.08] text-slate-200 border border-border-subtle hover:border-border-hover text-xs font-medium flex items-center gap-2 transition-colors cursor-pointer disabled:opacity-50 active:translate-y-px"
           title="Render & Download 60fps MP4 in browser without terminal"
         >
           {isExportingVideo ? (
@@ -197,9 +197,9 @@ export const StudioHeader: React.FC<StudioHeaderProps> = ({
           type="button"
           onClick={onApproveAndShip}
           disabled={isShipping}
-          className="relative group overflow-hidden px-5 py-2 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 font-extrabold text-sm flex items-center gap-2.5 shadow-lg shadow-emerald-500/25 transition-all transform active:scale-95 disabled:opacity-50 cursor-pointer"
+          className="px-4 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs tracking-tight flex items-center gap-2 shadow-sm transition-colors active:translate-y-px disabled:opacity-50 cursor-pointer whitespace-nowrap"
         >
-          <Rocket className={`w-4 h-4 ${isShipping ? 'animate-bounce' : 'group-hover:-translate-y-0.5 transition-transform'}`} />
+          <Rocket className="w-3.5 h-3.5" />
           <span>{isShipping ? 'Shipping via Restate...' : 'Approve & Ship Everywhere'}</span>
         </button>
       </div>

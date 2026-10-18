@@ -138,19 +138,19 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#07090E] text-slate-100 overflow-y-auto">
+    <div className="flex flex-col h-full bg-surface-canvas text-slate-100 overflow-y-auto">
       {/* Top Banner: RAG System Status & Telemetry */}
-      <div className="p-6 border-b border-white/10 bg-[#0B0E17]/90 backdrop-blur-xl flex flex-wrap items-center justify-between gap-4">
+      <div className="px-6 py-4 border-b border-border-subtle bg-surface-panel/90 backdrop-blur-xl flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-emerald-500/20">
-            <Cpu className="w-5 h-5 text-slate-950" />
+          <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400">
+            <Cpu className="w-4 h-4 text-emerald-400" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-base font-extrabold text-white tracking-tight">
+              <h2 className="text-sm font-bold text-white tracking-tight">
                 Autonomous Speculative RAG Retrieval Engine
               </h2>
-              <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-mono font-bold">
+              <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-mono font-semibold">
                 FAST-PATH ACTIVE
               </span>
             </div>
@@ -162,18 +162,18 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
 
         {/* Live Cluster Metrics Header */}
         <div className="flex items-center gap-3">
-          <div className="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 text-xs flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="px-3 py-1.5 rounded-lg bg-surface-elevated border border-border-subtle text-xs flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-400" />
             <span className="text-slate-400">p99 Latency:</span>
             <span className="text-emerald-400 font-mono font-bold">14.2 ms (-84%)</span>
           </div>
 
-          <div className="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 text-xs flex items-center gap-2">
+          <div className="px-3 py-1.5 rounded-lg bg-surface-elevated border border-border-subtle text-xs flex items-center gap-2">
             <span className="text-slate-400">Throughput:</span>
             <span className="text-cyan-400 font-mono font-bold">{simulatedQps.toLocaleString()} QPS</span>
           </div>
 
-          <div className="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 text-xs flex items-center gap-2">
+          <div className="px-3 py-1.5 rounded-lg bg-surface-elevated border border-border-subtle text-xs flex items-center gap-2">
             <span className="text-slate-400">Cache Hit Rate:</span>
             <span className="text-purple-400 font-mono font-bold">94.6%</span>
           </div>
@@ -182,7 +182,7 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
             <button
               type="button"
               onClick={onSwitchToStudio}
-              className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 text-xs font-extrabold flex items-center gap-1.5 shadow-md shadow-emerald-500/20 hover:opacity-90 transition-all cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 shadow-sm transition-colors cursor-pointer active:translate-y-px"
             >
               <span>View in 60fps Studio</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -193,7 +193,7 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
 
       <div className="p-6 flex flex-col gap-6 max-w-7xl mx-auto w-full">
         {/* Interactive Query Sandbox */}
-        <div className="p-5 rounded-2xl bg-[#0D121F] border border-white/10 shadow-xl flex flex-col gap-3">
+        <div className="p-5 rounded-xl bg-surface-panel border border-border-subtle flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
               <Zap className="w-3.5 h-3.5 text-emerald-400" />
@@ -210,7 +210,7 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
                 type="text"
                 value={activeQuery}
                 onChange={(e) => setActiveQuery(e.target.value)}
-                className="w-full bg-slate-950/80 rounded-xl px-4 py-3 text-sm font-mono text-emerald-300 border border-white/10 focus:border-emerald-500/60 focus:outline-none focus:ring-1 focus:ring-emerald-500/30"
+                className="w-full bg-surface-canvas rounded-lg px-3.5 py-2 text-xs font-mono text-emerald-300 border border-border-subtle focus:border-emerald-500 focus:outline-none"
                 placeholder="Enter technical developer query..."
               />
             </div>
@@ -219,7 +219,7 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
               type="button"
               onClick={handleRunTraversal}
               disabled={isTraversing}
-              className="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all cursor-pointer disabled:opacity-50"
+              className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-colors cursor-pointer disabled:opacity-50 active:translate-y-px"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isTraversing ? 'animate-spin' : ''}`} />
               <span>{isTraversing ? 'Traversing DAG...' : 'Simulate Traversal'}</span>
@@ -234,7 +234,7 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
                 key={idx}
                 type="button"
                 onClick={() => setActiveQuery(preset)}
-                className="text-xs px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/5 font-mono transition-colors"
+                className="text-xs px-2.5 py-1 rounded bg-surface-elevated hover:bg-white/[0.08] text-slate-300 border border-border-subtle font-mono transition-colors cursor-pointer"
               >
                 {preset.slice(0, 42)}...
               </button>
@@ -243,15 +243,15 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
         </div>
 
         {/* Interactive Visual Knowledge Graph DAG */}
-        <div className="p-6 rounded-2xl bg-[#0D121F] border border-white/10 shadow-2xl flex flex-col gap-4">
-          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+        <div className="p-6 rounded-xl bg-surface-panel border border-border-subtle flex flex-col gap-4">
+          <div className="flex items-center justify-between border-b border-border-subtle pb-3">
             <div className="flex items-center gap-2">
               <Network className="w-4 h-4 text-cyan-400" />
-              <h3 className="text-sm font-bold text-white">
+              <h3 className="text-xs font-bold text-white uppercase tracking-wider">
                 Interactive Speculative Pipeline DAG (Click Node to Inspect Memory & AST)
               </h3>
             </div>
-            <span className="text-xs font-mono text-cyan-400">
+            <span className="text-xs font-mono text-cyan-400 font-semibold">
               Total End-to-End Latency: 14.2ms
             </span>
           </div>
@@ -265,10 +265,10 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
                 <div
                   key={node.id}
                   onClick={() => setSelectedNodeId(node.id)}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between gap-3 relative ${
+                  className={`p-3.5 rounded-lg border transition-colors cursor-pointer flex flex-col justify-between gap-3 relative ${
                     isSelected
-                      ? 'bg-emerald-950/30 border-emerald-500/60 shadow-lg shadow-emerald-500/15'
-                      : 'bg-slate-950/60 border-white/10 hover:border-white/25 hover:bg-white/5'
+                      ? 'bg-emerald-950/20 border-emerald-500/60'
+                      : 'bg-surface-canvas border-border-subtle hover:border-border-hover'
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -276,9 +276,9 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
                       0{index + 1}
                     </span>
                     <span
-                      className={`text-[10px] px-2 py-0.5 rounded font-mono font-semibold ${
+                      className={`text-[10px] px-1.5 py-0.5 rounded font-mono font-semibold ${
                         node.status === 'fast_path'
-                          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                          ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
                           : 'bg-white/5 text-slate-400'
                       }`}
                     >
@@ -291,7 +291,7 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
                     <div className="text-[11px] text-slate-400 mt-1">{node.type}</div>
                   </div>
 
-                  <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-slate-500 font-mono">
+                  <div className="pt-2 border-t border-border-subtle flex items-center justify-between text-[10px] text-slate-500 font-mono">
                     <span>{isSelected ? '● INSPECTING' : 'CLICK TO VIEW'}</span>
                     <ArrowRight className="w-3 h-3 text-slate-400" />
                   </div>
@@ -301,14 +301,14 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
           </div>
 
           {/* Selected Node Real-Time Inspector Drawer */}
-          <div className="mt-2 p-5 rounded-xl bg-slate-950/80 border border-emerald-500/30 shadow-inner flex flex-col gap-3">
+          <div className="mt-2 p-4 rounded-lg bg-surface-canvas border border-border-subtle flex flex-col gap-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 font-mono">
                 <Code2 className="w-4 h-4 text-emerald-400" />
                 <span>Selected Primitive: {selectedNode.title}</span>
               </div>
               {selectedNode.details.memoryAddress && (
-                <span className="text-xs font-mono text-cyan-400 bg-cyan-950/40 px-2.5 py-0.5 rounded border border-cyan-500/20">
+                <span className="text-[11px] font-mono text-cyan-400 bg-cyan-950/30 px-2 py-0.5 rounded border border-cyan-500/20">
                   Buffer Memory: {selectedNode.details.memoryAddress}
                 </span>
               )}
@@ -320,7 +320,7 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
 
             {/* AST Code Snippet */}
             {selectedNode.details.codeSnippet && (
-              <div className="p-3.5 rounded-lg bg-black/60 border border-white/10 font-mono text-xs text-emerald-300 overflow-x-auto leading-relaxed">
+              <div className="p-3 rounded-lg bg-black/60 border border-border-subtle font-mono text-xs text-emerald-300 overflow-x-auto leading-relaxed">
                 <pre>{selectedNode.details.codeSnippet}</pre>
               </div>
             )}
@@ -330,8 +330,8 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
         {/* Live Benchmark Comparison & Retrieved Chunks */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Latency Comparison Bars */}
-          <div className="lg:col-span-5 p-5 rounded-2xl bg-[#0D121F] border border-white/10 flex flex-col gap-4">
-            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+          <div className="lg:col-span-5 p-5 rounded-xl bg-surface-panel border border-border-subtle flex flex-col gap-4">
+            <div className="flex items-center justify-between border-b border-border-subtle pb-2">
               <h4 className="text-xs font-bold text-white uppercase tracking-wider">
                 Retrieval Latency Benchmark (p99)
               </h4>
@@ -344,7 +344,7 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
                   <span>Legacy Vector DB (Brute-Force)</span>
                   <span className="font-mono text-red-400">186 ms</span>
                 </div>
-                <div className="h-3 bg-slate-900 rounded-full overflow-hidden">
+                <div className="h-2.5 bg-surface-canvas rounded-full overflow-hidden">
                   <div className="h-full bg-red-500/80 w-[95%]" />
                 </div>
               </div>
@@ -354,7 +354,7 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
                   <span>Hybrid Cross-Encoder Scan</span>
                   <span className="font-mono text-amber-400">114 ms</span>
                 </div>
-                <div className="h-3 bg-slate-900 rounded-full overflow-hidden">
+                <div className="h-2.5 bg-surface-canvas rounded-full overflow-hidden">
                   <div className="h-full bg-amber-500/80 w-[60%]" />
                 </div>
               </div>
@@ -364,14 +364,14 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
                   <span>HyperScale v2 (Speculative RingBuffer)</span>
                   <span className="font-mono">14.2 ms</span>
                 </div>
-                <div className="h-3 bg-slate-900 rounded-full overflow-hidden shadow-sm shadow-emerald-500/30">
-                  <div className="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 w-[12%]" />
+                <div className="h-2.5 bg-surface-canvas rounded-full overflow-hidden">
+                  <div className="h-full bg-emerald-500 w-[12%]" />
                 </div>
               </div>
             </div>
 
             {/* Interactive QPS slider */}
-            <div className="mt-auto pt-3 border-t border-white/10 flex flex-col gap-2">
+            <div className="mt-auto pt-3 border-t border-border-subtle flex flex-col gap-2">
               <div className="flex justify-between text-xs text-slate-400">
                 <span>Simulated Cluster Load:</span>
                 <span className="font-mono text-cyan-300 font-bold">{simulatedQps.toLocaleString()} QPS</span>
@@ -383,14 +383,14 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
                 step={1000}
                 value={simulatedQps}
                 onChange={(e) => setSimulatedQps(Number(e.target.value))}
-                className="w-full accent-cyan-400 cursor-pointer"
+                className="w-full accent-emerald-500 cursor-pointer"
               />
             </div>
           </div>
 
           {/* Retrieved AST Code Chunks */}
-          <div className="lg:col-span-7 p-5 rounded-2xl bg-[#0D121F] border border-white/10 flex flex-col gap-3">
-            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+          <div className="lg:col-span-7 p-5 rounded-xl bg-surface-panel border border-border-subtle flex flex-col gap-3">
+            <div className="flex items-center justify-between border-b border-border-subtle pb-2">
               <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
                 <Database className="w-3.5 h-3.5 text-purple-400" />
                 <span>Live Retrieved AST Code Chunks (From Commit #8f4e2b1)</span>
@@ -424,7 +424,7 @@ export const InteractiveRAGScreen: React.FC<InteractiveRAGScreenProps> = ({
               ].map((c) => (
                 <div
                   key={c.id}
-                  className="p-3 rounded-xl bg-slate-950/60 border border-white/5 flex flex-col gap-1.5"
+                  className="p-3 rounded-lg bg-surface-canvas border border-border-subtle flex flex-col gap-1.5"
                 >
                   <div className="flex items-center justify-between text-xs">
                     <span className="font-bold text-white font-mono">{c.symbol}</span>

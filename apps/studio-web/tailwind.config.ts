@@ -11,12 +11,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#090D16',
+        background: '#07090E',
         surface: {
-          DEFAULT: '#0F172A',
-          subtle: '#111827',
-          elevated: '#1E293B',
-          glass: 'rgba(15, 23, 42, 0.75)',
+          DEFAULT: '#0D121F',
+          canvas: '#07090E',
+          panel: '#0D121F',
+          elevated: '#131A2B',
+          subtle: 'rgba(255, 255, 255, 0.03)',
+          glass: 'rgba(13, 18, 31, 0.88)',
         },
         brand: {
           emerald: '#10B981',
@@ -27,12 +29,13 @@ const config: Config = {
         },
         border: {
           subtle: 'rgba(255, 255, 255, 0.08)',
-          glow: 'rgba(16, 185, 129, 0.3)',
+          hover: 'rgba(255, 255, 255, 0.16)',
+          focus: '#10B981',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'monospace'],
       },
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',

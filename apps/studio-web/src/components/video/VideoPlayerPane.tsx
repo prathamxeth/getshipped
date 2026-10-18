@@ -92,15 +92,15 @@ export const VideoPlayerPane: React.FC<VideoPlayerPaneProps> = ({
   const compositionHeight = isVertical ? 1920 : 1080;
 
   return (
-    <div className="flex flex-col h-full bg-[#090D16] border-r border-white/10 relative overflow-hidden">
+    <div className="flex flex-col h-full bg-surface-canvas border-r border-border-subtle relative overflow-hidden">
       {/* Top Controls Header */}
-      <div className="p-4 border-b border-white/10 flex items-center justify-between bg-slate-900/40 backdrop-blur-sm">
+      <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between bg-surface-panel/80">
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-xs font-bold text-slate-200 uppercase tracking-wider">
-            Remotion v4 Live Preview
+          <div className="w-2 h-2 rounded-full bg-emerald-400" />
+          <span className="text-xs font-bold text-slate-200 tracking-wider font-mono">
+            Remotion v4 Engine
           </span>
-          <span className="text-xs px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono font-medium border border-emerald-500/20">
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono font-semibold border border-emerald-500/20">
             60 FPS
           </span>
         </div>
@@ -110,9 +110,9 @@ export const VideoPlayerPane: React.FC<VideoPlayerPaneProps> = ({
           <button
             type="button"
             onClick={() => handleSeek(0)}
-            className={`px-2.5 py-1 rounded-md transition-colors ${
+            className={`px-2.5 py-1 rounded text-xs transition-colors cursor-pointer ${
               currentFrame < 600
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-medium'
+                ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-medium'
                 : 'text-slate-400 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -121,9 +121,9 @@ export const VideoPlayerPane: React.FC<VideoPlayerPaneProps> = ({
           <button
             type="button"
             onClick={() => handleSeek(600)}
-            className={`px-2.5 py-1 rounded-md transition-colors ${
+            className={`px-2.5 py-1 rounded text-xs transition-colors cursor-pointer ${
               currentFrame >= 600 && currentFrame < 1200
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-medium'
+                ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 font-medium'
                 : 'text-slate-400 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -132,9 +132,9 @@ export const VideoPlayerPane: React.FC<VideoPlayerPaneProps> = ({
           <button
             type="button"
             onClick={() => handleSeek(1200)}
-            className={`px-2.5 py-1 rounded-md transition-colors ${
+            className={`px-2.5 py-1 rounded text-xs transition-colors cursor-pointer ${
               currentFrame >= 1200
-                ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30 font-medium'
+                ? 'bg-purple-500/15 text-purple-300 border border-purple-500/30 font-medium'
                 : 'text-slate-400 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -144,9 +144,9 @@ export const VideoPlayerPane: React.FC<VideoPlayerPaneProps> = ({
       </div>
 
       {/* Main Video Viewport Canvas */}
-      <div className="flex-1 p-6 flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-[#090D16] to-[#0D1322]">
+      <div className="flex-1 p-6 flex items-center justify-center relative overflow-hidden bg-surface-canvas">
         <div
-          className="relative transition-all duration-300 rounded-2xl overflow-hidden shadow-2xl border border-white/15 bg-black flex items-center justify-center"
+          className="relative transition-all duration-300 rounded-xl overflow-hidden border border-border-subtle bg-black flex items-center justify-center shadow-lg"
           style={{
             width: isVertical ? '340px' : '100%',
             maxWidth: isVertical ? '360px' : '920px',
@@ -175,27 +175,27 @@ export const VideoPlayerPane: React.FC<VideoPlayerPaneProps> = ({
           />
 
           {/* Overlay watermark indicator */}
-          <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-300 pointer-events-none">
+          <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/75 border border-white/10 text-[10px] font-mono text-slate-300 pointer-events-none">
             {aspectRatio} • {compositionWidth}x{compositionHeight}
           </div>
         </div>
       </div>
 
       {/* Scrubber & Playback Controls Bar */}
-      <div className="p-4 border-t border-white/10 bg-[#0F172A]/80 backdrop-blur-xl flex flex-col gap-3">
+      <div className="p-4 border-t border-border-subtle bg-surface-panel flex flex-col gap-3">
         {/* Timeline Scrubber Slider with Scene Color Markers */}
         <div className="flex flex-col gap-1.5">
-          <div className="relative w-full h-3 bg-slate-800 rounded-full overflow-hidden cursor-pointer group">
+          <div className="relative w-full h-2.5 bg-surface-elevated rounded-full overflow-hidden cursor-pointer group">
             {/* Scene Markers Background */}
             <div className="absolute inset-0 flex">
-              <div className="w-1/3 h-full bg-emerald-500/15 border-r border-white/20" title="Scene 1: Code Diff (0-10s)" />
-              <div className="w-1/3 h-full bg-cyan-500/15 border-r border-white/20" title="Scene 2: UI 3D Zoom (10-20s)" />
+              <div className="w-1/3 h-full bg-emerald-500/15 border-r border-white/10" title="Scene 1: Code Diff (0-10s)" />
+              <div className="w-1/3 h-full bg-cyan-500/15 border-r border-white/10" title="Scene 2: UI 3D Zoom (10-20s)" />
               <div className="w-1/3 h-full bg-purple-500/15" title="Scene 3: Launch Outro (20-30s)" />
             </div>
 
             {/* Current playback progress bar */}
             <div
-              className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400"
+              className="absolute top-0 bottom-0 left-0 bg-emerald-500"
               style={{ width: `${(currentFrame / durationInFrames) * 100}%` }}
             />
 
@@ -237,9 +237,9 @@ export const VideoPlayerPane: React.FC<VideoPlayerPaneProps> = ({
             <button
               type="button"
               onClick={togglePlay}
-              className="w-10 h-10 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center font-bold shadow-md shadow-emerald-500/25 transition-transform active:scale-95 cursor-pointer"
+              className="w-8 h-8 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center font-bold shadow-sm transition-colors active:translate-y-px cursor-pointer"
             >
-              {isPlaying ? <Pause className="w-5 h-5 fill-slate-950" /> : <Play className="w-5 h-5 fill-slate-950 ml-0.5" />}
+              {isPlaying ? <Pause className="w-4 h-4 fill-slate-950" /> : <Play className="w-4 h-4 fill-slate-950 ml-0.5" />}
             </button>
 
             {/* Restart Button */}

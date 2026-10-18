@@ -59,17 +59,17 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
 
   return (
     <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl bg-[#0F172A] border border-white/15 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+      <div className="w-full max-w-2xl bg-surface-panel border border-border-subtle rounded-xl shadow-2xl overflow-hidden flex flex-col">
         {/* Modal Header */}
-        <div className="p-5 border-b border-white/10 flex items-center justify-between bg-slate-900/70">
+        <div className="p-5 border-b border-border-subtle flex items-center justify-between bg-surface-elevated/70">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center text-slate-950 font-black shadow-lg shadow-emerald-500/20">
-              <User className="w-5 h-5 text-slate-950" />
+            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400">
+              <User className="w-4 h-4 text-emerald-400" />
             </div>
             <div>
-              <h2 className="text-base font-extrabold text-white flex items-center gap-2">
+              <h2 className="text-sm font-bold text-white flex items-center gap-2">
                 <span>Developer Onboarding & Persona Calibration</span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-mono">
+                <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-mono font-semibold">
                   Step {currentStep} of 3
                 </span>
               </h2>
@@ -82,14 +82,14 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Step Progression Indicators */}
-        <div className="grid grid-cols-3 border-b border-white/10 bg-black/30 text-xs">
+        <div className="grid grid-cols-3 border-b border-border-subtle bg-black/20 text-xs">
           {[
             { step: 1, title: 'Developer Identity' },
             { step: 2, title: 'Voice & Data Retrieval' },
@@ -97,9 +97,9 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
           ].map((s) => (
             <div
               key={s.step}
-              className={`p-3 text-center border-b-2 font-semibold transition-all ${
+              className={`p-3 text-center border-b font-medium text-xs transition-colors ${
                 currentStep === s.step
-                  ? 'border-emerald-400 text-emerald-300 bg-white/5'
+                  ? 'border-emerald-500 text-emerald-300 bg-white/[0.03]'
                   : currentStep > s.step
                   ? 'border-cyan-400 text-cyan-300'
                   : 'border-transparent text-slate-500'
@@ -117,65 +117,65 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
             <div className="flex flex-col gap-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                  <label className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider">
                     Developer Name
                   </label>
                   <input
                     type="text"
                     value={authorName}
                     onChange={(e) => setAuthorName(e.target.value)}
-                    className="w-full mt-1 bg-slate-900/80 rounded-xl p-3 text-sm text-white border border-white/10 focus:border-emerald-500/60 focus:outline-none"
+                    className="w-full mt-1.5 bg-surface-canvas rounded-lg px-3 py-2 text-xs text-white border border-border-subtle focus:border-emerald-500 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                  <label className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider">
                     Role & Title
                   </label>
                   <input
                     type="text"
                     value={authorRole}
                     onChange={(e) => setAuthorRole(e.target.value)}
-                    className="w-full mt-1 bg-slate-900/80 rounded-xl p-3 text-sm text-white border border-white/10 focus:border-emerald-500/60 focus:outline-none"
+                    className="w-full mt-1.5 bg-surface-canvas rounded-lg px-3 py-2 text-xs text-white border border-border-subtle focus:border-emerald-500 focus:outline-none"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                  <label className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider">
                     GitHub Handle
                   </label>
                   <input
                     type="text"
                     value={githubHandle}
                     onChange={(e) => setGithubHandle(e.target.value)}
-                    className="w-full mt-1 bg-slate-900/80 rounded-xl p-3 text-sm font-mono text-cyan-300 border border-white/10 focus:border-cyan-500/60 focus:outline-none"
+                    className="w-full mt-1.5 bg-surface-canvas rounded-lg px-3 py-2 text-xs font-mono text-cyan-300 border border-border-subtle focus:border-cyan-500 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                  <label className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider">
                     Twitter / X Handle
                   </label>
                   <input
                     type="text"
                     value={twitterHandle}
                     onChange={(e) => setTwitterHandle(e.target.value)}
-                    className="w-full mt-1 bg-slate-900/80 rounded-xl p-3 text-sm font-mono text-cyan-300 border border-white/10 focus:border-cyan-500/60 focus:outline-none"
+                    className="w-full mt-1.5 bg-surface-canvas rounded-lg px-3 py-2 text-xs font-mono text-cyan-300 border border-border-subtle focus:border-cyan-500 focus:outline-none"
                   />
                 </div>
               </div>
 
               {/* Connected Repository Pill */}
-              <div className="p-3.5 rounded-xl bg-slate-950/70 border border-white/10 flex items-center justify-between">
+              <div className="p-3.5 rounded-lg bg-surface-canvas border border-border-subtle flex items-center justify-between">
                 <div className="flex items-center gap-2.5 text-xs text-slate-300 font-mono">
                   <GitBranch className="w-4 h-4 text-emerald-400" />
                   <span>Repo: {launchPack.repoUrl.replace('https://github.com/', '')}</span>
                   <span>•</span>
                   <span>Branch: feat/speculative-graph</span>
                 </div>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">
+                <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold font-mono">
                   CONNECTED
                 </span>
               </div>
@@ -185,7 +185,7 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
           {/* STEP 2: Voice & Data Retrieval */}
           {currentStep === 2 && (
             <div className="flex flex-col gap-4">
-              <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+              <label className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider">
                 Select Technical Voice & Copy Calibration
               </label>
 
@@ -213,15 +213,15 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
                   <div
                     key={v.id}
                     onClick={() => setSelectedVoice(v.id as any)}
-                    className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col gap-1.5 ${
+                    className={`p-3.5 rounded-lg border transition-colors cursor-pointer flex flex-col gap-1.5 ${
                       selectedVoice === v.id
-                        ? 'bg-emerald-950/30 border-emerald-500/60 shadow-md shadow-emerald-500/20'
-                        : 'bg-slate-900/60 border-white/10 hover:border-white/20'
+                        ? 'bg-emerald-950/20 border-emerald-500/60'
+                        : 'bg-surface-canvas border-border-subtle hover:border-border-hover'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-bold text-white">{v.title}</span>
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 font-mono font-bold">
+                      <span className="text-xs font-bold text-white">{v.title}</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 font-mono font-semibold">
                         {v.badge}
                       </span>
                     </div>
@@ -236,7 +236,7 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
           {currentStep === 3 && (
             <div className="flex flex-col gap-4">
               <div>
-                <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                <label className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
                   <span>Whatever Dev Wants (Custom Launch Directives)</span>
                 </label>
@@ -249,11 +249,11 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
                 value={devDirectives}
                 onChange={(e) => setDevDirectives(e.target.value)}
                 rows={5}
-                className="w-full bg-slate-950/80 rounded-xl p-4 text-sm text-emerald-300 border border-white/15 focus:border-cyan-500/60 focus:outline-none font-mono leading-relaxed"
+                className="w-full bg-surface-canvas rounded-lg p-3 text-xs text-emerald-300 border border-border-subtle focus:border-cyan-500 focus:outline-none font-mono leading-relaxed"
                 placeholder="Enter your custom launch pack instructions..."
               />
 
-              <div className="p-3.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs text-slate-300 flex items-center gap-2">
+              <div className="p-3 rounded-lg bg-surface-canvas border border-border-subtle text-xs text-slate-300 flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
                 <span>RAG analysis will immediately synthesize your directives into all 5 omnichannel outputs.</span>
               </div>
@@ -262,12 +262,12 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
         </div>
 
         {/* Modal Footer Controls */}
-        <div className="p-4 border-t border-white/10 bg-slate-900/80 flex items-center justify-between">
+        <div className="p-4 border-t border-border-subtle bg-surface-elevated/80 flex items-center justify-between">
           {currentStep > 1 ? (
             <button
               type="button"
               onClick={() => setCurrentStep(currentStep - 1)}
-              className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs flex items-center gap-1.5 transition-colors"
+              className="px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back</span>
@@ -280,7 +280,7 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
             <button
               type="button"
               onClick={() => setCurrentStep(currentStep + 1)}
-              className="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center gap-1.5 transition-all cursor-pointer"
+              className="px-4 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <span>Next Step</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -289,7 +289,7 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
             <button
               type="button"
               onClick={handleApply}
-              className="px-6 py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 hover:opacity-90 text-slate-950 font-black text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/30 transition-all cursor-pointer"
+              className="px-5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-colors cursor-pointer active:translate-y-px shadow-sm"
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>Apply & Synthesize Launch Pack</span>
@@ -300,3 +300,4 @@ export const DeveloperOnboardingModal: React.FC<DeveloperOnboardingModalProps> =
     </div>
   );
 };
+
