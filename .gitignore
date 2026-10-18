@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Remotion Video Render Artifacts
+packages/remotion-studio/out/
+apps/studio-web/public/renders/*.mp4
+*.mp4
+*.webm
+
+# Environment Variables & Secrets
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE & OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# TypeScript / Build Caches
+*.tsbuildinfo
+.turbo
+
+# Impeccable binary cache
+.agents/skills/impeccable/bin/
+.agents/skills/impeccable/scripts/bin/

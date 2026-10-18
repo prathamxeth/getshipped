@@ -1,0 +1,233 @@
+{
+  "id": "pack_rag_hyperscale_v2",
+  "version": "2.4.0",
+  "createdAt": "2026-10-18T05:30:00Z",
+  "projectName": "HyperScale RAG v2",
+  "tagline": "Autonomous Speculative Graph Retrieval & Zero-Copy Streaming Engine",
+  "repoUrl": "https://github.com/getshipped/hyperscale-rag",
+  "commitHash": "8f4e2b1",
+  "commitMessage": "perf(retrieval): speculative multi-hop AST graph traversal with zero-copy stream",
+  "author": {
+    "name": "Alex Rivera",
+    "role": "Staff AI Systems Engineer",
+    "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    "githubHandle": "alexrivera",
+    "twitterHandle": "@alexrivera_ai"
+  },
+  "video": {
+    "fps": 60,
+    "durationInFrames": 1800,
+    "aspectRatio": "16:9",
+    "audioTrackUrl": "audio/voiceover.wav",
+    "backgroundMusicUrl": "audio/synthwave-ambient.wav",
+    "scenes": {
+      "codeDiff": {
+        "title": "Speculative Graph Pipeline vs Sequential Vector Scan",
+        "filePath": "packages/core/src/retrieval/graphPipeline.ts",
+        "fileLanguage": "typescript",
+        "branchName": "feat/speculative-graph",
+        "commitHash": "8f4e2b1",
+        "commitMessage": "perf(retrieval): replace sequential vector scan with speculative AST graph index",
+        "startFrame": 0,
+        "durationInFrames": 600,
+        "oldCode": "export async function retrieveContext(query: string): Promise<Document[]> {\n  // 1. Naive sequential embedding\n  const embedding = await embedder.encode(query);\n  \n  // 2. High-latency brute-force vector search\n  const rawMatches = await vectorStore.query({\n    vector: embedding,\n    topK: 50,\n    includeMetadata: true\n  });\n  \n  // 3. Blocking re-ranker passes sequentially\n  const filtered = await crossEncoder.rerank(query, rawMatches);\n  return filtered.slice(0, 10);\n}",
+        "newCode": "export async function* retrieveContextStream(query: string): AsyncGenerator<DocumentChunk> {\n  // 1. Concurrent speculative AST graph prediction\n  const [subQueries, fastPathGraph] = await Promise.all([\n    speculativeRouter.predictMultiHop(query),\n    graphIndex.traverseFastPath(query)\n  ]);\n  \n  // 2. Lock-free zero-copy ring buffer with early chunk emission\n  const ringBuffer = new SharedArrayRingBuffer<DocumentChunk>(1024);\n  void fastPathGraph.streamTo(ringBuffer);\n  \n  // 3. Speculative pipelined yield at 14.2ms TTFT\n  for await (const chunk of ringBuffer.consumeSpeculative()) {\n    if (chunk.confidenceScore > 0.94) {\n      yield chunk;\n    }\n  }\n}",
+        "lines": [
+          { "lineNumber": 1, "type": "removed", "content": "export async function retrieveContext(query: string): Promise<Document[]> {", "oldLineNumber": 1 },
+          { "lineNumber": 1, "type": "added", "content": "export async function* retrieveContextStream(query: string): AsyncGenerator<DocumentChunk> {", "newLineNumber": 1, "highlight": true },
+          { "lineNumber": 2, "type": "removed", "content": "  // 1. Naive sequential embedding", "oldLineNumber": 2 },
+          { "lineNumber": 2, "type": "added", "content": "  // 1. Concurrent speculative AST graph prediction", "newLineNumber": 2 },
+          { "lineNumber": 3, "type": "removed", "content": "  const embedding = await embedder.encode(query);", "oldLineNumber": 3 },
+          { "lineNumber": 3, "type": "added", "content": "  const [subQueries, fastPathGraph] = await Promise.all([", "newLineNumber": 3, "highlight": true },
+          { "lineNumber": 4, "type": "added", "content": "    speculativeRouter.predictMultiHop(query),", "newLineNumber": 4, "highlight": true },
+          { "lineNumber": 5, "type": "added", "content": "    graphIndex.traverseFastPath(query)", "newLineNumber": 5, "highlight": true },
+          { "lineNumber": 6, "type": "added", "content": "  ]);", "newLineNumber": 6, "highlight": true },
+          { "lineNumber": 7, "type": "context", "content": "  ", "oldLineNumber": 4, "newLineNumber": 7 },
+          { "lineNumber": 8, "type": "removed", "content": "  // 2. High-latency brute-force vector search", "oldLineNumber": 5 },
+          { "lineNumber": 8, "type": "added", "content": "  // 2. Lock-free zero-copy ring buffer with early chunk emission", "newLineNumber": 8 },
+          { "lineNumber": 9, "type": "removed", "content": "  const rawMatches = await vectorStore.query({ vector: embedding, topK: 50 });", "oldLineNumber": 6 },
+          { "lineNumber": 9, "type": "added", "content": "  const ringBuffer = new SharedArrayRingBuffer<DocumentChunk>(1024);", "newLineNumber": 9, "highlight": true },
+          { "lineNumber": 10, "type": "added", "content": "  void fastPathGraph.streamTo(ringBuffer);", "newLineNumber": 10, "highlight": true },
+          { "lineNumber": 11, "type": "context", "content": "  ", "oldLineNumber": 7, "newLineNumber": 11 },
+          { "lineNumber": 12, "type": "removed", "content": "  // 3. Blocking re-ranker passes sequentially", "oldLineNumber": 8 },
+          { "lineNumber": 12, "type": "added", "content": "  // 3. Speculative pipelined yield at 14.2ms TTFT", "newLineNumber": 12 },
+          { "lineNumber": 13, "type": "removed", "content": "  const filtered = await crossEncoder.rerank(query, rawMatches);", "oldLineNumber": 9 },
+          { "lineNumber": 13, "type": "added", "content": "  for await (const chunk of ringBuffer.consumeSpeculative()) {", "newLineNumber": 13, "highlight": true },
+          { "lineNumber": 14, "type": "removed", "content": "  return filtered.slice(0, 10);", "oldLineNumber": 10 },
+          { "lineNumber": 14, "type": "added", "content": "    if (chunk.confidenceScore > 0.94) yield chunk;", "newLineNumber": 14, "highlight": true },
+          { "lineNumber": 15, "type": "added", "content": "  }", "newLineNumber": 15 },
+          { "lineNumber": 16, "type": "context", "content": "}", "oldLineNumber": 11, "newLineNumber": 16 }
+        ]
+      },
+      "uiCursorZoom": {
+        "title": "Autonomous Query Router & Multi-Hop Visualizer",
+        "subtitle": "Real-time 84% Latency Reduction Across 50k Concurrent Queries",
+        "startFrame": 600,
+        "durationInFrames": 600,
+        "mockMetrics": {
+          "latencyMs": 14.2,
+          "qps": 48200,
+          "cacheHitRate": 94.6,
+          "accuracyScore": 99.1
+        },
+        "activeTab": "RAG Pipeline Visualizer",
+        "cursorKeyframes": [
+          { "frame": 600, "x": 18, "y": 24, "zoomScale": 1.0, "rotateX": 0, "rotateY": 0, "click": false, "activeElement": "nav-dashboard", "annotationText": "Entering Live Cluster" },
+          { "frame": 650, "x": 32, "y": 38, "zoomScale": 1.25, "rotateX": 4, "rotateY": -3, "click": true, "activeElement": "query-input", "annotationText": "Injecting Speculative Query" },
+          { "frame": 720, "x": 55, "y": 42, "zoomScale": 1.6, "rotateX": 6, "rotateY": 5, "click": false, "activeElement": "graph-node-preview", "annotationText": "AST Multi-Hop Graph Traversal" },
+          { "frame": 780, "x": 78, "y": 32, "zoomScale": 2.1, "rotateX": -5, "rotateY": 8, "click": true, "activeElement": "stream-buffer-card", "annotationText": "14.2ms TTFT Zero-Copy RingBuffer" },
+          { "frame": 850, "x": 82, "y": 68, "zoomScale": 1.8, "rotateX": -2, "rotateY": -4, "click": false, "activeElement": "cache-hit-pill", "annotationText": "94.6% Cache Hit Rate Active" },
+          { "frame": 920, "x": 48, "y": 80, "zoomScale": 1.4, "rotateX": 2, "rotateY": 0, "click": true, "activeElement": "benchmark-chart", "annotationText": "84% Latency Reduction Confirmed" },
+          { "frame": 1000, "x": 50, "y": 50, "zoomScale": 1.0, "rotateX": 0, "rotateY": 0, "click": false, "activeElement": "overview-card", "annotationText": "Cluster Stable at 48k QPS" }
+        ]
+      },
+      "captions": {
+        "fontSize": 52,
+        "maxWordsPerBatch": 5,
+        "highlightColor": "#10B981",
+        "activeGlow": "rgba(16, 185, 129, 0.45)",
+        "accentColor": "#06B6D4",
+        "fontFamily": "Inter, system-ui, sans-serif",
+        "audioTrackUrl": "https://cdn.getshipped.ai/audio/voiceover-hyperscale-v2.mp3",
+        "words": [
+          { "word": "Shipping", "startMs": 0, "endMs": 420, "confidence": 0.99, "emphasis": true },
+          { "word": "HyperScale", "startMs": 430, "endMs": 1020, "confidence": 0.99, "emphasis": true, "color": "#06B6D4" },
+          { "word": "RAG", "startMs": 1030, "endMs": 1400, "confidence": 0.98, "emphasis": true },
+          { "word": "version", "startMs": 1410, "endMs": 1780, "confidence": 0.97 },
+          { "word": "two.", "startMs": 1790, "endMs": 2200, "confidence": 0.99, "emphasis": true },
+          { "word": "We", "startMs": 2400, "endMs": 2650, "confidence": 0.98 },
+          { "word": "slashed", "startMs": 2660, "endMs": 3100, "confidence": 0.99, "emphasis": true },
+          { "word": "multi-hop", "startMs": 3110, "endMs": 3650, "confidence": 0.97 },
+          { "word": "retrieval", "startMs": 3660, "endMs": 4120, "confidence": 0.99 },
+          { "word": "latency", "startMs": 4130, "endMs": 4600, "confidence": 0.99 },
+          { "word": "by", "startMs": 4700, "endMs": 4900, "confidence": 0.98 },
+          { "word": "eighty-four", "startMs": 4910, "endMs": 5600, "confidence": 0.99, "emphasis": true, "color": "#10B981" },
+          { "word": "percent", "startMs": 5610, "endMs": 6150, "confidence": 0.99, "emphasis": true },
+          { "word": "using", "startMs": 6300, "endMs": 6650, "confidence": 0.97 },
+          { "word": "speculative", "startMs": 6660, "endMs": 7320, "confidence": 0.99, "emphasis": true },
+          { "word": "AST", "startMs": 7330, "endMs": 7750, "confidence": 0.98 },
+          { "word": "graph", "startMs": 7760, "endMs": 8150, "confidence": 0.99 },
+          { "word": "indexing", "startMs": 8160, "endMs": 8700, "confidence": 0.98 },
+          { "word": "and", "startMs": 8800, "endMs": 9020, "confidence": 0.99 },
+          { "word": "zero-copy", "startMs": 9030, "endMs": 9650, "confidence": 0.99, "emphasis": true },
+          { "word": "stream", "startMs": 9660, "endMs": 10100, "confidence": 0.98 },
+          { "word": "buffers.", "startMs": 10110, "endMs": 10600, "confidence": 0.99 },
+          { "word": "Watch", "startMs": 11000, "endMs": 11350, "confidence": 0.97 },
+          { "word": "the", "startMs": 11360, "endMs": 11550, "confidence": 0.98 },
+          { "word": "query", "startMs": 11560, "endMs": 11950, "confidence": 0.99 },
+          { "word": "router", "startMs": 11960, "endMs": 12400, "confidence": 0.99 },
+          { "word": "predict", "startMs": 12410, "endMs": 12900, "confidence": 0.98 },
+          { "word": "multi-step", "startMs": 12910, "endMs": 13500, "confidence": 0.99 },
+          { "word": "relations", "startMs": 13510, "endMs": 14100, "confidence": 0.99 },
+          { "word": "in", "startMs": 14200, "endMs": 14420, "confidence": 0.98 },
+          { "word": "fourteen", "startMs": 14430, "endMs": 15000, "confidence": 0.99, "emphasis": true, "color": "#10B981" },
+          { "word": "milliseconds.", "startMs": 15010, "endMs": 15800, "confidence": 0.99, "emphasis": true },
+          { "word": "No", "startMs": 16200, "endMs": 16480, "confidence": 0.97 },
+          { "word": "more", "startMs": 16490, "endMs": 16800, "confidence": 0.98 },
+          { "word": "sequential", "startMs": 16810, "endMs": 17450, "confidence": 0.99 },
+          { "word": "vector", "startMs": 17460, "endMs": 17950, "confidence": 0.99 },
+          { "word": "bottlenecks.", "startMs": 17960, "endMs": 18700, "confidence": 0.99 },
+          { "word": "Ship", "startMs": 19000, "endMs": 19350, "confidence": 0.99, "emphasis": true },
+          { "word": "everywhere", "startMs": 19360, "endMs": 20050, "confidence": 0.99 },
+          { "word": "with", "startMs": 20060, "endMs": 20300, "confidence": 0.98 },
+          { "word": "one", "startMs": 20310, "endMs": 20650, "confidence": 0.99, "emphasis": true },
+          { "word": "click.", "startMs": 20660, "endMs": 21200, "confidence": 0.99, "emphasis": true },
+          { "word": "Open", "startMs": 21500, "endMs": 21850, "confidence": 0.98 },
+          { "word": "source", "startMs": 21860, "endMs": 22350, "confidence": 0.99 },
+          { "word": "on", "startMs": 22360, "endMs": 22580, "confidence": 0.98 },
+          { "word": "GitHub", "startMs": 22590, "endMs": 23150, "confidence": 0.99, "emphasis": true, "color": "#06B6D4" },
+          { "word": "today.", "startMs": 23160, "endMs": 23800, "confidence": 0.99 }
+        ]
+      }
+    }
+  },
+  "copywriting": {
+    "xThread": [
+      {
+        "id": "tweet_1",
+        "tweetNumber": 1,
+        "totalTweets": 5,
+        "text": "Vector search in production is hitting a massive wall. Sequential brute-force embedding lookups choke on multi-hop reasoning.\n\nToday we're open-sourcing HyperScale RAG v2: speculative AST graph indexing with zero-copy stream buffers.\n\n84% lower latency. Here is how it works 🧵👇",
+        "mediaPlaceholder": "code_diff_video.mp4",
+        "mediaType": "video",
+        "characterCount": 272
+      },
+      {
+        "id": "tweet_2",
+        "tweetNumber": 2,
+        "totalTweets": 5,
+        "text": "The fundamental problem with classic RAG: 90% of user queries require relational context, but vector stores only understand cosine proximity.\n\nHyperScale v2 precomputes an AST-linked knowledge graph that predicts 2nd-order hops before the main embedder even finishes.",
+        "mediaPlaceholder": "architecture_diagram.png",
+        "mediaType": "diagram",
+        "characterCount": 260
+      },
+      {
+        "id": "tweet_3",
+        "tweetNumber": 3,
+        "totalTweets": 5,
+        "text": "Instead of allocating heavy JSON document buffers on every request, we implemented a lock-free SharedArrayBuffer ring stream.\n\nTime-to-first-token dropped from 186ms -> 14.2ms at 48,000 QPS on a single 8-GPU cluster.",
+        "mediaPlaceholder": "latency_benchmark_chart.png",
+        "mediaType": "image",
+        "characterCount": 226
+      },
+      {
+        "id": "tweet_4",
+        "tweetNumber": 4,
+        "totalTweets": 5,
+        "text": "Check out the code diff below. We eliminated sequential crossEncoder.rerank() entirely in favor of an AsyncGenerator pipeline that yields high-confidence chunks immediately to the LLM context window.",
+        "mediaPlaceholder": "code_diff_snippet.png",
+        "mediaType": "code_diff",
+        "characterCount": 225
+      },
+      {
+        "id": "tweet_5",
+        "tweetNumber": 5,
+        "totalTweets": 5,
+        "text": "HyperScale RAG v2 is MIT licensed and live right now.\n\n⭐ GitHub: github.com/getshipped/hyperscale-rag\n📦 npm: @getshipped/rag-engine\n📖 Deep Dive: blog.getshipped.ai/hyperscale-v2\n\nBuilt and shipped autonomously via GetShipped. What are you building next?",
+        "mediaPlaceholder": "none",
+        "mediaType": "none",
+        "characterCount": 257
+      }
+    ],
+    "linkedInPost": {
+      "headline": "🚀 Rethinking RAG: Why we eliminated sequential vector search to achieve 14.2ms TTFT at scale",
+      "body": "When engineering AI infrastructure for enterprise workloads, the biggest performance bottleneck isn't the model weights — it's the retrieval pipeline.\n\nTraditional vector databases suffer from severe cache thrashing and serialization overhead during multi-hop semantic queries. Our team at GetShipped tackled this head-on.\n\nToday, we're proud to open-source HyperScale RAG v2: an autonomous, latency-optimized speculative graph retrieval engine.\n\nKey Architectural Breakthroughs:\n1. Speculative AST Graph Traversal: Predicts relational entity transitions concurrently with query embedding generation.\n2. Zero-Copy Ring Buffers: Eliminates memory copies across Node.js/Rust worker threads, streaming high-confidence tokens directly into active LLM contexts.\n3. 84% Latency Reduction: Benchmarked across 50,000 concurrent queries, reducing p99 latency from 186ms down to 14.2ms.\n\nEvery commit, test suite, and launch asset for this release was synthesized and validated using our automated developer RAG pipeline.\n\nRead the full technical architecture post and grab the open-source code on GitHub.",
+      "hashtags": [
+        "#ArtificialIntelligence",
+        "#SoftwareEngineering",
+        "#OpenSource",
+        "#RAG",
+        "#DistributedSystems",
+        "#SystemDesign"
+      ],
+      "callToAction": "Explore the code on GitHub: https://github.com/getshipped/hyperscale-rag",
+      "estimatedReadTime": "3 min"
+    },
+    "hashnodeMarkdown": {
+      "title": "HyperScale RAG v2: Slashing Multi-Hop Retrieval Latency by 84% with Speculative Graph Traversal",
+      "subtitle": "How we replaced naive brute-force vector scans with lock-free zero-copy ring buffers and speculative AST routing in production.",
+      "slug": "hyperscale-rag-v2-speculative-graph-engine",
+      "coverImageUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80",
+      "tags": ["rag", "ai", "typescript", "systems-architecture", "open-source"],
+      "content": "# HyperScale RAG v2: Slashing Multi-Hop Retrieval Latency by 84%\n\nRetrieval-Augmented Generation (RAG) is the backbone of modern developer tooling. However, enterprise knowledge graphs have outgrown standard vector embeddings.\n\nWhen queries require multi-step reasoning, classic architectures execute sequential queries against vector stores, causing compound latency explosions.\n\n```mermaid\ngraph TD\n    A[Client User Query] --> B[Speculative AST Router]\n    B -->|Fast-Path| C[Precomputed Knowledge Graph]\n    B -->|Speculative Embed| D[Neural Vector Store]\n    C --> E[Lock-Free Shared Ring Buffer]\n    D --> E\n    E --> F[Streaming Early Yield Generator]\n    F --> G[LLM Context Stream (14.2ms TTFT)]\n```\n\n## The Bottleneck: Sequential Vector Cascades\n\nIn standard pipelines, every user query waits for:\n1. Model tokenization and dense embedding calculation (40-60ms)\n2. High-dimensional vector similarity scan (30-50ms)\n3. Cross-encoder re-ranking and JSON serialization (80-120ms)\n\nThis leads to p99 latencies well exceeding 250ms before the LLM generates a single output token.\n\n## The Architecture of HyperScale v2\n\nHyperScale v2 solves this through three unified primitives:\n\n### 1. Speculative Multi-Hop AST Graph Indexing\nBy indexing repository ASTs and document structures into an indexed graph, we can predict likely relational queries in parallel with the embedding vector.\n\n### 2. Lock-Free Zero-Copy Ring Buffers\nUsing `SharedArrayBuffer` memory pages between worker threads, chunks are streamed directly into output generators without garbage collection churn.\n\n```typescript\n// Speculative Pipelined Yield\nexport async function* retrieveContextStream(query: string): AsyncGenerator<DocumentChunk> {\n  const [subQueries, fastPathGraph] = await Promise.all([\n    speculativeRouter.predictMultiHop(query),\n    graphIndex.traverseFastPath(query)\n  ]);\n  \n  const ringBuffer = new SharedArrayRingBuffer<DocumentChunk>(1024);\n  void fastPathGraph.streamTo(ringBuffer);\n  \n  for await (const chunk of ringBuffer.consumeSpeculative()) {\n    if (chunk.confidenceScore > 0.94) yield chunk;\n  }\n}\n```\n\n## Benchmark Results\n\n| Pipeline Configuration | p50 Latency | p99 Latency | QPS Limit | Memory Footprint |\n| :--- | :--- | :--- | :--- | :--- |\n| Legacy Vector Store | 92ms | 264ms | 4,200 | 12.8 GB |\n| Hybrid Cross-Encoder | 114ms | 310ms | 2,800 | 18.4 GB |\n| **HyperScale RAG v2** | **14.2ms** | **38.6ms** | **48,200** | **4.1 GB** |\n\n## Getting Started\n\nInstall the open-source engine directly from npm:\n\n```bash\npnpm add @getshipped/rag-engine\n```\n\nInitialize the speculative cluster in 3 lines:\n\n```typescript\nimport { createSpeculativeCluster } from '@getshipped/rag-engine';\n\nconst cluster = await createSpeculativeCluster({\n  astGraphPath: './repo-graph.bin',\n  ringBufferSize: 1024,\n});\n```\n\nDistributed under the MIT License. Star the repository on GitHub!",
+      "mermaidDiagrams": [
+        {
+          "id": "arch_flow",
+          "title": "HyperScale RAG v2 Speculative Pipeline Architecture",
+          "code": "graph TD\n    A[Client User Query] --> B[Speculative AST Router]\n    B -->|Fast-Path| C[Precomputed Knowledge Graph]\n    B -->|Speculative Embed| D[Neural Vector Store]\n    C --> E[Lock-Free Shared Ring Buffer]\n    D --> E\n    E --> F[Streaming Early Yield Generator]\n    F --> G[LLM Context Stream (14.2ms TTFT)]"
+        }
+      ]
+    },
+    "gitHubReadmeDiff": {
+      "filename": "README.md",
+      "targetBranch": "main",
+      "commitMessage": "docs: update README with HyperScale v2 benchmarks and speculative architecture",
+      "beforeSnippet": "# HyperScale RAG (v1.x)\n\nSimple sequential RAG engine for developer codebases.\n\n## Installation\n```bash\nnpm install @getshipped/rag-engine\n```\n\n## Usage\n```typescript\nconst docs = await retrieveContext(query);\n```",
+      "afterSnippet": "# HyperScale RAG v2 ⚡\n\n> Autonomous Speculative Graph Retrieval & Zero-Copy Streaming Engine.\n> Slashes multi-hop retrieval latency by **84%** with sub-15ms TTFT at 48k QPS.\n\n[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)\n[![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-blue.svg)](https://www.typescriptlang.org/)\n[![Remotion Verified](https://img.shields.io/badge/Video_Engine-Remotion_v4-purple.svg)](https://remotion.dev)\n\n## Architecture Flow\n\n```mermaid\ngraph TD\n    Query[User Query] --> Router[Speculative AST Router]\n    Router --> Graph[Graph Pre-Traversal]\n    Router --> Ring[SharedArrayBuffer Stream]\n    Ring --> Yield[14.2ms TTFT Context Stream]\n```\n\n## Quick Start\n```bash\npnpm add @getshipped/rag-engine\n```\n\n```typescript\nimport { retrieveContextStream } from '@getshipped/rag-engine';\n\nfor await (const chunk of retrieveContextStream(query)) {\n  console.log(`Streamed chunk at ${chunk.latencyMs}ms:`, chunk.text);\n}\n```\n\n## Benchmarks\n- **p50 Latency:** 14.2ms (down from 92ms)\n- **Throughput:** 48,200 QPS\n- **Memory Footprint:** 4.1 GB (68% drop)",
+      "diffUnified": "--- a/README.md\n+++ b/README.md\n@@ -1,13 +1,32 @@\n-# HyperScale RAG (v1.x)\n+# HyperScale RAG v2 ⚡\n \n-Simple sequential RAG engine for developer codebases.\n+> Autonomous Speculative Graph Retrieval & Zero-Copy Streaming Engine.\n+> Slashes multi-hop retrieval latency by **84%** with sub-15ms TTFT at 48k QPS.\n \n-## Installation\n-```bash\n-npm install @getshipped/rag-engine\n-```\n+[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)\n+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-blue.svg)](https://www.typescriptlang.org/)\n \n-## Usage\n+## Architecture Flow\n+```mermaid\n+graph TD\n+    Query[User Query] --> Router[Speculative AST Router]\n+    Router --> Graph[Graph Pre-Traversal]\n+    Router --> Ring[SharedArrayBuffer Stream]\n+    Ring --> Yield[14.2ms TTFT Context Stream]\n+```\n+\n+## Quick Start\n+```bash\n+pnpm add @getshipped/rag-engine\n+```\n+\n ```typescript\n-const docs = await retrieveContext(query);\n+import { retrieveContextStream } from '@getshipped/rag-engine';\n+\n+for await (const chunk of retrieveContextStream(query)) {\n+  console.log(`Streamed chunk:`, chunk.text);\n+}\n ```"
+    }
+  },
+  "approvalStatus": "review_ready",
+  "ragVerificationScore": 99.4,
+  "restateEndpoint": "https://restate.getshipped.internal/v1/ship"
+}
