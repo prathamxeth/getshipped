@@ -190,50 +190,36 @@
       color: rgba(255, 255, 255, .62);
     }
 
-    /* OAUTH / CONNECT ROW */
-    .oauth-grid {
-      margin-top: 15px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 9px;
-    }
-
-    .oauth-btn {
+    /* GITHUB CONNECT BUTTON */
+    .github-connect-btn {
       position: relative;
-      height: 33px;
+      width: 100%;
+      height: 38px;
+      margin-top: 15px;
       border-radius: 10px;
-      background: rgba(255, 255, 255, .06);
-      font-size: 12.5px;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .14);
+      font-size: 13px;
       font-weight: 600;
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-left: 14px;
+      gap: 10px;
       cursor: pointer;
-      transition: background .2s ease, transform .15s ease;
+      transition: all .2s ease;
     }
 
-    .oauth-btn:hover {
-      background: rgba(255, 255, 255, .11);
+    .github-connect-btn:hover {
+      background: rgba(255, 255, 255, .14);
+      border-color: rgba(255, 255, 255, .28);
+      transform: translateY(-1px);
     }
 
-    .oauth-btn:active {
-      transform: scale(.97);
-    }
-
-    .oauth-btn .brand-icon {
-      position: absolute;
-      left: 10px;
-      width: 16px;
-      height: 16px;
+    .github-connect-btn .brand-icon {
+      width: 17px;
+      height: 17px;
       color: currentColor;
-      opacity: .5;
-      transition: opacity .2s ease;
-    }
-
-    .oauth-btn:hover .brand-icon {
-      opacity: .95;
     }
 
     .divider {
@@ -593,10 +579,18 @@
     }
 
     .avatar-icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 9999px;
-      background: conic-gradient(from 200deg, #ff3d6e, #ff9a3c, #ffd84a, #5ad1ff, #7a5cff, #ff3dc0, #ff3d6e);
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: rgba(16, 185, 129, .2);
+      border: 1px solid rgba(16, 185, 129, .4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: var(--emerald);
     }
 
     /* COLLAPSED STATE (.mini) */
@@ -694,43 +688,67 @@
       50% { opacity: .4; transform: scale(.85); }
     }
 
-    .search-pill {
+    .back-config-btn {
       height: 28px;
-      padding: 0 6px 0 10px;
+      padding: 0 12px;
       border-radius: 9999px;
-      background: rgba(40, 58, 60, .4);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, .08);
+      background: rgba(20, 32, 34, .7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .12);
+      font-size: 11.5px;
+      font-family: var(--mono);
+      color: rgba(255, 255, 255, .85);
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       cursor: pointer;
-      transition: background .2s ease;
+      transition: all .2s ease;
     }
 
-    .search-pill:hover {
-      background: rgba(40, 58, 60, .6);
+    .back-config-btn:hover {
+      background: rgba(20, 32, 34, .95);
+      border-color: rgba(255, 255, 255, .25);
+      color: #fff;
     }
 
-    .search-pill svg {
-      width: 13px;
-      height: 13px;
-      color: rgba(255, 255, 255, .7);
-    }
-
-    .search-kbd {
-      width: 17px;
-      height: 17px;
-      border-radius: 5px;
-      background: rgba(20, 30, 32, .45);
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .12);
+      font-size: 11px;
       font-family: var(--mono);
-      font-weight: 500;
-      font-size: 10px;
-      color: rgba(255, 255, 255, .7);
+      color: rgba(255, 255, 255, .85);
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 255, 255, .16);
+      color: #fff;
+    }
+
+    .copy-btn.copied {
+      background: rgba(16, 185, 129, .22);
+      border-color: var(--emerald);
+      color: #34d399;
+    }
+
+    .tab-header-actions {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      padding-bottom: 4px;
+    }
+
+    .tab-title-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .85);
+      font-family: var(--mono);
     }
 
     /* MAIN SCROLL CONTAINER */
@@ -1457,69 +1475,6 @@
       border-radius: 5px;
     }
 
-    /* TAB 3: BLOG & ARCHITECTURE */
-    .blog-box {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .article-header-card {
-      padding: 14px;
-      border-radius: 12px;
-      background: rgba(15, 22, 24, .65);
-      border: 1px solid rgba(255, 255, 255, .07);
-    }
-
-    .article-header-card h3 {
-      font-size: 15px;
-      line-height: 21px;
-      font-weight: 600;
-      color: #fff;
-    }
-
-    .article-header-card p {
-      font-size: 12px;
-      color: rgba(255, 255, 255, .6);
-      margin-top: 4px;
-    }
-
-    .mermaid-diagram-card {
-      padding: 16px;
-      border-radius: 12px;
-      background: #090e11;
-      border: 1px solid rgba(16, 185, 129, .25);
-      box-shadow: 0 8px 24px rgba(0,0,0,.4);
-    }
-
-    .mermaid-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-
-    .mermaid-title {
-      font-size: 11.5px;
-      font-weight: 600;
-      font-family: var(--mono);
-      color: var(--emerald);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .mermaid-svg-wrapper {
-      width: 100%;
-      overflow-x: auto;
-      padding: 8px 0;
-    }
-
-    .mermaid-svg-wrapper svg {
-      max-width: 100%;
-      height: auto;
-      margin: 0 auto;
-    }
 
     /* BENCHMARK TABLE */
     .bench-table {
@@ -1809,19 +1764,12 @@
         <p class="subtitle">Turn code commits into demo videos, social posts, and docs.</p>
 
         <!-- Quick Connect Row -->
-        <div class="oauth-grid">
-          <button type="button" class="oauth-btn" id="githubAuthBtn">
+        <div class="oauth-row">
+          <button type="button" class="github-connect-btn" id="githubAuthBtn">
             <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
-            GitHub
-          </button>
-
-          <button type="button" class="oauth-btn" id="googleAuthBtn">
-            <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
-            </svg>
-            Google
+            <span>Connect GitHub Repository</span>
           </button>
         </div>
 
@@ -1831,10 +1779,18 @@
         <form class="auth-form" id="signupForm" novalidate autocomplete="off">
           <div class="form-group-label">
             GitHub Repository
-            <span>main branch</span>
+            <span>target repo</span>
           </div>
           <label class="field">
-            <input type="text" id="repoInput" value="github.com/acme/fast-search" placeholder="github.com/org/repo" required>
+            <input type="text" id="repoInput" value="getshipped/core" placeholder="owner/repo" required>
+          </label>
+
+          <div class="form-group-label">
+            Developer Handle
+            <span>author tag</span>
+          </div>
+          <label class="field">
+            <input type="text" id="authorInput" value="@developer" placeholder="@yourhandle" required>
           </label>
 
           <div class="form-group-label">
@@ -1846,49 +1802,37 @@
           </label>
 
           <div class="form-group-label">
-            What To Generate
-            <span id="selectedCount">6 items selected</span>
+            Choose Target Platforms
+            <span id="selectedCount">4 platforms selected</span>
           </div>
           <div class="channel-pills">
-            <label class="channel-pill active">
-              <input type="checkbox" checked>
-              <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <span>60fps Video</span>
-            </label>
-
-            <label class="channel-pill active">
+            <label class="channel-pill active" data-channel="x">
               <input type="checkbox" checked>
               <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
               <span>𝕏 Thread</span>
             </label>
 
-            <label class="channel-pill active">
+            <label class="channel-pill active" data-channel="linkedin">
               <input type="checkbox" checked>
               <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <span>LinkedIn</span>
+              <span>LinkedIn Post</span>
             </label>
 
-            <label class="channel-pill active">
+            <label class="channel-pill active" data-channel="github">
               <input type="checkbox" checked>
               <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <span>Tech Blog</span>
+              <span>GitHub Release</span>
             </label>
 
-            <label class="channel-pill active">
+            <label class="channel-pill active" data-channel="video">
               <input type="checkbox" checked>
               <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <span>README Diff</span>
-            </label>
-
-            <label class="channel-pill active">
-              <input type="checkbox" checked>
-              <div class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <span>9:16 Shorts</span>
+              <span>60fps Demo Video</span>
             </label>
           </div>
 
           <button type="submit" class="submit-btn" id="submitBtn">
-            <span>Generate Launch Pack</span>
+            <span>Launch Post Engine</span>
             <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
         </form>
@@ -1896,7 +1840,7 @@
     </div>
 
     <footer class="legal">
-      <span>By continuing, you agree to our <a href="#">terms of service</a>.</span>
+      <span>GetShipped • Automated Developer Launch Platform</span>
     </footer>
   </main>
 
@@ -1920,106 +1864,44 @@
       </div>
 
       <nav class="side-nav">
-        <a class="nav-item active">
+        <a class="nav-item active" id="navPostEngine" title="Post Engine Workspace">
           <div class="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6z"/>
               <path d="M10 9l5 3-5 3V9z"/>
             </svg>
           </div>
-          <span class="nav-label">Launch Studio</span>
+          <span class="nav-label">Post Engine</span>
         </a>
 
-        <a class="nav-item">
+        <a class="nav-item" id="navVideoStudio" title="Video Demo Player">
           <div class="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="23 7 16 12 23 17 23 7"/>
               <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
             </svg>
           </div>
-          <span class="nav-label">Video Studio</span>
+          <span class="nav-label">Video Demo</span>
         </a>
 
-        <a class="nav-item">
+        <a class="nav-item" id="navOnboarding" title="Launch Setup">
           <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="6" y1="3" x2="6" y2="15"/>
-              <circle cx="18" cy="6" r="3"/>
-              <circle cx="6" cy="18" r="3"/>
-              <path d="M18 9a9 9 0 0 1-9 9"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+              <circle cx="12" cy="12" r="3"/>
             </svg>
           </div>
-          <span class="nav-label">Repositories</span>
-        </a>
-
-        <a class="nav-item">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="18" cy="5" r="3"/>
-              <circle cx="6" cy="12" r="3"/>
-              <circle cx="18" cy="19" r="3"/>
-              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-            </svg>
-          </div>
-          <span class="nav-label">Channels</span>
-        </a>
-
-        <a class="nav-item">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="7" cy="7" r="3"/>
-              <circle cx="17" cy="7" r="3"/>
-              <circle cx="7" cy="17" r="3"/>
-              <circle cx="17" cy="17" r="3"/>
-            </svg>
-          </div>
-          <span class="nav-label">Team</span>
+          <span class="nav-label">Launch Setup</span>
         </a>
       </nav>
 
       <div class="side-footer">
-        <a class="nav-item">
+        <div class="nav-item user-profile-item" id="sidebarUserItem" title="Connected Developer">
           <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-            </svg>
+            <div class="avatar-icon" id="sidebarAvatarIcon">DEV</div>
           </div>
-          <span class="nav-label">Docs</span>
-          <div class="nav-meta">
-            <svg style="width:12px;height:12px;opacity:.5;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M7 17L17 7"/>
-              <path d="M7 7h10v10"/>
-            </svg>
-          </div>
-        </a>
-
-        <a class="nav-item">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h14a1 1 0 0 1 1 1v3"/>
-              <path d="M3 7v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H3z"/>
-              <circle cx="16.5" cy="14" r="1.5"/>
-            </svg>
-          </div>
-          <span class="nav-label">Credits</span>
-          <span class="nav-meta">$43.42</span>
-        </a>
-
-        <a class="nav-item">
-          <div class="nav-icon">
-            <div class="avatar-icon"></div>
-          </div>
-          <span class="nav-label">Alex Rivera</span>
-          <div class="nav-meta">
-            <svg style="width:14px;height:14px;opacity:.4;" viewBox="0 0 24 24" fill="currentColor">
-              <circle cx="12" cy="5" r="1.5"/>
-              <circle cx="12" cy="12" r="1.5"/>
-              <circle cx="12" cy="19" r="1.5"/>
-            </svg>
-          </div>
-        </a>
+          <span class="nav-label" id="sidebarDevName">@developer</span>
+        </div>
       </div>
     </aside>
 
@@ -2037,15 +1919,12 @@
       <div class="panel-topbar">
         <div class="pipeline-badge">
           <div class="pulse-dot"></div>
-          <span>Launch Ready • Commit 8f4e2b1 • 60 FPS Video Generated</span>
+          <span id="pipelineStatusText">Post Engine Ready • getshipped/core</span>
         </div>
 
-        <button type="button" class="search-pill" id="searchPill" title="Press / to scroll to top">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="m21 21-4.35-4.35"/>
-          </svg>
-          <span class="search-kbd">/</span>
+        <button type="button" class="back-config-btn" id="btnBackToOnboarding" title="Edit Launch Inputs">
+          <svg style="width:12px;height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+          <span>Edit Launch Setup</span>
         </button>
       </div>
 
@@ -2056,8 +1935,8 @@
           <!-- STUDIO HEADER -->
           <div class="studio-header rise" style="--i:0;">
             <div>
-              <h2 id="studioTitle">Launch Studio — feat: instant streaming search API</h2>
-              <p class="meta-sub" id="studioMeta">acme/fast-search • branch main • 6 launch assets prepared</p>
+              <h2 id="studioTitle">Post Engine — feat: instant streaming search API</h2>
+              <p class="meta-sub" id="studioMeta">getshipped/core • 4 launch targets configured</p>
             </div>
             <div class="studio-stats-pills">
               <div class="stat-badge ready">
@@ -2183,28 +2062,23 @@
               </div>
             </div>
 
-            <!-- RIGHT PANE: NEXT.JS APPROVAL STUDIO EDITORS -->
+            <!-- RIGHT PANE: POST ENGINE EDITORS -->
             <div class="editors-pane">
               <div class="tab-bar">
-                <button type="button" class="editor-tab active" data-tab="tabX">
+                <button type="button" class="editor-tab active" data-tab="tabX" id="tabBtnX">
                   <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                   <span>𝕏 Thread</span>
                   <span class="tab-badge">5</span>
                 </button>
 
-                <button type="button" class="editor-tab" data-tab="tabLinkedIn">
+                <button type="button" class="editor-tab" data-tab="tabLinkedIn" id="tabBtnLinkedIn">
                   <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
                   <span>LinkedIn Post</span>
                 </button>
 
-                <button type="button" class="editor-tab" data-tab="tabBlog">
-                  <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                  <span>Blog &amp; Architecture</span>
-                </button>
-
-                <button type="button" class="editor-tab" data-tab="tabReadme">
-                  <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                  <span>README Diff</span>
+                <button type="button" class="editor-tab" data-tab="tabGithub" id="tabBtnGithub">
+                  <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  <span>GitHub Release &amp; README</span>
                 </button>
               </div>
 
@@ -2212,13 +2086,21 @@
                 
                 <!-- TAB 1: 𝕏 THREAD -->
                 <div class="tab-content active" id="tabX">
+                  <div class="tab-header-actions">
+                    <span class="tab-title-text">𝕏 Launch Thread (5 Tweets)</span>
+                    <button type="button" class="copy-btn" id="copyThreadBtn" title="Copy full 5-tweet thread">
+                      <svg style="width:12px;height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                      <span>Copy Full Thread</span>
+                    </button>
+                  </div>
+
                   <!-- Tweet 1 -->
                   <div class="tweet-card">
                     <div class="tweet-head">
                       <div class="tweet-user">
-                        <div class="avatar-icon"></div>
-                        <span class="tweet-user-name">Alex Rivera</span>
-                        <span class="tweet-handle">@alexrivera</span>
+                        <div class="avatar-icon dev-display-avatar">DEV</div>
+                        <span class="tweet-user-name dev-display-name">Developer</span>
+                        <span class="tweet-handle dev-display-handle">@developer</span>
                       </div>
                       <span class="tweet-tag">Tweet 1 of 5 • Hook</span>
                     </div>
@@ -2237,9 +2119,9 @@ Here is how it works 🧵👇</textarea>
                   <div class="tweet-card">
                     <div class="tweet-head">
                       <div class="tweet-user">
-                        <div class="avatar-icon"></div>
-                        <span class="tweet-user-name">Alex Rivera</span>
-                        <span class="tweet-handle">@alexrivera</span>
+                        <div class="avatar-icon dev-display-avatar">DEV</div>
+                        <span class="tweet-user-name dev-display-name">Developer</span>
+                        <span class="tweet-handle dev-display-handle">@developer</span>
                       </div>
                       <span class="tweet-tag">Tweet 2 of 5</span>
                     </div>
@@ -2254,9 +2136,9 @@ Here is how it works 🧵👇</textarea>
                   <div class="tweet-card">
                     <div class="tweet-head">
                       <div class="tweet-user">
-                        <div class="avatar-icon"></div>
-                        <span class="tweet-user-name">Alex Rivera</span>
-                        <span class="tweet-handle">@alexrivera</span>
+                        <div class="avatar-icon dev-display-avatar">DEV</div>
+                        <span class="tweet-user-name dev-display-name">Developer</span>
+                        <span class="tweet-handle dev-display-handle">@developer</span>
                       </div>
                       <span class="tweet-tag">Tweet 3 of 5</span>
                     </div>
@@ -2271,15 +2153,15 @@ Here is how it works 🧵👇</textarea>
                   <div class="tweet-card">
                     <div class="tweet-head">
                       <div class="tweet-user">
-                        <div class="avatar-icon"></div>
-                        <span class="tweet-user-name">Alex Rivera</span>
-                        <span class="tweet-handle">@alexrivera</span>
+                        <div class="avatar-icon dev-display-avatar">DEV</div>
+                        <span class="tweet-user-name dev-display-name">Developer</span>
+                        <span class="tweet-handle dev-display-handle">@developer</span>
                       </div>
                       <span class="tweet-tag">Tweet 4 of 5</span>
                     </div>
                     <textarea class="tweet-textarea">Upgrading takes two minutes. It is a drop-in change for existing code:
 
-- pnpm add @acme/fast-search
+- pnpm add getshipped/core
 - Switch search() to searchStream()
 - Full TypeScript support out of the box</textarea>
                     <div class="tweet-footer">
@@ -2292,14 +2174,14 @@ Here is how it works 🧵👇</textarea>
                   <div class="tweet-card">
                     <div class="tweet-head">
                       <div class="tweet-user">
-                        <div class="avatar-icon"></div>
-                        <span class="tweet-user-name">Alex Rivera</span>
-                        <span class="tweet-handle">@alexrivera</span>
+                        <div class="avatar-icon dev-display-avatar">DEV</div>
+                        <span class="tweet-user-name dev-display-name">Developer</span>
+                        <span class="tweet-handle dev-display-handle">@developer</span>
                       </div>
                       <span class="tweet-tag">Tweet 5 of 5 • CTA</span>
                     </div>
                     <textarea class="tweet-textarea">Check out the docs and star the repo on GitHub:
-⭐ github.com/acme/fast-search
+⭐ github.com/getshipped/core
 
 Let us know what you think and what features you would like to see next!</textarea>
                     <div class="tweet-footer">
@@ -2311,9 +2193,25 @@ Let us know what you think and what features you would like to see next!</textar
 
                 <!-- TAB 2: LINKEDIN POST -->
                 <div class="tab-content" id="tabLinkedIn">
+                  <div class="tab-header-actions">
+                    <span class="tab-title-text">LinkedIn Engineering Post</span>
+                    <button type="button" class="copy-btn" id="copyLinkedInBtn" title="Copy LinkedIn Post">
+                      <svg style="width:12px;height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                      <span>Copy Post</span>
+                    </button>
+                  </div>
+
+                  <div class="li-author-bar">
+                    <div class="avatar-icon dev-display-avatar">DEV</div>
+                    <div>
+                      <div class="dev-display-name" style="font-weight:600;font-size:12.5px;color:#fff;">Developer</div>
+                      <div class="dev-display-handle" style="font-size:11px;color:rgba(255,255,255,.5);">@developer</div>
+                    </div>
+                  </div>
+
                   <div class="linkedin-box">
-                    <input class="li-title-input" value="🚀 We just launched streaming search: 10x faster results with 12ms response times">
-                    <textarea class="li-body-textarea">As applications scale, search queries often become the biggest bottleneck in user experience.
+                    <input class="li-title-input" id="liTitleInput" value="🚀 We just launched streaming search: 10x faster results with 12ms response times">
+                    <textarea class="li-body-textarea" id="liBodyTextarea">As applications scale, search queries often become the biggest bottleneck in user experience.
 
 Our engineering team just shipped a major upgrade to our search infrastructure.
 
@@ -2332,105 +2230,42 @@ Check out the demo video and explore the code on GitHub.</textarea>
                   </div>
                 </div>
 
-                <!-- TAB 3: HASHNODE / DEV.TO BLOG -->
-                <div class="tab-content" id="tabBlog">
-                  <div class="blog-box">
-                    <div class="article-header-card">
-                      <h3>How We Built a 10x Faster Streaming Search Engine</h3>
-                      <p>Replacing blocking database scans with async generators and live stream buffers.</p>
-                    </div>
-
-                    <!-- LIVE ARCHITECTURE GRAPH -->
-                    <div class="mermaid-diagram-card">
-                      <div class="mermaid-head">
-                        <div class="mermaid-title">
-                          <svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                          <span>System Architecture Flow</span>
-                        </div>
-                        <span style="font-size:10px;font-family:var(--mono);color:rgba(255,255,255,.4);">Clean Pipeline</span>
-                      </div>
-
-                      <div class="mermaid-svg-wrapper">
-                        <svg viewBox="0 0 680 120" width="100%" height="120">
-                          <defs>
-                            <linearGradient id="nodeGrad1" x1="0" y1="0" x2="1" y2="1">
-                              <stop offset="0%" stop-color="#1e293b"/>
-                              <stop offset="100%" stop-color="#0f172a"/>
-                            </linearGradient>
-                            <linearGradient id="nodeGradEm" x1="0" y1="0" x2="1" y2="1">
-                              <stop offset="0%" stop-color="#064e3b"/>
-                              <stop offset="100%" stop-color="#022c22"/>
-                            </linearGradient>
-                            <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                              <path d="M 0 0 L 10 5 L 0 10 z" fill="#10B981"/>
-                            </marker>
-                          </defs>
-
-                          <!-- Step 1: User Query -->
-                          <rect x="15" y="35" width="130" height="50" rx="8" fill="url(#nodeGrad1)" stroke="#38bdf8" stroke-width="1.5"/>
-                          <text x="80" y="58" fill="#fff" font-size="11" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">1. User Query</text>
-                          <text x="80" y="72" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Search Term</text>
-
-                          <line x1="145" y1="60" x2="190" y2="60" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-                          <!-- Step 2: In-Memory Search Index -->
-                          <rect x="195" y="35" width="140" height="50" rx="8" fill="url(#nodeGrad1)" stroke="#a855f7" stroke-width="1.5"/>
-                          <text x="265" y="58" fill="#fff" font-size="11" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">2. Fast Index</text>
-                          <text x="265" y="72" fill="#c084fc" font-size="9" font-family="monospace" text-anchor="middle">In-Memory Match</text>
-
-                          <line x1="335" y1="60" x2="380" y2="60" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-                          <!-- Step 3: Stream Generator -->
-                          <rect x="385" y="35" width="140" height="50" rx="8" fill="url(#nodeGrad1)" stroke="#06b6d4" stroke-width="1.5"/>
-                          <text x="455" y="58" fill="#fff" font-size="11" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle">3. Stream Buffer</text>
-                          <text x="455" y="72" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Async Generator</text>
-
-                          <line x1="525" y1="60" x2="570" y2="60" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-                          <!-- Step 4: Instant Results -->
-                          <rect x="575" y="35" width="90" height="50" rx="8" fill="url(#nodeGradEm)" stroke="#10b981" stroke-width="2"/>
-                          <text x="620" y="58" fill="#34d399" font-size="11" font-family="Inter, sans-serif" font-weight="700" text-anchor="middle">Instant</text>
-                          <text x="620" y="72" fill="#a7f3d0" font-size="9" font-family="monospace" text-anchor="middle">12ms Results</text>
-                        </svg>
-                      </div>
-
-                      <table class="bench-table">
-                        <thead>
-                          <tr>
-                            <th>Configuration</th>
-                            <th>Response Time</th>
-                            <th>Throughput</th>
-                            <th>Memory</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Standard Database Query</td>
-                            <td>140ms</td>
-                            <td>1,200 QPS</td>
-                            <td>4.2 GB</td>
-                          </tr>
-                          <tr>
-                            <td class="highlight">New Streaming Search</td>
-                            <td class="highlight">12ms (91% faster)</td>
-                            <td class="highlight">10,000 QPS</td>
-                            <td class="highlight">1.1 GB (-74%)</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                <!-- TAB 3: GITHUB RELEASE & README -->
+                <div class="tab-content" id="tabGithub">
+                  <div class="tab-header-actions">
+                    <span class="tab-title-text">GitHub Release &amp; README</span>
+                    <button type="button" class="copy-btn" id="copyReleaseBtn" title="Copy GitHub Release Markdown">
+                      <svg style="width:12px;height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                      <span>Copy Release Notes</span>
+                    </button>
                   </div>
-                </div>
 
-                <!-- TAB 4: GITHUB README DIFF -->
-                <div class="tab-content" id="tabReadme">
+                  <div style="margin-bottom:12px;padding:14px;border-radius:12px;background:#090e11;border:1px solid rgba(255,255,255,.08);">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                      <div style="display:flex;align-items:center;gap:8px;">
+                        <span style="font-size:11px;font-weight:700;padding:2px 7px;background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.4);border-radius:999px;color:var(--emerald);font-family:var(--mono);">Release</span>
+                        <span style="font-size:13px;font-weight:700;color:#fff;">v2.0.0</span>
+                      </div>
+                      <span style="font-size:11px;font-family:var(--mono);color:rgba(255,255,255,.5);" id="releaseRepoLabel">getshipped/core</span>
+                    </div>
+                    <textarea class="release-textarea" id="releaseNotesTextarea" style="width:100%;height:130px;background:transparent;border:none;outline:none;color:rgba(255,255,255,.85);font-family:var(--mono);font-size:11.5px;line-height:19px;resize:vertical;">## What's Changed
+* Instant streaming search generator yielding live results in 12ms
+* In-memory search buffers with 74% memory reduction
+* Full TypeScript definitions and drop-in searchStream() helper
+
+## Installation
+```bash
+pnpm add getshipped/core
+```</textarea>
+                  </div>
+
                   <div class="readme-diff-box">
                     <div class="diff-header-bar">
-                      <span>README.md (Pull Request #42)</span>
+                      <span>README.md</span>
                       <span>Target: main branch</span>
                     </div>
-                    <pre class="diff-pre"><code style="color:#94a3b8;"><span style="color:#fca5a5;">- # Fast Search (v1.0)</span>
-<span style="color:#6ee7b7;">+ # Fast Search v2 ⚡</span>
+                    <pre class="diff-pre"><code style="color:#94a3b8;"><span style="color:#fca5a5;">- # Core Search (v1.0)</span>
+<span style="color:#6ee7b7;">+ # Core Search v2 ⚡</span>
 <span style="color:#6ee7b7;">+ &gt; Instant streaming search API for modern apps.</span>
 <span style="color:#6ee7b7;">+ &gt; 10x faster response times with sub-15ms latency.</span>
  
@@ -2440,8 +2275,36 @@ Check out the demo video and explore the code on GitHub.</textarea>
  
  ## Quick Start
  ```bash
- pnpm add @acme/fast-search
+ pnpm add getshipped/core
  ```</code></pre>
+                  </div>
+
+                  <div style="margin-top:12px;padding:12px 14px;border-radius:12px;background:#090e11;border:1px solid rgba(16,185,129,.2);">
+                    <div style="font-size:11px;font-family:var(--mono);font-weight:600;color:var(--emerald);margin-bottom:8px;">Verified Performance Benchmarks</div>
+                    <table class="bench-table">
+                      <thead>
+                        <tr>
+                          <th>Engine</th>
+                          <th>Response Time</th>
+                          <th>Throughput</th>
+                          <th>Memory</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Standard DB Query</td>
+                          <td>140ms</td>
+                          <td>1,200 QPS</td>
+                          <td>4.2 GB</td>
+                        </tr>
+                        <tr>
+                          <td class="highlight">New Streaming Search</td>
+                          <td class="highlight">12ms (91% faster)</td>
+                          <td class="highlight">10,000 QPS</td>
+                          <td class="highlight">1.1 GB (-74%)</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
 
@@ -2453,13 +2316,11 @@ Check out the demo video and explore the code on GitHub.</textarea>
           <!-- ================= BOTTOM DISPATCH ACTION HUB ================= -->
           <div class="dispatch-hub rise" style="--i:4;">
             <div class="hub-left">
-              <div class="target-indicators">
-                <span class="target-badge on">𝕏 Twitter</span>
-                <span class="target-badge on">LinkedIn</span>
-                <span class="target-badge on">60fps Video</span>
-                <span class="target-badge on">Tech Blog</span>
-                <span class="target-badge on">README Diff</span>
-                <span class="target-badge on">9:16 Shorts</span>
+              <div class="target-indicators" id="targetIndicators">
+                <span class="target-badge on" data-target="x">𝕏 Thread</span>
+                <span class="target-badge on" data-target="linkedin">LinkedIn Post</span>
+                <span class="target-badge on" data-target="github">GitHub Release</span>
+                <span class="target-badge on" data-target="video">60fps Demo Video</span>
               </div>
             </div>
 
@@ -2482,19 +2343,17 @@ Check out the demo video and explore the code on GitHub.</textarea>
       </div>
       <h3 style="font-size:18px;font-weight:700;color:#fff;">Launch Successfully Published! 🎉</h3>
       <p style="font-size:12.5px;color:rgba(255,255,255,.65);margin-top:-6px;">
-        All omnichannel launch assets are now published and live.
+        All chosen launch targets have been generated and dispatched.
       </p>
 
-      <div class="log-list">
-        <div class="log-item done">✓ 60fps Demo Video Rendered (16:9 Master)</div>
-        <div class="log-item done">✓ 9:16 Vertical Video Formatted for Shorts</div>
-        <div class="log-item done">✓ 5-Tweet Launch Thread Published to 𝕏 (Live)</div>
-        <div class="log-item done">✓ LinkedIn Engineering Post Published</div>
-        <div class="log-item done">✓ Technical Architecture Blog Published</div>
-        <div class="log-item done">✓ README Diff Merged into main via PR #42</div>
+      <div class="log-list" id="modalLogList">
+        <div class="log-item done" data-log="x">✓ 𝕏 Launch Thread Published</div>
+        <div class="log-item done" data-log="linkedin">✓ LinkedIn Post Published</div>
+        <div class="log-item done" data-log="github">✓ GitHub Release &amp; README Published</div>
+        <div class="log-item done" data-log="video">✓ 60fps Demo Video Rendered</div>
       </div>
 
-      <button type="button" class="modal-close-btn" id="modalCloseBtn">Return to Studio</button>
+      <button type="button" class="modal-close-btn" id="modalCloseBtn">Return to Post Engine</button>
     </div>
   </div>
 
@@ -2685,24 +2544,99 @@ Check out the demo video and explore the code on GitHub.</textarea>
       if (authScene.classList.contains("leaving")) return;
       authScene.classList.add("leaving");
 
-      // Transfer configured repo and commit message to studio header
+      // Transfer configured repo, author, and commit message to studio
       const repoInput = document.getElementById("repoInput");
+      const authorInput = document.getElementById("authorInput");
       const commitInput = document.getElementById("commitInput");
       const studioTitle = document.getElementById("studioTitle");
       const studioMeta = document.getElementById("studioMeta");
+      const pipelineStatusText = document.getElementById("pipelineStatusText");
+      const sidebarDevName = document.getElementById("sidebarDevName");
+      const sidebarAvatarIcon = document.getElementById("sidebarAvatarIcon");
 
-      const repoVal = (repoInput && repoInput.value.trim()) || "acme/fast-search";
+      const repoVal = (repoInput && repoInput.value.trim()) || "getshipped/core";
+      const authorVal = (authorInput && authorInput.value.trim()) || "@developer";
+      const cleanHandle = authorVal.startsWith("@") ? authorVal : `@${authorVal}`;
+      const cleanName = cleanHandle.replace(/^@/, "");
+      const initials = (cleanName.slice(0, 2) || "DV").toUpperCase();
       const commitVal = (commitInput && commitInput.value.trim()) || "feat: instant streaming search API";
-      const activeCount = document.querySelectorAll(".channel-pill.active").length || 6;
 
-      if (studioTitle) studioTitle.textContent = `Launch Studio — ${commitVal}`;
-      if (studioMeta) studioMeta.textContent = `${repoVal} • branch main • ${activeCount} launch assets prepared`;
+      // Selected platforms
+      const selectedChannels = [];
+      document.querySelectorAll(".channel-pill.active").forEach(pill => {
+        selectedChannels.push(pill.getAttribute("data-channel"));
+      });
+      const activeCount = selectedChannels.length || 4;
+
+      if (studioTitle) studioTitle.textContent = `Post Engine — ${commitVal}`;
+      if (studioMeta) studioMeta.textContent = `${repoVal} • ${activeCount} launch target${activeCount === 1 ? "" : "s"} active`;
+      if (pipelineStatusText) pipelineStatusText.textContent = `Post Engine Ready • ${repoVal}`;
+
+      // Update Dev Avatars and Names across all screens
+      if (sidebarDevName) sidebarDevName.textContent = cleanHandle;
+      if (sidebarAvatarIcon) sidebarAvatarIcon.textContent = initials;
+      document.querySelectorAll(".dev-display-handle").forEach(el => el.textContent = cleanHandle);
+      document.querySelectorAll(".dev-display-name").forEach(el => el.textContent = cleanName.charAt(0).toUpperCase() + cleanName.slice(1));
+      document.querySelectorAll(".dev-display-avatar").forEach(el => el.textContent = initials);
+
+      // Update repo labels & text in tabs
+      const releaseRepoLabel = document.getElementById("releaseRepoLabel");
+      if (releaseRepoLabel) releaseRepoLabel.textContent = repoVal;
+
+      // Filter tabs based on chosen platforms
+      const tabBtnX = document.getElementById("tabBtnX");
+      const tabX = document.getElementById("tabX");
+      const tabBtnLinkedIn = document.getElementById("tabBtnLinkedIn");
+      const tabLinkedIn = document.getElementById("tabLinkedIn");
+      const tabBtnGithub = document.getElementById("tabBtnGithub");
+      const tabGithub = document.getElementById("tabGithub");
+
+      const hasX = selectedChannels.includes("x");
+      const hasLinkedIn = selectedChannels.includes("linkedin");
+      const hasGithub = selectedChannels.includes("github");
+
+      if (tabBtnX) tabBtnX.style.display = hasX ? "inline-flex" : "none";
+      if (tabBtnLinkedIn) tabBtnLinkedIn.style.display = hasLinkedIn ? "inline-flex" : "none";
+      if (tabBtnGithub) tabBtnGithub.style.display = hasGithub ? "inline-flex" : "none";
+
+      // Activate first available tab
+      document.querySelectorAll(".editor-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+      if (hasX && tabBtnX && tabX) {
+        tabBtnX.classList.add("active");
+        tabX.classList.add("active");
+      } else if (hasLinkedIn && tabBtnLinkedIn && tabLinkedIn) {
+        tabBtnLinkedIn.classList.add("active");
+        tabLinkedIn.classList.add("active");
+      } else if (hasGithub && tabBtnGithub && tabGithub) {
+        tabBtnGithub.classList.add("active");
+        tabGithub.classList.add("active");
+      }
+
+      // Filter dispatch hub indicators
+      document.querySelectorAll(".target-badge").forEach(badge => {
+        const target = badge.getAttribute("data-target");
+        if (selectedChannels.includes(target)) {
+          badge.classList.add("on");
+          badge.style.display = "inline-block";
+        } else {
+          badge.classList.remove("on");
+          badge.style.display = "none";
+        }
+      });
+
+      // Filter celebration modal log items
+      document.querySelectorAll(".log-item").forEach(item => {
+        const target = item.getAttribute("data-log");
+        item.style.display = selectedChannels.includes(target) ? "flex" : "none";
+      });
 
       // Start sky video
       skyVideo.play().catch(() => {});
 
       setTimeout(() => {
         authScene.classList.add("hidden");
+        authScene.classList.remove("leaving");
         appScene.classList.add("on");
 
         if (!skyRenderer) {
@@ -2718,12 +2652,14 @@ Check out the demo video and explore the code on GitHub.</textarea>
       }, 520);
     }
 
-    document.getElementById("signupForm").addEventListener("submit", (e) => {
+    const signupForm = document.getElementById("signupForm");
+    if (signupForm) signupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       initiateFlow();
     });
-    document.getElementById("githubAuthBtn").addEventListener("click", initiateFlow);
-    document.getElementById("googleAuthBtn").addEventListener("click", initiateFlow);
+
+    const githubAuthBtn = document.getElementById("githubAuthBtn");
+    if (githubAuthBtn) githubAuthBtn.addEventListener("click", initiateFlow);
 
     /* ================= SIDEBAR COLLAPSE / EXPAND ================= */
     const sideRail = document.getElementById("sideRail");
@@ -2927,24 +2863,122 @@ Check out the demo video and explore the code on GitHub.</textarea>
       }
     });
 
-    // Sidebar Navigation interactions
-    document.querySelectorAll(".side-nav .nav-item").forEach((item, index) => {
-      item.addEventListener("click", () => {
-        document.querySelectorAll(".side-nav .nav-item").forEach(n => n.classList.remove("active"));
-        item.classList.add("active");
-        if (index === 0) {
-          scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
-        } else if (index === 1) {
-          const player = document.querySelector(".remotion-pane");
-          if (player) player.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-      });
-    });
+    /* ================= TWO-WAY NAVIGATION: ONBOARDING & STUDIO ================= */
+    function returnToOnboarding() {
+      appScene.classList.remove("on");
+      authScene.classList.remove("hidden");
+      authScene.classList.remove("leaving");
 
-    const searchPill = document.getElementById("searchPill");
-    if (searchPill) {
-      searchPill.addEventListener("click", () => {
-        scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
+      if (skyRenderer) {
+        skyRenderer.stop();
+        skyRenderer = null;
+      }
+      skyVideo.pause();
+
+      castleVideo.play().catch(() => {});
+      if (!castleRenderer) {
+        castleRenderer = ascii(castleCanvas, castleVideo, "castle");
+      }
+    }
+
+    const btnBackToOnboarding = document.getElementById("btnBackToOnboarding");
+    if (btnBackToOnboarding) {
+      btnBackToOnboarding.addEventListener("click", returnToOnboarding);
+    }
+
+    const navOnboarding = document.getElementById("navOnboarding");
+    if (navOnboarding) {
+      navOnboarding.addEventListener("click", returnToOnboarding);
+    }
+
+    const navPostEngine = document.getElementById("navPostEngine");
+    if (navPostEngine) {
+      navPostEngine.addEventListener("click", () => {
+        document.querySelectorAll(".side-nav .nav-item").forEach(n => n.classList.remove("active"));
+        navPostEngine.classList.add("active");
+        const pane = document.querySelector(".editors-pane");
+        if (pane) pane.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    const navVideoStudio = document.getElementById("navVideoStudio");
+    if (navVideoStudio) {
+      navVideoStudio.addEventListener("click", () => {
+        document.querySelectorAll(".side-nav .nav-item").forEach(n => n.classList.remove("active"));
+        navVideoStudio.classList.add("active");
+        const player = document.querySelector(".remotion-pane");
+        if (player) player.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    }
+
+    /* ================= CLIPBOARD COPY HANDLERS ================= */
+    function copyTextToClipboard(text, buttonEl, successText = "Copied! ✓") {
+      const span = buttonEl.querySelector("span");
+      const originalText = span ? span.textContent : buttonEl.textContent;
+
+      function showSuccess() {
+        buttonEl.classList.add("copied");
+        if (span) span.textContent = successText;
+        setTimeout(() => {
+          buttonEl.classList.remove("copied");
+          if (span) span.textContent = originalText;
+        }, 1800);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showSuccess).catch(() => {
+          fallbackCopy(text, showSuccess);
+        });
+      } else {
+        fallbackCopy(text, showSuccess);
+      }
+    }
+
+    function fallbackCopy(text, callback) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+        if (callback) callback();
+      } catch (err) {}
+      document.body.removeChild(ta);
+    }
+
+    // 1. Copy 𝕏 Launch Thread
+    const copyThreadBtn = document.getElementById("copyThreadBtn");
+    if (copyThreadBtn) {
+      copyThreadBtn.addEventListener("click", () => {
+        const tweets = [];
+        document.querySelectorAll("#tabX .tweet-card").forEach((card, idx) => {
+          const text = card.querySelector(".tweet-textarea") ? card.querySelector(".tweet-textarea").value : "";
+          tweets.push(`[Tweet ${idx + 1}/5]\n${text}`);
+        });
+        copyTextToClipboard(tweets.join("\n\n---\n\n"), copyThreadBtn, "Thread Copied! ✓");
+      });
+    }
+
+    // 2. Copy LinkedIn Post
+    const copyLinkedInBtn = document.getElementById("copyLinkedInBtn");
+    if (copyLinkedInBtn) {
+      copyLinkedInBtn.addEventListener("click", () => {
+        const title = document.getElementById("liTitleInput") ? document.getElementById("liTitleInput").value : "";
+        const body = document.getElementById("liBodyTextarea") ? document.getElementById("liBodyTextarea").value : "";
+        const tags = Array.from(document.querySelectorAll("#tabLinkedIn .hash-tag")).map(t => t.textContent).join(" ");
+        const fullPost = `${title}\n\n${body}\n\n${tags}`;
+        copyTextToClipboard(fullPost, copyLinkedInBtn, "Post Copied! ✓");
+      });
+    }
+
+    // 3. Copy GitHub Release Markdown
+    const copyReleaseBtn = document.getElementById("copyReleaseBtn");
+    if (copyReleaseBtn) {
+      copyReleaseBtn.addEventListener("click", () => {
+        const notes = document.getElementById("releaseNotesTextarea") ? document.getElementById("releaseNotesTextarea").value : "";
+        copyTextToClipboard(notes, copyReleaseBtn, "Markdown Copied! ✓");
       });
     }
 
